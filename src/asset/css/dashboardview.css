@@ -1,0 +1,22 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+
+.text {
+    -fx-text-fill: "white";
+}
+
+.button-navigation {
+        -fx-background-radius: 20; /* Adjust this value for more or less roundness */
+        -fx-background-color: #4CAF50; /* Example background color */
+        -fx-text-fill: white; /* Example text color */
+        -fx-font-size: 16px;
+}
+
+.container-pane{
+      -fx-spacing : 20px;
+}
