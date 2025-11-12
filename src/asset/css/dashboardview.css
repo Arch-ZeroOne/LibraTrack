@@ -11,12 +11,22 @@
 }
 
 .button-navigation {
-        -fx-background-radius: 20; /* Adjust this value for more or less roundness */
-        -fx-background-color: #4CAF50; /* Example background color */
+        -fx-background-radius: 10; /* Adjust this value for more or less roundness */
+        -fx-background-color: transparent; /* Example background color */
         -fx-text-fill: white; /* Example text color */
         -fx-font-size: 16px;
+        -fx-cursor:HAND;
 }
 
 .container-pane{
       -fx-spacing : 20px;
+}
+
+.button-navigation:hover{
+      -fx-background-color:white;
+      -fx-text-fill:black;
+}
+
+.fa-icon{
+    -fx-font-size : 100px;
 }

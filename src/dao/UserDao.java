@@ -16,7 +16,7 @@ public class UserDao implements UserInterface {
     private final DatabaseUtil DB_UTIL = new DatabaseUtil();
     private final Connection connection = DB_UTIL.connect();
    
-    
+    @Override
     public boolean insert(User user) throws SQLException{
         String query = "INSERT INTO account (username, password, email , role) VALUES (?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
@@ -36,13 +36,17 @@ public class UserDao implements UserInterface {
         
     }
     
+    @Override
     public boolean validate(User user) throws SQLException{
-        String query = "SELECT * FROM account WHERE email = ? AND password = ?";
+        String query = "SELECT * FROM account WHERE username = ? AND password = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getEmail());
+        statement.setString(1, user.getUsername());
         statement.setString(2, user.getPassword());
         
+  
        ResultSet result = statement.executeQuery();
+       
+       System.out.println(result);
        
        if(result.next()){
            System.out.println("User Logged In");
