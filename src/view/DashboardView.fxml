@@ -33,14 +33,14 @@
             </Label>
             <Pane layoutX="-7.0" layoutY="95.0" prefHeight="416.0" prefWidth="223.0" styleClass="container-pane" stylesheets="@../asset/css/dashboardview.css">
                <children>
-                  <Button layoutX="31.0" layoutY="20.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="171.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Dashboard" />
+                  <Button layoutX="32.0" layoutY="19.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="169.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Dashboard" />
                   <Button layoutX="35.0" layoutY="62.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="152.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Students" />
                   <Button layoutX="36.0" layoutY="105.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="145.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Books" />
-                  <Button layoutX="34.0" layoutY="152.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Librarians" />
+                  <Button layoutX="41.0" layoutY="151.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Librarians" />
                   <Button layoutX="32.0" layoutY="196.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="177.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Borrowed " />
-                  <Button layoutX="38.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Logout" />
-                  <Button layoutX="38.0" layoutY="247.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Reports" />
-                  <Button layoutX="38.0" layoutY="293.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Settings" />
+                  <Button layoutX="41.0" layoutY="335.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Logout" />
+                  <Button layoutX="38.0" layoutY="247.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Reports" />
+                  <Button layoutX="38.0" layoutY="293.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="160.0" styleClass="button-navigation" stylesheets="@../asset/css/dashboardview.css" text="Settings" />
                   <FontAwesomeIcon glyphName="USER" layoutX="48.0" layoutY="88.0" size="2em" strokeWidth="5.0" styleClass="fa-icon">
                      <font>
                         <Font size="96.0" />

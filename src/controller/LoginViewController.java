@@ -4,23 +4,28 @@
  */
 package controller;
 
-import dao.UserDao;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import com.gluonhq.charm.glisten.control.TextField;
+import java.io.IOException;
 import model.User;
 import java.sql.SQLException;
+import javafx.event.ActionEvent;
+import service.UserService;
 import util.AlertUtil;
+import util.WindowUtil;
 /**
  * FXML Controller class
  *
  * @author Windyl
  */
 public class LoginViewController implements Initializable {
-    private UserDao user_dao = new UserDao();
+    private UserService service = new UserService();
     private AlertUtil alert_util = new AlertUtil();
+    public WindowUtil window_util = new WindowUtil();
     
     @FXML
     TextField username;
@@ -42,18 +47,21 @@ public class LoginViewController implements Initializable {
         
         //Creates the user object
         User user = new User(user_name ,pass_word);
-        
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
+       
          
        //Validates the user
-       if(user_dao.validate(user)){
+       if(service.validate(user)){
           alert_util.success("User has been successfully logged in");
           return;
        }
        
        alert_util.error("User not found");
         
-    }    
+    }
+
+   public void transfer(ActionEvent event) throws IOException{
+       window_util.transfer("RegisterView.fxml", event);
+       
+   }    
     
 }

@@ -13,6 +13,7 @@ import javafx.scene.control.Alert.AlertType;
 public class AlertUtil {
     private final Alert success_alert = new Alert(AlertType.INFORMATION);
     private final Alert error_alert = new Alert(AlertType.ERROR);
+
     
     
     public void success(String message){

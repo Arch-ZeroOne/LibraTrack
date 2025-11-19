@@ -15,7 +15,7 @@
         -fx-background-color: transparent; /* Example background color */
         -fx-text-fill: white; /* Example text color */
         -fx-font-size: 16px;
-        -fx-cursor:HAND;
+        -fx-cursor:HAND;    
 }
 
 .container-pane{

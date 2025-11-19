@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 public class DatabaseUtil {
     
-    public final String URL = "jdbc:mysql://localhost:3306/libratrack_library_barcode";
+    public final String URL = "jdbc:mysql://localhost:3306/library_barcode";
     public final String USERNAME = "root";
     public final String PASSWORD = "";
     

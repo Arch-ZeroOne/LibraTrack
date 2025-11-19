@@ -12,8 +12,7 @@ public class MainPane extends Application {
     public static void main(String[] args) {
          launch(args);
     }
-    
-    
+   
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/LoginView.fxml"));
