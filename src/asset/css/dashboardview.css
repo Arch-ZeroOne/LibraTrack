@@ -7,15 +7,13 @@
 }
 
 .text {
-    -fx-text-fill: "white";
+    -fx-text-fill: "black";
 }
 
 .button-navigation {
-        -fx-background-radius: 10; /* Adjust this value for more or less roundness */
-        -fx-background-color: transparent; /* Example background color */
-        -fx-text-fill: white; /* Example text color */
-        -fx-font-size: 16px;
-        -fx-cursor:HAND;    
+    -fx-margin : 0 300 0 0;
+    -fx-background-color:transparent;
+    -fx-text-fill:"black";
 }
 
 .container-pane{
@@ -23,10 +21,5 @@
 }
 
 .button-navigation:hover{
-      -fx-background-color:white;
-      -fx-text-fill:black;
-}
-
-.fa-icon{
-    -fx-font-size : 100px;
+    -fx-background-color:#C0F8D1;
 }

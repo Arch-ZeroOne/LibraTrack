@@ -46,10 +46,9 @@ public class UserDao implements UserInterface {
   
        ResultSet result = statement.executeQuery();
        
-       System.out.println(result);
+      
        
        if(result.next()){
-           System.out.println("User Logged In");
            return true;
            
        }

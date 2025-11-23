@@ -41,7 +41,7 @@ public class LoginViewController implements Initializable {
         // TODO
     }
 
-    public void validate() throws SQLException {
+    public void validate(ActionEvent event) throws SQLException, IOException {
         String user_name = username.getText();
         String pass_word = password.getText();
         
@@ -52,6 +52,7 @@ public class LoginViewController implements Initializable {
        //Validates the user
        if(service.validate(user)){
           alert_util.success("User has been successfully logged in");
+          window_util.transfer("DashboardView.fxml", event);
           return;
        }
        
