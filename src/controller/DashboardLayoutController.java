@@ -17,7 +17,7 @@ import util.WindowUtil;
  *
  * @author Windyl
  */
-public class DashboardViewController implements Initializable {
+public class DashboardLayoutController implements Initializable {
     WindowUtil util = new WindowUtil();
     @FXML
     AnchorPane contentpane;
@@ -29,37 +29,39 @@ public class DashboardViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
-    util.setContentArea(contentpane);
+
        try{
-           util.goTo("StatisticsView");
-           
-           
-           
-            //Loads the default home page
-           homebtn.setOnAction(event -> {
-             try{
+          //Loads the default home page
+          util.setContentArea(contentpane); 
+          util.goTo("StatisticsView");
+          
+         
+          homebtn.setOnAction(event -> {
+            try{
                  util.goTo("StatisticsView");
                  
              }catch(IOException e){
                  e.printStackTrace();   
-             }
-           } 
-           );         
-           booksbtn.setOnAction(event ->{
-           try{
-                util.goTo("BooksView") ;
-              }catch(IOException e){
+            }
+          }); 
+          
+          booksbtn.setOnAction(event ->{
+          try{
+             util.goTo("BooksView") ;
+             
+             }catch(IOException e){
                  e.printStackTrace();   
              }
-           } );
+          });
+          
        }catch(IOException e){
            e.printStackTrace();
        }
       
        
-       
-       
-    }  
+    } 
+    
+    
     
     
     

@@ -52,7 +52,7 @@ public class LoginViewController implements Initializable {
        //Validates the user
        if(service.validate(user)){
           alert_util.success("User has been successfully logged in");
-          window_util.transfer("DashboardView.fxml", event);
+          window_util.transfer("DashboardLayout.fxml", event);
           return;
        }
        
