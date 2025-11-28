@@ -4,7 +4,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import com.gluonhq.charm.glisten.control.TextField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import java.io.IOException;
 import service.UserService;
 import model.User;
@@ -28,7 +29,7 @@ public class RegisterViewController implements Initializable {
     @FXML
     TextField email;
     @FXML
-    TextField password;
+    PasswordField password;
     @FXML
     ChoiceBox<String> role;
   

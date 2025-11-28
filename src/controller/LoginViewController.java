@@ -9,11 +9,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import com.gluonhq.charm.glisten.control.TextField;
+import javafx.scene.control.TextField;
 import java.io.IOException;
 import model.User;
 import java.sql.SQLException;
 import javafx.event.ActionEvent;
+import javafx.scene.control.PasswordField;
 import service.UserService;
 import util.AlertUtil;
 import util.WindowUtil;
@@ -30,7 +31,7 @@ public class LoginViewController implements Initializable {
     @FXML
     TextField username;
     @FXML
-    TextField password;
+    PasswordField password;
     
 
     /**

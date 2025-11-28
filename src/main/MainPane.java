@@ -12,6 +12,7 @@ public class MainPane extends Application {
     public static void main(String[] args) {
          launch(args);
     }
+    //TODO Handle the saving and closing in modal
    
     @Override
     public void start(Stage primaryStage) throws IOException {

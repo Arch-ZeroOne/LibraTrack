@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefWidth="500.0" style="-fx-background-color: white; -fx-padding: 20;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddModalController">
+    
+    <Label style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Add/Edit Book">
+        <VBox.margin>
+            <Insets bottom="20.0" />
+        </VBox.margin>
+    </Label>
+    
+    <GridPane hgap="15.0" vgap="15.0">
+        <children>
+            
+            <!-- Title -->
+            <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="titleField" promptText="Enter book title" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            
+            <!-- Author -->
+            <Label text="Author:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="authorField" promptText="Enter author name" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            
+            <!-- Genre -->
+            <Label text="Genre:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <ComboBox fx:id="genreComboBox" prefWidth="250.0" promptText="Select genre" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            
+            <!-- Publisher -->
+            <Label text="Publisher:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="publisherField" promptText="Enter publisher" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            
+            <!-- Publication Date -->
+            <Label text="Publication Date:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <DatePicker fx:id="publicationDatePicker" prefWidth="250.0" promptText="Select date" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            
+            <!-- ISBN -->
+            <Label text="ISBN:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="isbnField" promptText="Enter ISBN" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            
+            <!-- Copies -->
+            <Label text="Copies:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="copiesField" promptText="Enter number of copies" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            
+            <!-- Barcode -->
+            <Label text="Barcode:" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="barcodeField" promptText="Enter barcode" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        </children>
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+    
+    <!-- Buttons -->
+    <HBox alignment="CENTER_RIGHT" spacing="10.0" style="-fx-padding: 20 0 0 0;">
+        <Button onAction="#handleCancel" prefWidth="100.0" style="-fx-background-color: #E0E0E0; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;" text="Cancel" />
+        <Button onAction="#handleSave" prefWidth="100.0" style="-fx-background-color: #DFF8EB; -fx-text-fill: black; -fx-font-weight: bold; -fx-background-radius: 5;" text="Save" />
+    </HBox>
+    
+</VBox>
