@@ -7,14 +7,15 @@ package service;
 import java.sql.SQLException;
 import model.Book;
 import dao.BookDao;
+import java.util.ArrayList;
 /**
  *
  * @author Windyl
  */
 public class BookService {
-        BookDao book_dao = new BookDao();  
+     BookDao book_dao = new BookDao();  
       
-    
+   
     public boolean insert(Book book) throws SQLException{
         return book_dao.insert(book);
                
@@ -31,5 +32,10 @@ public class BookService {
      public boolean search(Book book) throws SQLException{
         return book_dao.search(book);
     }
+     
+     public ArrayList<Book> list() throws SQLException{
+         return book_dao.list();
+         
+     }
     
 }

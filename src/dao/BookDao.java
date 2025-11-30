@@ -10,6 +10,8 @@ import interfaces.BookInterface;
 import model.Book;
 import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 /**
  *
  * @author Windyl
@@ -57,6 +59,34 @@ public class BookDao implements BookInterface{
     
      public boolean search(Book book) throws SQLException{
         return false;
+    }
+     
+    public ArrayList<Book> list() throws SQLException{
+        String query = "SELECT * FROM book";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet result = preparedStatement.executeQuery();
+        ArrayList<Book> book_list = new ArrayList<>();
+        
+        while(result.next()){
+            String title = result.getString("title");
+            String author = result.getString("author");
+            String genre = result.getString("genre");
+            String publisher = result.getString("publisher");
+            String publicationDate = result.getString("publication_date");     
+            int copies = result.getInt("copies");
+            boolean isAvailable = result.getBoolean("isAvailable");
+            
+            Book book = new Book(title,author,genre,publisher,publicationDate,copies,isAvailable);    
+            book_list.add(book);
+            
+        }
+        
+        
+        
+        return book_list;
+        
+       
+        
     }
     
     

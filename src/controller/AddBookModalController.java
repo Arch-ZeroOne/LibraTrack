@@ -16,12 +16,14 @@ import model.Book;
 import util.DateUtil;
 import service.BookService;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import util.ModalUtil;
 /**
  * FXML Controller class
  *
  * @author Windyl
  */
-public class AddModalController implements Initializable {
+public class AddBookModalController implements Initializable {
      
      @FXML
      TextField titleField,authorField,publisherField,isbnField,copiesField,barcodeField;
@@ -30,6 +32,7 @@ public class AddModalController implements Initializable {
      @FXML
      DatePicker publicationDatePicker;
      DateUtil date_util = new DateUtil();
+     ModalUtil modal_util = new ModalUtil();
      BookService service = new BookService();
      
     /**
@@ -132,11 +135,26 @@ public class AddModalController implements Initializable {
      
        Book book = new Book(title,author,genre,publisher,publicationDate,isbn,copies,true,barcode);
        service.insert(book);
+       
+       clearForm();
+       handleCancel(event);
    }
    
    //Handles the modal closing
    public void handleCancel(ActionEvent event){
+       modal_util.closeModal(event);
        
+       
+   }
+   
+   
+   public void clearForm(){
+       titleField.setText("");
+       authorField.setText("");
+       publisherField.setText("");
+       isbnField.setText("");
+       copiesField.setText("");
+       barcodeField.setText("");
        
    }
   

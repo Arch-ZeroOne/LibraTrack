@@ -10,11 +10,13 @@ package interfaces;
  */
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import model.Book;
 public interface BookInterface {
     public boolean insert(Book book) throws SQLException;
     public boolean update(Book book) throws SQLException;
     public boolean remove(Book book) throws SQLException;
     public boolean search(Book book) throws SQLException;
+    public ArrayList<Book> list() throws SQLException;
     
 }

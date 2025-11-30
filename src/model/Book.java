@@ -45,6 +45,15 @@ public class Book {
         this.barcode = barcode;
         this.isAvailable = isAvailable;
     }
+    public Book(String title, String author, String genre, String publisher, String publicationDate, int copies, boolean isAvailable) {
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.copies = copies;
+        this.isAvailable = isAvailable;
+    }
     
    
     public int getId() {
