@@ -50,6 +50,26 @@ public class BookDao implements BookInterface{
     }
     
     public boolean update(Book book) throws SQLException{
+        String query = "UPDATE book SET title = ?,author = ? ,genre = ?,publisher = ? ,publication_date = ? ,"
+                + "isbn = ?,copies = ? ,isAvailable = ? WHERE barcode = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1,book.getTitle());
+        preparedStatement.setString(2,book.getAuthor());
+        preparedStatement.setString(3,book.getGenre());
+        preparedStatement.setString(4,book.getPublisher());
+        preparedStatement.setString(5,book.getPublicationDate());
+        preparedStatement.setString(6,book.getIsbn());
+        preparedStatement.setInt(7,book.getCopies());
+        preparedStatement.setBoolean(8,book.getIsAvailable());
+        preparedStatement.setString(9,book.getBarcode());        
+        
+        int rows_affected = preparedStatement.executeUpdate();
+        
+        if(rows_affected != 0){
+            System.out.println("Book Updated");
+            return true;
+            
+        }
         return false;
     }
     

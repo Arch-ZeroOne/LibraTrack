@@ -8,12 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainPane extends Application {
-    
+
     public static void main(String[] args) {
-         launch(args);
+        launch(args);
     }
     //TODO Handle the saving and closing in modal
-   
+
     @Override
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/DashboardLayout.fxml"));
@@ -22,8 +22,7 @@ public class MainPane extends Application {
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
-       
-        
+
     }
-    
+
 }

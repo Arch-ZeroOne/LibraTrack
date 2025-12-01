@@ -132,19 +132,22 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+                  
+                  <!-- Is Available -->
+                  <Label style="-fx-text-fill: #001b52;" text="Is Available:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="isAvailableComboBox" prefHeight="45.0" prefWidth="280.0" promptText="Select availability" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             
             <!-- Buttons -->
             <HBox alignment="CENTER" spacing="15.0">
                <children>
-                  <Button onAction="#handleDelete" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(220, 53, 69, 0.2), 8, 0, 0, 2);" text="Delete">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
                   <HBox HBox.hgrow="ALWAYS" />
-                  <Button onAction="#handleCancel" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #f1f3f5; -fx-text-fill: #495057; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand;" text="Cancel">
+                  <Button onAction="#handleDelete" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(220, 53, 69, 0.2), 8, 0, 0, 2);" text="Delete">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

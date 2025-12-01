@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import service.StudentService;
 import model.Student;
+import util.AlertUtil;
 
 /**
  * FXML Controller class
@@ -24,6 +25,7 @@ public class UpdateStudentViewController implements Initializable {
     @FXML
     TextField barcodeField,firstnameField,middlenameField,lastnameField;
     StudentService service = new StudentService();
+    AlertUtil alert_util = new AlertUtil();
   
   @Override
   public void initialize(URL url, ResourceBundle rb) {
