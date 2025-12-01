@@ -25,8 +25,8 @@ public class StudentService {
         return student_dao.remove(student);
     }
     
-     public boolean search(Student student) throws SQLException{
-        return student_dao.search(student);
+     public Student search(String barcode) throws SQLException{
+        return student_dao.search(barcode);
     }
      
      public ArrayList<Student> list() throws SQLException{

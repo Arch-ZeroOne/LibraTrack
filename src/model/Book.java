@@ -24,6 +24,17 @@ public class Book {
     private boolean isAvailable;
 
     public Book(int id, String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies, String barcode) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.genre = genre;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.isbn = isbn;
+        this.copies = copies;
+        this.barcode = barcode;
+    }
+    public Book( String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies, boolean isAvailable,String barcode) {
         this.title = title;
         this.author = author;
         this.genre = genre;
@@ -34,7 +45,8 @@ public class Book {
         this.barcode = barcode;
     }
     
-   public Book(String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies,boolean isAvailable, String barcode) {
+   public Book(int id ,String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies,boolean isAvailable, String barcode) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.genre = genre;

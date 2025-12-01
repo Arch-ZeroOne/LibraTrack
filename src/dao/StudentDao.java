@@ -13,6 +13,7 @@ import model.Student;
 import util.DatabaseUtil;
 import interfaces.StudentInterface;
 
+
 /**
  *
  * @author Windyl
@@ -51,8 +52,20 @@ public class StudentDao implements StudentInterface{
         return false;
     }
     
-     public boolean search(Student student) throws SQLException{
-        return false;
+     public Student search(String barcode) throws SQLException{
+        String query = "SELECT * FROM student WHERE barcode = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, barcode);
+        ResultSet result = preparedStatement.executeQuery();
+         
+        while(result.next()){
+            int id = result.getInt("student_id");
+            String firstname = result.getString("firstname");
+            String middlename = result.getString("middlename");
+            String lastname = result.getString("lastname");
+            return new Student(id,firstname,middlename,lastname); 
+        }
+        return null;
     }
      
     public ArrayList<Student> list() throws SQLException{

@@ -13,7 +13,7 @@
 
 <VBox prefWidth="650.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddStudentModalController">
     
-    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #001b52;" text="Add/Edit Student">
+    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #001b52;" text="Add Student">
         <VBox.margin>
             <Insets bottom="25.0" />
         </VBox.margin>

@@ -29,8 +29,8 @@ public class BookService {
         return book_dao.remove(book);
     }
     
-     public boolean search(Book book) throws SQLException{
-        return book_dao.search(book);
+     public Book search(String barcode) throws SQLException{
+            return book_dao.search(barcode);
     }
      
      public ArrayList<Book> list() throws SQLException{

@@ -57,8 +57,27 @@ public class BookDao implements BookInterface{
         return false;
     }
     
-     public boolean search(Book book) throws SQLException{
-        return false;
+     public Book search(String barcode) throws SQLException{
+        String query = "SELECT * FROM book WHERE barcode = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, barcode);
+        ResultSet result = preparedStatement.executeQuery();
+         
+        while(result.next()){
+            int id = result.getInt("book_id");
+            String title = result.getString("title");
+            String author = result.getString("author");
+            String genre = result.getString("genre");
+            String publisher = result.getString("publisher");
+            String pub_date = result.getString("publication_date");
+            String isbn = result.getString("isbn");
+            int copies = result.getInt("copies");
+            boolean isAvailable = result.getBoolean("isAvailable");
+            String book_barcode = result.getString("barcode");
+            return new Book(id,title,author,genre,publisher,pub_date,isbn,copies,isAvailable,book_barcode); 
+        }
+        
+        return null;
     }
      
     public ArrayList<Book> list() throws SQLException{

@@ -31,6 +31,13 @@ public class Student {
         this.lastname = lastname;
         this.barcode = barcode;
     }
+
+    public Student(int student_id, String firstname, String middlename, String lastname) {
+        this.student_id = student_id;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+    }
     
      public int getStudent_id() {
         return student_id;

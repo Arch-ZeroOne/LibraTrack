@@ -22,7 +22,7 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     AnchorPane contentpane;
     @FXML
-    Button homebtn,booksbtn,studentsBtn;
+    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn;
 
     /**
      * Initializes the controller class.
@@ -33,8 +33,7 @@ public class DashboardLayoutController implements Initializable {
        try{
           //Loads the default home page
           util.setContentArea(contentpane); 
-          util.goTo("StudentsView");
-          
+          util.goTo("UpdateBookView");
          
           homebtn.setOnAction(event -> {
             try{
@@ -47,16 +46,35 @@ public class DashboardLayoutController implements Initializable {
           
           booksbtn.setOnAction(event ->{
           try{
-             util.goTo("StudentsView") ;
+             util.goTo("BooksView") ;
              
              }catch(IOException e){
                  e.printStackTrace();   
              }
           });
           
-            studentsBtn.setOnAction(event ->{
+          studentsBtn.setOnAction(event ->{
           try{
-             util.goTo("BooksView") ;
+             util.goTo("StudentsView") ;
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+             
+          updateBookBtn.setOnAction(event ->{
+          try{
+             util.goTo("UpdateBookView") ;
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+          
+             
+          updateStudentBtn.setOnAction(event ->{
+          try{
+             util.goTo("UpdateStudentView") ;
              
              }catch(IOException e){
                  e.printStackTrace();   

@@ -16,7 +16,7 @@ public interface StudentInterface {
      public boolean insert(Student student) throws SQLException;
      public boolean update(Student student) throws SQLException;
      public boolean remove(Student student) throws SQLException;
-     public boolean search(Student student) throws SQLException;
+     public Student search(String barcode) throws SQLException;
      
      
     
