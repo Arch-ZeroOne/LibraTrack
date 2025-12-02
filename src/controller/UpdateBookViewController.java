@@ -41,10 +41,90 @@ public class UpdateBookViewController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
+         genreComboBox.getItems().addAll("Literary Fiction",
+            "Contemporary Fiction",
+            "Historical Fiction",
+            "Science Fiction",
+            "Fantasy",
+            "Mystery",
+            "Thriller",
+            "Suspense",
+            "Horror",
+            "Romance",
+            "Western",
+            "Dystopian",
+            "Adventure",
+            "Crime",
+            "Detective",
+            "Espionage",
+            "Gothic",
+            "Magical Realism",
+            "Paranormal",
+            "Urban Fantasy",
+            
+            // Non-Fiction Categories
+            "Biography",
+            "Autobiography",
+            "Memoir",
+            "History",
+            "Philosophy",
+            "Psychology",
+            "Science",
+            "Technology",
+            "Business",
+            "Economics",
+            "Self-Help",
+            "True Crime",
+            "Travel",
+            "Cooking",
+            "Health & Fitness",
+            "Religion",
+            "Spirituality",
+            "Politics",
+            "Social Sciences",
+            "Nature",
+            "Essays",
+            "Journalism",
+            
+            // Academic & Reference
+            "Textbook",
+            "Reference",
+            "Encyclopedia",
+            "Dictionary",
+            "Manual",
+            "Guide",
+            
+            // Arts & Entertainment
+            "Art",
+            "Music",
+            "Photography",
+            "Film & TV",
+            "Theater",
+            "Comics",
+            "Graphic Novels",
+            
+            // Children & Young Adult
+            "Children's Picture Books",
+            "Children's Fiction",
+            "Middle Grade",
+            "Young Adult (YA)",
+            "Educational Children's",
+            
+            // Poetry & Drama
+            "Poetry",
+            "Drama",
+            "Plays",
+            
+            // Other
+            "Humor",
+            "Satire",
+            "Anthology",
+            "Short Stories",
+            "Other");
         
         isAvailableComboBox.getItems().setAll("true","false");
         
-        barcodeField.setOnKeyPressed(event -> {
+      barcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
             try{      
               String value = barcodeField.getText();

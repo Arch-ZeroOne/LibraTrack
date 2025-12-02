@@ -63,7 +63,8 @@ public class StudentDao implements StudentInterface{
             String firstname = result.getString("firstname");
             String middlename = result.getString("middlename");
             String lastname = result.getString("lastname");
-            return new Student(id,firstname,middlename,lastname); 
+            boolean isActive = result.getBoolean("isActive");
+            return new Student(id,firstname,middlename,lastname,isActive); 
         }
         return null;
     }
@@ -80,9 +81,9 @@ public class StudentDao implements StudentInterface{
             String middlename = result.getString("middlename");
             String lastname = result.getString("lastname");
             String barcode = result.getString("barcode");
-          
-            
-            Student student = new Student(id,firstname,middlename,lastname,barcode);
+            boolean isActive = result.getBoolean("isActive");
+         
+            Student student = new Student(id,firstname,middlename,lastname,barcode,isActive);
             student_list.add(student);
             
         }

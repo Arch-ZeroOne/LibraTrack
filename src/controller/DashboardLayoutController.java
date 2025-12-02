@@ -22,7 +22,7 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     AnchorPane contentpane;
     @FXML
-    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn;
+    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn,borrowBookBtn,attendanceBtn;
 
     /**
      * Initializes the controller class.
@@ -84,12 +84,34 @@ public class DashboardLayoutController implements Initializable {
        }catch(IOException e){
            e.printStackTrace();
        }
+       
+       borrowBookBtn.setOnAction(event ->{
+          try{
+             util.goTo("BorrowBookView");
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+       
+       attendanceBtn.setOnAction(event ->{
+          try{
+             util.goTo("TrackStudentView") ;
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+          
+      
+          
+       
+       
+       
       
        
     } 
     
     
-    
-    
-    
+       
 }

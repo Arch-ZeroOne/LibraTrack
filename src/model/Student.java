@@ -16,27 +16,41 @@ public class Student {
     private String middlename;
     private String lastname;
     private String barcode;
+    private boolean isActive;
     
-    public Student(String firstname, String middlename, String lastname, String barcode) {
+    //For Insertion
+    public Student(String firstname, String middlename, String lastname, String barcode,boolean isActive) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.barcode = barcode;
+        this.isActive = isActive;
     }
-
-    public Student(int student_id, String firstname, String middlename, String lastname, String barcode) {
+    
+    //Retrieving the value
+    public Student(int student_id, String firstname, String middlename, String lastname, boolean isActive) {
+        this.student_id = student_id;
+        this.firstname = firstname;
+        this.middlename = middlename;
+        this.lastname = lastname;
+        this.isActive = isActive;
+    }
+    
+    public Student(int student_id, String firstname, String middlename, String lastname, String barcode, boolean isActive) {
         this.student_id = student_id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.barcode = barcode;
+        this.isActive = isActive;
     }
 
-    public Student(int student_id, String firstname, String middlename, String lastname) {
-        this.student_id = student_id;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
+    public boolean isIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
     
      public int getStudent_id() {

@@ -21,6 +21,8 @@ import util.ModalUtil;
  *
  * @author Windyl
  */
+
+//TODO : add isactive field to updates
 public class AddStudentModalController implements Initializable {
     @FXML
     TextField firstnameField,middlenameField,lastnameField,barcodeField;
@@ -40,7 +42,7 @@ public void handleSave(ActionEvent event) throws SQLException{
         String lastname = lastnameField.getText();
         String barcode = barcodeField.getText();
         
-        Student student = new Student(firstname,middlename,lastname,barcode);
+        Student student = new Student(firstname,middlename,lastname,barcode,true);
         service.insert(student);
         clearForm();
         handleCancel(event);

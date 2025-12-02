@@ -12,7 +12,6 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Book.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BookDao.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/BookInterface.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateBookViewController.java</file>
@@ -21,6 +20,9 @@
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/UpdateBookView.fxml</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateStudentViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/AlertUtil.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Student.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/StudentDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/AddStudentModalController.java</file>
         </group>
     </open-files>
 </project-private>
