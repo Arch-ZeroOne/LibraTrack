@@ -15,8 +15,8 @@ public interface StudentInterface {
      public ArrayList<Student> list() throws SQLException;
      public boolean insert(Student student) throws SQLException;
      public boolean update(Student student) throws SQLException;
-     public boolean remove(Student student) throws SQLException;
-     public Student search(String barcode) throws SQLException;
+     public boolean remove(String barcode,String isActive) throws SQLException;
+     public Student search(String qrcode) throws SQLException;
      
      
     

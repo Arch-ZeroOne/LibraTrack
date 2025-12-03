@@ -1,81 +1,260 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="578.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateStudentViewController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateStudentViewController">
    <children>
-      <VBox layoutX="30.0" layoutY="20.0" prefHeight="538.0" prefWidth="755.0" spacing="30.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08), 15,0,0,2);">
-         <padding>
-            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-         </padding>
-         <children>
-            <!-- Header -->
-            <Label style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #001b52;" text="Update Student" />
-
-            <!-- Form Grid -->
-            <GridPane hgap="25.0" vgap="25.0">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="150.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="280.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="150.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="280.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" /> <!-- School ID -->
-                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" /> <!-- QR Code -->
-                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" /> <!-- First + Last -->
-                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" /> <!-- Middle + Last -->
-                  <RowConstraints minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" /> <!-- Course + Is Active -->
-               </rowConstraints>
-
-               <!-- School ID -->
-               <Label style="-fx-text-fill: #001b52;" text="School ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-               <TextField fx:id="schoolIdField" prefHeight="45.0" promptText="Enter school ID" style="-fx-background-color: #f1f3f5; -fx-background-radius: 12; -fx-border-color: #dfe3e8; -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 14; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
-               <!-- QR Code -->
-               <Label style="-fx-text-fill: #001b52;" text="QR Code:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
-               <TextField fx:id="qrCodeField" prefHeight="45.0" promptText="Please Scan QR Code" style="-fx-background-color: #f1f3f5; -fx-background-radius: 12; -fx-border-color: #dfe3e8; -fx-border-radius: 12; -fx-border-width: 1; -fx-padding: 14; -fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="0" />
-
-               <!-- First Name -->
-               <Label style="-fx-text-fill: #001b52;" text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-               <TextField fx:id="firstnameField" prefHeight="45.0" promptText="Enter first name" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-padding: 12; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
-               <!-- Middle Name -->
-               <Label style="-fx-text-fill: #001b52;" text="Middle Name:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-               <TextField fx:id="middlenameField" prefHeight="45.0" promptText="Enter middle name (optional)" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-padding: 12; -fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-
-               <!-- Last Name -->
-               <Label style="-fx-text-fill: #001b52;" text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-               <TextField fx:id="lastnameField" prefHeight="45.0" promptText="Enter last name" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-padding: 12; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
-               <!-- Course -->
-               <Label style="-fx-text-fill: #001b52;" text="Course:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-               <ComboBox fx:id="courseComboBox" prefHeight="45.0" promptText="Select course" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-padding: 12; -fx-font-size: 14px;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-
-               <!-- Is Active -->
-               <Label style="-fx-text-fill: #001b52;" text="Is Active:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
-               <ComboBox fx:id="isActiveComboBox" prefHeight="45.0" promptText="Select status" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-padding: 12; -fx-font-size: 14px;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            </GridPane>
-
-            <!-- Buttons -->
-            <HBox alignment="CENTER" spacing="15.0">
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="20.0" prefHeight="680.0" prefWidth="755.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+         <content>
+            <VBox spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08), 15,0,0,2);">
+               <padding>
+                  <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+               </padding>
                <children>
-                  <HBox HBox.hgrow="ALWAYS" />
-                  <Button onAction="#handleDelete" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(220,53,69,0.2),8,0,0,2);" text="Delete" />
-                  <Button onAction="#handleUpdate" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.2),8,0,0,2);" text="Update" />
+                  <!-- Enhanced Header -->
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: linear-gradient(to bottom right, #001b52, #003380); -fx-background-radius: 12;">
+                           <children>
+                              <FontAwesomeIcon fill="white" glyphName="USER_EDIT" size="1.8em" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="2.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Update Student">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                              <Label style="-fx-text-fill: #6c757d; -fx-font-size: 13px;" text="Modify student information and details" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+      
+                  <!-- QR Code Scan Section - Emphasized -->
+                  <VBox spacing="10.0" style="-fx-background-color: #f0f4ff; -fx-background-radius: 12; -fx-border-color: #4CAF50; -fx-border-radius: 12; -fx-border-width: 2;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #4CAF50; -fx-background-radius: 10;">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="QRCODE" size="1.6em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold;" text="Scan QR Code">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="qrCodeField" onKeyPressed="#handleScan" promptText="Place QR code here or scan using device..." prefHeight="50.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-border-width: 2; -fx-font-size: 16px; -fx-padding: 12; -fx-font-weight: 600;">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </VBox>
+      
+                  <!-- Student Identification Section -->
+                  <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-border-color: #e1e4e8; -fx-border-radius: 12; -fx-border-width: 1;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #e3f2fd; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#2196F3" glyphName="ID_CARD" size="1.15em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold; -fx-font-size: 15px;" text="Student Identification" />
+                           </children>
+                        </HBox>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <!-- School ID -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#001b52" glyphName="HASHTAG" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="School ID" />
+                                          <Label style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="*" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="schoolIdField" prefHeight="45.0" promptText="Enter school ID" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+      
+                  <!-- Personal Information Section -->
+                  <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-border-color: #e1e4e8; -fx-border-radius: 12; -fx-border-width: 1;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #fff3e0; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#FF9800" glyphName="USER" size="1.15em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold; -fx-font-size: 15px;" text="Personal Information" />
+                           </children>
+                        </HBox>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <!-- First Name -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#001b52" glyphName="USER_CIRCLE" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="First Name" />
+                                          <Label style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="*" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="firstnameField" prefHeight="45.0" promptText="First name" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Middle Name -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#6c757d" glyphName="USER_CIRCLE_ALT" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="Middle Name" />
+                                          <Label style="-fx-text-fill: #6c757d; -fx-font-size: 11px; -fx-font-style: italic;" text="(Optional)" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="middlenameField" prefHeight="45.0" promptText="Middle name" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Last Name -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#001b52" glyphName="USER_CIRCLE" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="Last Name" />
+                                          <Label style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="*" />
+                                       </children>
+                                    </HBox>
+                                    <TextField fx:id="lastnameField" prefHeight="45.0" promptText="Last name" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+      
+                  <!-- Academic Information Section -->
+                  <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-border-color: #e1e4e8; -fx-border-radius: 12; -fx-border-width: 1;">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #f3e5f5; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#9C27B0" glyphName="GRADUATION_CAP" size="1.15em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold; -fx-font-size: 15px;" text="Academic Information" />
+                           </children>
+                        </HBox>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <!-- Course -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#9C27B0" glyphName="BOOK" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="Course/Program" />
+                                          <Label style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="*" />
+                                       </children>
+                                    </HBox>
+                                    <ComboBox fx:id="courseComboBox" maxWidth="Infinity" prefHeight="45.0" promptText="Select course or program" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Status -->
+                              <VBox spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="6.0">
+                                       <children>
+                                          <FontAwesomeIcon fill="#4CAF50" glyphName="TOGGLE_ON" size="0.9em" />
+                                          <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="Student Status" />
+                                          <Label style="-fx-text-fill: #dc3545; -fx-font-weight: bold;" text="*" />
+                                       </children>
+                                    </HBox>
+                                    <ComboBox fx:id="isActiveComboBox" maxWidth="Infinity" prefHeight="45.0" promptText="Select enrollment status" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-font-size: 14px;" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+      
+                  <!-- Action Buttons -->
+                  <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <children>
+                        <Button onAction="#handleDelete" prefHeight="48.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #dc3545, #c82333); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(220,53,69,0.3),10,0,0,3);">
+                           <graphic>
+                              <HBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="TRASH" size="1.1em" />
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Delete" />
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                        <Button onAction="#handleUpdate" prefHeight="48.0" prefWidth="150.0" style="-fx-background-color: linear-gradient(to right, #001b52, #003380); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 10; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.3),10,0,0,3);">
+                           <graphic>
+                              <HBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="SAVE" size="1.1em" />
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;" text="Update" />
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-         </children>
-      </VBox>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>

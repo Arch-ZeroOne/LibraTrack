@@ -47,17 +47,62 @@ public class StudentDao implements StudentInterface{
     }
     
     public boolean update(Student student) throws SQLException{
-        return false;
-    }
-    
-    public boolean remove(Student student) throws SQLException{
-        return false;
-    }
-    
-     public Student search(String barcode) throws SQLException{
-        String query = "SELECT * FROM student WHERE barcode = ?";
+        
+        String query = "UPDATE student SET firstname = ?,middlename = ? ,lastname = ?,isActive = ? ,"
+                + "course = ? WHERE school_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setString(1, barcode);
+        preparedStatement.setString(1,student.getFirstname());
+        preparedStatement.setString(2,student.getMiddlename());
+        preparedStatement.setString(3,student.getLastname());
+        preparedStatement.setString(4,student.getIsActive());
+        preparedStatement.setString(5,student.getCourse());
+        preparedStatement.setString(6,student.getSchoolId());
+       
+        
+        int rows_affected = preparedStatement.executeUpdate();
+        
+        if(rows_affected != 0){
+            System.out.println("Book Updated");
+            return true;
+            
+        }
+        return false;
+        
+    }
+    
+    public boolean remove(String qrcode,String isActive ) throws SQLException{
+        
+    // Note: Assumes 'connection' object is available and valid.
+    // Also assumes 'student_id' is the correct column name for the primary key.
+    String query = "UPDATE student SET isActive = ? WHERE school_id = ?";
+    
+    PreparedStatement preparedStatement = null;
+    
+    try {
+        preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, isActive);
+        preparedStatement.setString(2, qrcode);
+        
+        int rows_affected = preparedStatement.executeUpdate();
+        
+        if (rows_affected != 0) {
+            System.out.println("Student Status Updated");
+            return true;
+        }
+        return false;
+        
+    } catch (SQLException e) {
+        System.err.println("Database error: " + e.getMessage());
+        return false;
+    
+}
+        
+    }
+    
+     public Student search(String qrcode) throws SQLException{
+        String query = "SELECT * FROM student WHERE school_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, qrcode);
         ResultSet result = preparedStatement.executeQuery();
          
         while(result.next()){

@@ -21,12 +21,12 @@ public class StudentService {
         return student_dao.update(student);
     }
     
-    public boolean remove(Student student) throws SQLException{
-        return student_dao.remove(student);
+    public boolean remove(String qrcode,String isActive) throws SQLException{
+        return student_dao.remove(qrcode,isActive);
     }
     
-     public Student search(String barcode) throws SQLException{
-        return student_dao.search(barcode);
+     public Student search(String qrcode) throws SQLException{
+        return student_dao.search(qrcode);
     }
      
      public ArrayList<Student> list() throws SQLException{

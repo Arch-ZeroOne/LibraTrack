@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -20,47 +22,230 @@
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
          <children>
-            <HBox alignment="CENTER_LEFT" spacing="15.0">
+            <!-- Enhanced Header Section -->
+            <HBox alignment="CENTER_LEFT" spacing="12.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Books">
+                  <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #001b52; -fx-background-radius: 12;">
+                     <children>
+                        <FontAwesomeIcon fill="white" glyphName="BOOK" size="1.8em" />
+                     </children>
+                  </VBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Books Library">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
                   </Text>
+                  <HBox HBox.hgrow="ALWAYS" />
+                  <VBox alignment="CENTER" spacing="2.0">
+                     <children>
+                        <HBox alignment="CENTER" spacing="5.0">
+                           <children>
+                              <FontAwesomeIcon fill="#4CAF50" glyphName="CHECK_CIRCLE" size="1.2em" />
+                              <Label fx:id="totalBooksLabel" style="-fx-text-fill: #001b52; -fx-font-weight: bold;" text="0">
+                                 <font>
+                                    <Font name="System Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label style="-fx-text-fill: #6c757d; -fx-font-size: 11px;" text="Total Books" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
+            
+            <!-- Enhanced Search and Filter Section -->
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="15.0">
                <children>
-                  <TextField prefHeight="45.0" prefWidth="280.0" promptText="Search Book..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px; -fx-padding: 10;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <DatePicker prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52; -fx-font-weight: 600;" text="Genre">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <ComboBox fx:id="genreBox" prefHeight="45.0" prefWidth="150.0" promptText="Choose a Genre..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                  <!-- Search Field with Icon -->
+                  <HBox alignment="CENTER_LEFT" spacing="0.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1;">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="45.0" prefWidth="45.0">
+                           <children>
+                              <FontAwesomeIcon fill="#6c757d" glyphName="SEARCH" size="1.2em" />
+                           </children>
+                        </VBox>
+                        <TextField fx:id="searchField" prefHeight="45.0" prefWidth="235.0" promptText="Search books..." style="-fx-background-color: transparent; -fx-border-width: 0; -fx-font-size: 14px;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Date Picker with Icon -->
+                  <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #e3f2fd; -fx-background-radius: 8;">
+                           <children>
+                              <FontAwesomeIcon fill="#2196F3" glyphName="CALENDAR" size="1.2em" />
+                           </children>
+                        </VBox>
+                        <DatePicker fx:id="datePicker" prefHeight="45.0" prefWidth="150.0" promptText="Filter by date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                     </children>
+                  </HBox>
+                  
+                  <!-- Genre Filter with Icon -->
+                  <HBox alignment="CENTER_LEFT" spacing="8.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #f3e5f5; -fx-background-radius: 8;">
+                           <children>
+                              <FontAwesomeIcon fill="#9C27B0" glyphName="TAG" size="1.2em" />
+                           </children>
+                        </VBox>
+                        <ComboBox fx:id="genreBox" prefHeight="45.0" prefWidth="130.0" promptText="Genre" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                     </children>
+                  </HBox>
+                  
                   <HBox HBox.hgrow="ALWAYS" />
-                  <Button fx:id="createBtn" mnemonicParsing="false" onAction="#showAddModal" prefHeight="45.0" prefWidth="110.0" style="-fx-background-radius: 10; -fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.2), 8, 0, 0, 2);" text="+ Create">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
+                  
+                  <!-- Enhanced Create Button -->
+                  <Button fx:id="createBtn" mnemonicParsing="false" onAction="#showAddModal" prefHeight="45.0" prefWidth="130.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to right, #001b52, #003380); -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.3), 10, 0, 0, 3);">
+                     <graphic>
+                        <HBox alignment="CENTER" spacing="8.0">
+                           <children>
+                              <FontAwesomeIcon fill="white" glyphName="PLUS_CIRCLE" size="1.2em" />
+                              <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Add Book">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
-            <TableView fx:id="bookTable" prefHeight="380.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
+            
+            <!-- Statistics Cards -->
+            <HBox prefHeight="80.0" spacing="15.0">
+               <children>
+                  <!-- Total Books Card -->
+                  <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(33, 150, 243, 0.25), 8, 0, 0, 2);">
+                     <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="BOOK" size="1.1em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.95;" text="Total Books">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="statTotalBooksLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Available Books Card -->
+                  <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #4CAF50, #45a049); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.25), 8, 0, 0, 2);">
+                     <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="CHECK" size="1.1em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.95;" text="Available">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="statAvailableLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Borrowed Card -->
+                  <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #FF9800, #F57C00); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(255, 152, 0, 0.25), 8, 0, 0, 2);">
+                     <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="EXCHANGE" size="1.1em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.95;" text="Borrowed">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="statBorrowedLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Genres Card -->
+                  <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #9C27B0, #7B1FA2); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(156, 39, 176, 0.25), 8, 0, 0, 2);">
+                     <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="TAGS" size="1.1em" />
+                                 </children>
+                              </VBox>
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.95;" text="Genres">
+                                 <font>
+                                    <Font size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label fx:id="statGenresLabel" style="-fx-text-fill: white; -fx-font-weight: bold;" text="0">
+                           <font>
+                              <Font name="System Bold" size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            
+            <!-- Enhanced Table -->
+            <TableView fx:id="bookTable" prefHeight="260.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
                <columns>
-                  <TableColumn fx:id="titleCol" prefWidth="147.3333396911621" text=" Book Title" />
-                  <TableColumn fx:id="authorCol" prefWidth="111.33334350585938" text="Author" />
-                  <TableColumn fx:id="genreCol" prefWidth="86.6666259765625" text="Genre" />
-                  <TableColumn fx:id="publisherCol" prefWidth="84.66668701171875" text="Publisher" />
-                  <TableColumn fx:id="dateCol" prefWidth="105.99996948242188" text="Date Published" />
-                  <TableColumn fx:id="copiesCol" prefWidth="74.0" text="Copies" />
-                  <TableColumn fx:id="availableCol" minWidth="0.0" prefWidth="81.33333333333337" text="Available" />
-               </columns></TableView>
+                  <TableColumn fx:id="titleCol" prefWidth="160.0" style="-fx-alignment: CENTER_LEFT;" text="Book Title" />
+                  <TableColumn fx:id="authorCol" prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="Author" />
+                  <TableColumn fx:id="genreCol" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Genre" />
+                  <TableColumn fx:id="publisherCol" prefWidth="120.0" style="-fx-alignment: CENTER_LEFT;" text="Publisher" />
+                  <TableColumn fx:id="dateCol" prefWidth="110.0" style="-fx-alignment: CENTER;" text="Published" />
+                  <TableColumn fx:id="copiesCol" prefWidth="70.0" style="-fx-alignment: CENTER;" text="Copies" />
+                  <TableColumn fx:id="availableCol" prefWidth="70.0" style="-fx-alignment: CENTER;" text="Available" />
+               </columns>
+            </TableView>
          </children>
       </VBox>
    </children>
