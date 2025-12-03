@@ -24,13 +24,15 @@ public class StudentDao implements StudentInterface{
     public final Connection connection = util.connect();
     
     public boolean insert(Student student) throws SQLException{
-        String query = "INSERT INTO student (firstname,middlename,lastname,barcode) VALUES (?,?,?,?)";
+        String query = "INSERT INTO student (firstname,middlename,lastname,school_id,isActive,course) VALUES (?,?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         
         preparedStatement.setString(1,student.getFirstname());
         preparedStatement.setString(2,student.getMiddlename());
         preparedStatement.setString(3,student.getLastname());
-        preparedStatement.setString(4,student.getBarcode());
+        preparedStatement.setString(4,student.getSchoolId());
+        preparedStatement.setString(5, student.getIsActive());
+        preparedStatement.setString(6, student.getCourse());
         
 
         int rows_affected = preparedStatement.executeUpdate();
@@ -63,8 +65,10 @@ public class StudentDao implements StudentInterface{
             String firstname = result.getString("firstname");
             String middlename = result.getString("middlename");
             String lastname = result.getString("lastname");
-            boolean isActive = result.getBoolean("isActive");
-            return new Student(id,firstname,middlename,lastname,isActive); 
+            String school_id = result.getString("school_id");
+            String isActive = result.getString("isActive");
+            String course = result.getString("course");
+            return new Student(id,firstname,middlename,lastname,school_id,isActive,course); 
         }
         return null;
     }
@@ -80,10 +84,11 @@ public class StudentDao implements StudentInterface{
             String firstname = result.getString("firstname");
             String middlename = result.getString("middlename");
             String lastname = result.getString("lastname");
-            String barcode = result.getString("barcode");
-            boolean isActive = result.getBoolean("isActive");
+            String school_id = result.getString("school_id");
+            String isActive = result.getString("isActive");
+            String course = result.getString("course");
          
-            Student student = new Student(id,firstname,middlename,lastname,barcode,isActive);
+            Student student = new Student(id,firstname,middlename,lastname,school_id,isActive,course);
             student_list.add(student);
             
         }

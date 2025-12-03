@@ -15,41 +15,39 @@ public class Student {
     private String firstname;
     private String middlename;
     private String lastname;
-    private String barcode;
-    private boolean isActive;
+    private String school_id;
+    private String isActive;
+    private String course;
     
     //For Insertion
-    public Student(String firstname, String middlename, String lastname, String barcode,boolean isActive) {
+    public Student(String firstname, String middlename, String lastname, String school_id,String isActive, String course) {
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
-        this.barcode = barcode;
+        this.school_id = school_id;
         this.isActive = isActive;
+        this.course = course;
     }
     
     //Retrieving the value
-    public Student(int student_id, String firstname, String middlename, String lastname, boolean isActive) {
+    public Student(int student_id, String firstname, String middlename, String lastname, String school_id,String isActive,String course) {
         this.student_id = student_id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
+        this.school_id = school_id;
         this.isActive = isActive;
-    }
-    
-    public Student(int student_id, String firstname, String middlename, String lastname, String barcode, boolean isActive) {
-        this.student_id = student_id;
-        this.firstname = firstname;
-        this.middlename = middlename;
-        this.lastname = lastname;
-        this.barcode = barcode;
-        this.isActive = isActive;
+        this.course = course;
     }
 
-    public boolean isIsActive() {
+  
+  
+
+    public String getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(boolean isActive) {
+    public void setIsActive(String isActive) {
         this.isActive = isActive;
     }
     
@@ -85,13 +83,28 @@ public class Student {
         this.lastname = lastname;
     }
 
-    public String getBarcode() {
-        return barcode;
+    public String getSchoolId() {
+        return school_id;
     }
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
+    public void setQRCode(String school_id) {
+        this.school_id = school_id;
+    }
+    
+      public String getSchool_id() {
+        return school_id;
     }
 
+    public void setSchool_id(String school_id) {
+        this.school_id = school_id;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
     
 }

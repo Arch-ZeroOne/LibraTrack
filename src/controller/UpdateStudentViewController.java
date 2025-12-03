@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import service.StudentService;
@@ -25,10 +26,17 @@ public class UpdateStudentViewController implements Initializable {
     @FXML
     TextField barcodeField,firstnameField,middlenameField,lastnameField;
     StudentService service = new StudentService();
+    @FXML
+    ComboBox courseComboBox,isActiveComboBox;
     AlertUtil alert_util = new AlertUtil();
   
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+      
+       courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
+       isActiveComboBox.getItems().setAll("Active","Inactive");
+      
+      
       barcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
             try{      

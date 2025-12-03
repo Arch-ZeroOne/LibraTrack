@@ -15,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,6 +32,8 @@ public class StudentsViewController implements Initializable {
     TableView studentTable;
     @FXML
     TableColumn<Student,String> idCol,firstnameCol,middlenameCol,lastnameCol;
+    @FXML 
+    ComboBox courseComboBox;
     ObservableList<Student> data = FXCollections.observableArrayList();
     ModalUtil util = new ModalUtil();
     
@@ -41,7 +44,8 @@ public class StudentsViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         studentTable.setItems(data);
-        idCol.setCellValueFactory(new PropertyValueFactory<>("student_id"));
+        courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("school_id"));
         firstnameCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         middlenameCol.setCellValueFactory(new PropertyValueFactory<>("middlename"));
         lastnameCol.setCellValueFactory(new PropertyValueFactory<>("lastname"));

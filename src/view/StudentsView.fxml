@@ -13,53 +13,62 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="578.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentsViewController">
-   <children>
-      <VBox layoutX="30.0" layoutY="20.0" prefHeight="538.0" prefWidth="755.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.08), 15, 0, 0, 2);">
-         <padding>
-            <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-         </padding>
-         <children>
+<AnchorPane prefHeight="578.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentsViewController">
+    <children>
+        <VBox layoutX="30.0" layoutY="20.0" prefHeight="538.0" prefWidth="755.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08),15,0,0,2);">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            
+            <!-- Header -->
             <HBox alignment="CENTER_LEFT" spacing="15.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Students">
-                     <font>
-                        <Font name="System Bold" size="32.0" />
-                     </font>
-                  </Text>
-               </children>
+                <children>
+                    <Text style="-fx-fill: #001b52;" text="Students">
+                        <font>
+                            <Font name="System Bold" size="32.0" />
+                        </font>
+                    </Text>
+                </children>
             </HBox>
+
+            <!-- Search / Filter Row -->
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="15.0">
-               <children>
-                  <TextField prefHeight="45.0" prefWidth="280.0" promptText="Search Student..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px; -fx-padding: 10;">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </TextField>
-                  <DatePicker prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52; -fx-font-weight: 600;" text="Program">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Text>
-                  <ComboBox prefHeight="45.0" prefWidth="150.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
-                  <HBox HBox.hgrow="ALWAYS" />
-                  <Button fx:id="createBtn" mnemonicParsing="false" onAction="#showAddModal" prefHeight="45.0" prefWidth="110.0" style="-fx-background-radius: 10; -fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.2), 8, 0, 0, 2);" text="+ Create">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
+                <children>
+                    <TextField prefHeight="45.0" prefWidth="280.0" promptText="Search Student..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px; -fx-padding: 10;">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </TextField>
+
+                    <DatePicker prefHeight="45.0" prefWidth="180.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+
+                    <Text style="-fx-fill: #001b52; -fx-font-weight: 600;" text="Program">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Text>
+
+                    <ComboBox fx:id="courseComboBox" prefHeight="45.0" prefWidth="150.0" promptText="Course" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+
+                    <HBox HBox.hgrow="ALWAYS" />
+                    
+                    <Button fx:id="createBtn" mnemonicParsing="false" onAction="#showAddModal" prefHeight="45.0" prefWidth="110.0" style="-fx-background-radius: 10; -fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.2),8,0,0,2);" text="+ Create">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Button>
+                </children>
             </HBox>
-            <TableView fx:id="studentTable" prefHeight="380.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
-              <columns>
-                <TableColumn fx:id="idCol" prefWidth="140.0" style="-fx-alignment: CENTER_LEFT;" text="Student ID" />
-                <TableColumn fx:id="firstnameCol" prefWidth="189.33335876464844" style="-fx-alignment: CENTER_LEFT;" text="First Name" />
-                <TableColumn fx:id="middlenameCol" prefWidth="185.99996948242188" style="-fx-alignment: CENTER_LEFT;" text="Middle Name" />
-                <TableColumn fx:id="lastnameCol" prefWidth="177.33333333333337" style="-fx-alignment: CENTER_LEFT;" text="Last Name" />
-              </columns>
+
+            <!-- TableView -->
+            <TableView fx:id="studentTable" prefHeight="380.0" prefWidth="695.0" style="-fx-background-color: white; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10; -fx-font-family: 'Segoe UI'; -fx-font-size: 13px;">
+                <columns>
+                    <TableColumn fx:id="idCol" prefWidth="140.0" style="-fx-alignment: CENTER; -fx-font-weight: bold;" text="Student ID" />
+                    <TableColumn fx:id="firstnameCol" prefWidth="189.0" style="-fx-alignment: CENTER; -fx-font-weight: bold;" text="First Name" />
+                    <TableColumn fx:id="middlenameCol" prefWidth="186.0" style="-fx-alignment: CENTER; -fx-font-weight: bold;" text="Middle Name" />
+                    <TableColumn fx:id="lastnameCol" prefWidth="177.0" style="-fx-alignment: CENTER; -fx-font-weight: bold;" text="Last Name" />
+                </columns>
             </TableView>
-         </children>
-      </VBox>
-   </children>
+        </VBox>
+    </children>
 </AnchorPane>

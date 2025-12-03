@@ -4,6 +4,8 @@
  */
 package controller;
 
+import com.google.zxing.WriterException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -11,9 +13,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.Student;
 import service.StudentService;
+import service.QRService;
 import util.ModalUtil;
+import util.AlertUtil;
+import util.QRConfig;
+import java.nio.file.Path;
+import javafx.scene.control.ComboBox;
 
 
 /**
@@ -25,28 +34,49 @@ import util.ModalUtil;
 //TODO : add isactive field to updates
 public class AddStudentModalController implements Initializable {
     @FXML
-    TextField firstnameField,middlenameField,lastnameField,barcodeField;
+    TextField firstnameField,middlenameField,lastnameField,idField;
     ModalUtil modal_util = new ModalUtil();
+    AlertUtil alert = new AlertUtil();
+    QRConfig qr_config = new QRConfig();
     StudentService service = new StudentService();
+    QRService qr_service = new QRService();
+    @FXML
+    ImageView qrCodeImageView;
+    @FXML
+    ComboBox<String> courseComboBox;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
     }
 
-public void handleSave(ActionEvent event) throws SQLException{
-        String firstname = firstnameField.getText();
-        String middlename = middlenameField.getText();
-        String lastname = lastnameField.getText();
-        String barcode = barcodeField.getText();
+    public void handleSave(ActionEvent event) throws SQLException{
+        String firstname = firstnameField.getText().trim();
+        String middlename = middlenameField.getText().trim();
+        String lastname = lastnameField.getText().trim();
+        String school_id = idField.getText();
+        String course = courseComboBox.getValue().trim();
+        Student student = new Student(firstname,middlename,lastname,school_id,"Active",course);
         
-        Student student = new Student(firstname,middlename,lastname,barcode,true);
-        service.insert(student);
-        clearForm();
-        handleCancel(event);
+        if(service.insert(student)){
+           alert.success("Student Has Been Registered");
+           clearForm();
+           handleCancel(event);
+           return;
+            
+        }
+        
+        alert.error("Student not registered");
+      
+       
    }
+    
+    public void handleGenerateQr()  throws WriterException,IOException{
+         Path path = qr_service.generateQR(idField.getText(),qr_config.path+"/"+idField.getText()+".png");
+         handleQrPreview(path);
+    }
    
    //Handles the modal closing
    public void handleCancel(ActionEvent event){
@@ -55,12 +85,18 @@ public void handleSave(ActionEvent event) throws SQLException{
        
    }
    
+   public void handleQrPreview(Path path){
+       //Nedds the file: in the image class
+       Image image = new Image("file:"+String.valueOf(path));
+       qrCodeImageView.setImage(image);
+   }
    
    public void clearForm(){
        firstnameField.setText("");
        middlenameField.setText("");
        lastnameField.setText("");
-       barcodeField.setText("");
+       idField.setText("");
+       qrCodeImageView.setImage(null);
        
        
    }
