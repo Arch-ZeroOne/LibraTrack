@@ -48,8 +48,6 @@ public class LoginViewController implements Initializable {
         
         //Creates the user object
         User user = new User(user_name ,pass_word);
-       
-         
        //Validates the user
        if(service.validate(user)){
           alert_util.success("User has been successfully logged in");

@@ -32,39 +32,34 @@ public class UpdateStudentViewController implements Initializable {
     AlertUtil alert_util = new AlertUtil();
   
   @Override
-  public void initialize(URL url, ResourceBundle rb) {
-      
+  public void initialize(URL url, ResourceBundle rb) { 
        courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
        isActiveComboBox.getItems().setAll("Active","Inactive");
        schoolIdField.setEditable(false);
-      
      
   }
-    public void handleScan(KeyEvent event){
-        if(event.getCode() == KeyCode.ENTER){
-            try{      
-              String value = qrCodeField.getText();
-              Student student = service.search(value);
-              if(student != null){
+  
+  public void handleScan(KeyEvent event){
+      
+      if(event.getCode() == KeyCode.ENTER){
+         try{      
+             String value = qrCodeField.getText();
+             Student student = service.search(value);
+             
+             if(student != null){
                   autoFill(student);
-                  
+                  return;
               }
+              alert_util.error("Student Not Found");
               
             }catch(SQLException error){
                 error.printStackTrace();
-            }
-              
-              
-          }
-        
+            }    
+         }
     }
   
     public void handleDelete() throws SQLException{
          String schoolId = schoolIdField.getText().trim();
-         
-         
-        
-         
          if(service.remove(schoolId,"Inactive")){
             alert_util.success("Student Data Deactivated");
             clearStudentForm();
@@ -74,9 +69,7 @@ public class UpdateStudentViewController implements Initializable {
           alert_util.error("Error Updating Student data");
         
     }
-        
-    
-    
+       
     public void handleUpdate() throws SQLException{
     String firstname = firstnameField.getText().trim();
     String middlename = middlenameField.getText().trim();
@@ -96,6 +89,7 @@ public class UpdateStudentViewController implements Initializable {
           alert_util.error("Error Updating Student data");
         
     }
+    
     public void autoFill(Student student){
         firstnameField.setText(student.getFirstname());
         middlenameField.setText(student.getMiddlename());
@@ -117,6 +111,6 @@ public class UpdateStudentViewController implements Initializable {
     // Clear ComboBox Selections
     courseComboBox.setValue(null);
     isActiveComboBox.setValue(null);
-}
+   }
     
-}
+ }

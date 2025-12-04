@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package controller;
 
 import com.google.zxing.WriterException;
@@ -24,14 +20,6 @@ import util.QRConfig;
 import java.nio.file.Path;
 import javafx.scene.control.ComboBox;
 
-
-/**
- * FXML Controller class
- *
- * @author Windyl
- */
-
-//TODO : add isactive field to updates
 public class AddStudentModalController implements Initializable {
     @FXML
     TextField firstnameField,middlenameField,lastnameField,idField;
@@ -44,9 +32,7 @@ public class AddStudentModalController implements Initializable {
     ImageView qrCodeImageView;
     @FXML
     ComboBox<String> courseComboBox;
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
@@ -74,6 +60,7 @@ public class AddStudentModalController implements Initializable {
    }
     
     public void handleGenerateQr()  throws WriterException,IOException{
+        
          Path path = qr_service.generateQR(idField.getText(),qr_config.path+"/"+idField.getText()+".png");
          handleQrPreview(path);
     }
@@ -86,7 +73,7 @@ public class AddStudentModalController implements Initializable {
    }
    
    public void handleQrPreview(Path path){
-       //Nedds the file: in the image class
+       //Needs the file: in the image class
        Image image = new Image("file:"+String.valueOf(path));
        qrCodeImageView.setImage(image);
    }

@@ -18,42 +18,33 @@ public class UserDao implements UserInterface {
    
     @Override
     public boolean insert(User user) throws SQLException{
-        String query = "INSERT INTO account (username, password, email , role) VALUES (?,?,?,?)";
+        String query = "INSERT INTO librarian (firstName,middleName,lastName,username,email,password) VALUES (?,?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, user.getUsername());
-        statement.setString(2, user.getPassword());
-        statement.setString(3, user.getEmail());
-        statement.setString(4, user.getRole());
+        statement.setString(1, user.getFirstName());
+        statement.setString(2, user.getMiddleName());
+        statement.setString(3, user.getLastName());
+        statement.setString(4, user.getUsername());
+        statement.setString(5, user.getEmail());
+        statement.setString(6, user.getPassword());
         
         int  rows = statement.executeUpdate();
         
-        if(rows > 0){
-            System.out.println("Query Executed");
-            return true;
-        }
-           
-        return false;
+        return rows != 0;
         
     }
     
     @Override
     public boolean validate(User user) throws SQLException{
-        String query = "SELECT * FROM account WHERE username = ? AND password = ?";
+        String query = "SELECT * FROM librarian WHERE username = ? AND password = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getUsername());
         statement.setString(2, user.getPassword());
         
-  
        ResultSet result = statement.executeQuery();
        
-      
+     
+       return result.next();
        
-       if(result.next()){
-           return true;
-           
-       }
-        
-       return false;
     }
     
     

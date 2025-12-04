@@ -29,15 +29,14 @@ import util.ModalUtil;
  */
 public class BooksViewController implements Initializable {
       ModalUtil modal_util = new ModalUtil();
-      
       @FXML
       TableView<Book> bookTable;
-      
       ObservableList<Book> data = FXCollections.observableArrayList();
       @FXML
       TableColumn<Book, String> titleCol,authorCol,genreCol, publisherCol, dateCol,copiesCol, availableCol; 
       @FXML
       ComboBox genreBox;
+      BookService service = new BookService();
       
       
    
@@ -147,7 +146,6 @@ public class BooksViewController implements Initializable {
     }
     
     public void loadTable() throws SQLException{
-        BookService service = new BookService();
         ArrayList<Book> book_list = service.list();
         //Automatically clears old data and loads to the table
         data.setAll(book_list);
@@ -155,5 +153,15 @@ public class BooksViewController implements Initializable {
         
     }
     
+    public void handleFilter(String course){
+       
+     
+        
+        
+    }
+    
+    public void handleChange(){
+        
+    }
     
 }

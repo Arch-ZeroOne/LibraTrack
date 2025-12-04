@@ -16,13 +16,8 @@ import model.Book;
 import util.DateUtil;
 import service.BookService;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import util.ModalUtil;
-/**
- * FXML Controller class
- *
- * @author Windyl
- */
+
 public class AddBookModalController implements Initializable {
      
      @FXML
@@ -143,11 +138,9 @@ public class AddBookModalController implements Initializable {
    //Handles the modal closing
    public void handleCancel(ActionEvent event){
        modal_util.closeModal(event);
-       
-       
+           
    }
-   
-   
+    
    public void clearForm(){
        titleField.setText("");
        authorField.setText("");
@@ -158,7 +151,4 @@ public class AddBookModalController implements Initializable {
        
    }
   
-   
-   
-    
 }

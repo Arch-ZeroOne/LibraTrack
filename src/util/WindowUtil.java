@@ -27,8 +27,9 @@ public class WindowUtil {
         Parent root = FXMLLoader.load(getClass().getResource("../view/"+location));
         Scene scene = new Scene(root);
         
-   
         current.setScene(scene);
+        //centers the stage
+        current.centerOnScreen();
         current.show();
         
        

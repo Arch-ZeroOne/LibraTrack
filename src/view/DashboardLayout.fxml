@@ -183,8 +183,8 @@
                               <Insets left="20.0" />
                            </padding>
                            <children>
-                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="CALENDAR_CHECK_ALT" size="1.6em" />
-                              <Button fx:id="attendanceBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Attendance">
+                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="USER" size="1.6em" text="" />
+                              <Button fx:id="attendanceBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Student Log">
                                  <font>
                                     <Font size="15.0" />
                                  </font>

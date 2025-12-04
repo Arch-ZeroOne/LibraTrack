@@ -33,7 +33,7 @@ public class DashboardLayoutController implements Initializable {
        try{
           //Loads the default home page
           util.setContentArea(contentpane); 
-          util.goTo("UpdateStudentView");
+          util.goTo("StatisticsView");
          
           homebtn.setOnAction(event -> {
             try{

@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterViewController">
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RegisterViewController">
    <children>
-      <Rectangle arcWidth="5.0" fill="#001b52" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
-      <ImageView fitHeight="400.0" fitWidth="340.0" layoutX="-40.0" opacity="0.15">
+      <Rectangle arcWidth="5.0" fill="#001b52" height="450.0" stroke="TRANSPARENT" strokeType="INSIDE" width="300.0" />
+      <ImageView fitHeight="450.0" fitWidth="340.0" layoutX="-40.0" opacity="0.15">
          <image>
             <Image url="@../asset/images/background.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="113.0" fitWidth="113.0" layoutX="94.0" layoutY="144.0">
+      <ImageView fitHeight="113.0" fitWidth="113.0" layoutX="94.0" layoutY="169.0">
          <image>
             <Image url="@../asset/images/DOrSU%20logo.png" />
          </image>
@@ -35,61 +36,156 @@
             <Font name="Montserrat Medium" size="10.0" />
          </font>
       </Text>
-      <ImageView fitHeight="39.0" fitWidth="39.0" layoutX="496.0" layoutY="40.0">
-         <image>
-            <Image url="@../asset/images/group.png" />
-         </image>
-      </ImageView>
-      <Text fill="#001b52" layoutX="400.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register User" textAlignment="CENTER" wrappingWidth="230.80335426330566">
-         <font>
-            <Font name="Montserrat SemiBold" size="21.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="324.0" layoutY="139.0">
-         <image>
-            <Image url="@../asset/images/user.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="325.0" layoutY="180.0">
-         <image>
-            <Image url="@../asset/images/padlock.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="username" layoutX="354.0" layoutY="133.0" prefHeight="35.0" prefWidth="180.0" promptText="Username" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8;">
-         <font>
-            <Font name="Montserrat Regular" size="12.0" />
-         </font>
-      </TextField>
-      <PasswordField fx:id="password" layoutX="354.0" layoutY="172.0" prefHeight="35.0" prefWidth="180.0" promptText="Password" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8;">
-         <font>
-            <Font name="Montserrat Regular" size="12.0" />
-         </font>
-      </PasswordField>
-      <TextField fx:id="email" layoutX="566.0" layoutY="133.0" prefHeight="35.0" prefWidth="132.0" promptText="Email" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8;">
-         <font>
-            <Font name="Montserrat Regular" size="12.0" />
-         </font>
-      </TextField>
-      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="536.0" layoutY="139.0">
-         <image>
-            <Image url="@../asset/images/email.png" />
-         </image>
-      </ImageView>
-      <ChoiceBox fx:id="role" layoutX="566.0" layoutY="180.0" prefHeight="35.0" prefWidth="132.0" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 5; -fx-background-radius: 5;" />
-      <ImageView fitHeight="24.0" fitWidth="23.0" layoutX="536.0" layoutY="188.0">
-         <image>
-            <Image url="@../asset/images/setting.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="354.0" layoutY="233.0" mnemonicParsing="false" onAction="#insert" prefHeight="35.0" prefWidth="344.0" style="-fx-background-color: #001b52; -fx-background-radius: 5; -fx-cursor: hand;" text="Register" textFill="WHITE">
-         <font>
-            <Font name="Montserrat SemiBold" size="13.0" />
-         </font>
-      </Button>
-      <Hyperlink fx:id="link" layoutX="475.0" layoutY="298.0" onAction="#transfer" text="Already Registered?" textFill="#001b52">
-         <font>
-            <Font name="Montserrat Regular" size="12.0" />
-         </font>
-      </Hyperlink>
+      
+      <!-- Right Side Form -->
+      <VBox layoutX="320.0" layoutY="30.0" prefHeight="390.0" prefWidth="440.0" spacing="15.0" style="-fx-alignment: TOP_CENTER;">
+         <children>
+            <!-- Header -->
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="39.0" fitWidth="39.0">
+                     <image>
+                        <Image url="@../asset/images/group.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#001b52" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Librarian">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            
+            <!-- Form Fields -->
+            <VBox spacing="12.0" style="-fx-padding: 20 30 0 30;">
+               <children>
+                  <!-- Row 1: First Name and Middle Name -->
+                  <HBox spacing="15.0">
+                     <children>
+                        <!-- First Name -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="23.0">
+                                 <image>
+                                    <Image url="@../asset/images/user.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="firstnameField" prefHeight="40.0" prefWidth="160.0" promptText="First Name" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Middle Name -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="23.0">
+                                 <image>
+                                    <Image url="@../asset/images/user.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="middlenameField" prefHeight="40.0" prefWidth="160.0" promptText="Middle Name" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Row 2: Last Name and Username -->
+                  <HBox spacing="15.0">
+                     <children>
+                        <!-- Last Name -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="23.0">
+                                 <image>
+                                    <Image url="@../asset/images/user.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="lastnameField" prefHeight="40.0" prefWidth="160.0" promptText="Last Name" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Username -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="23.0">
+                                 <image>
+                                    <Image url="@../asset/images/user.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="usernameField" prefHeight="40.0" prefWidth="160.0" promptText="Username" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Row 3: Email and Password -->
+                  <HBox spacing="15.0">
+                     <children>
+                        <!-- Email -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="23.0">
+                                 <image>
+                                    <Image url="@../asset/images/email.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="emailField" prefHeight="40.0" prefWidth="160.0" promptText="Email" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Password -->
+                        <HBox alignment="CENTER_LEFT" prefWidth="190.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="21.0" fitWidth="22.0">
+                                 <image>
+                                    <Image url="@../asset/images/padlock.png" />
+                                 </image>
+                              </ImageView>
+                              <PasswordField fx:id="passwordField" prefHeight="40.0" prefWidth="160.0" promptText="Password" style="-fx-background-color: white; -fx-border-color: #d1d9dd; -fx-border-radius: 8; -fx-background-radius: 8; -fx-border-width: 1.5; -fx-padding: 10;">
+                                 <font>
+                                    <Font name="Montserrat Regular" size="13.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Register Button -->
+                  <Button layoutX="354.0" layoutY="233.0" mnemonicParsing="false" onAction="#insert" prefHeight="45.0" prefWidth="394.0" style="-fx-background-color: #001b52; -fx-background-radius: 8; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.3), 10, 0, 0, 3);" text="Register Librarian" textFill="WHITE">
+                     <font>
+                        <Font name="Montserrat SemiBold" size="14.0" />
+                     </font>
+                  </Button>
+                  
+                  <!-- Already Registered Link -->
+                  <Hyperlink fx:id="link" alignment="CENTER" onAction="#transfer" style="-fx-padding: 5 0 0 0;" text="Already Registered? Login here" textFill="#001b52">
+                     <font>
+                        <Font name="Montserrat Regular" size="12.0" />
+                     </font>
+                  </Hyperlink>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

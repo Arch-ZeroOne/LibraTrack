@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import model.Student;
 import util.DatabaseUtil;
 import interfaces.StudentInterface;
+import util.DateUtil;
+import java.sql.Date;
 
 
 /**
@@ -22,10 +24,14 @@ public class StudentDao implements StudentInterface{
     
     public final DatabaseUtil util = new DatabaseUtil();
     public final Connection connection = util.connect();
+    public final DateUtil date_util = new DateUtil();
     
     public boolean insert(Student student) throws SQLException{
-        String query = "INSERT INTO student (firstname,middlename,lastname,school_id,isActive,course) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO student (firstname,middlename,lastname,school_id,isActive,course,createdAt) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
+        //Conversion for sql date
+        long currentTime = System.currentTimeMillis();
+        Date currentDate = new Date(currentTime);
         
         preparedStatement.setString(1,student.getFirstname());
         preparedStatement.setString(2,student.getMiddlename());
@@ -33,17 +39,16 @@ public class StudentDao implements StudentInterface{
         preparedStatement.setString(4,student.getSchoolId());
         preparedStatement.setString(5, student.getIsActive());
         preparedStatement.setString(6, student.getCourse());
+        preparedStatement.setDate(7,currentDate);
+        
+  
         
 
-        int rows_affected = preparedStatement.executeUpdate();
-        
-        
-        if(rows_affected != 0){
-            return true;
-            
-        }
-        
-        return false;
+       int rows_affected = preparedStatement.executeUpdate();
+     
+      
+       
+        return rows_affected != 0;
     }
     
     public boolean update(Student student) throws SQLException{
@@ -113,7 +118,8 @@ public class StudentDao implements StudentInterface{
             String school_id = result.getString("school_id");
             String isActive = result.getString("isActive");
             String course = result.getString("course");
-            return new Student(id,firstname,middlename,lastname,school_id,isActive,course); 
+            Date date = result.getDate("createdAt");
+            return new Student(id,firstname,middlename,lastname,school_id,isActive,course,date); 
         }
         return null;
     }
@@ -132,8 +138,8 @@ public class StudentDao implements StudentInterface{
             String school_id = result.getString("school_id");
             String isActive = result.getString("isActive");
             String course = result.getString("course");
-         
-            Student student = new Student(id,firstname,middlename,lastname,school_id,isActive,course);
+            Date date = result.getDate("createdAt");
+            Student student = new Student(id,firstname,middlename,lastname,school_id,isActive,course,date);
             student_list.add(student);
             
         }
@@ -142,6 +148,32 @@ public class StudentDao implements StudentInterface{
         return student_list;
 
     }
+     public ArrayList<Student> like(String symbol) throws SQLException{
+        String searchSymbol = symbol+"%";
+        String query = "SELECT * FROM book WHERE school_id OR firstname OR middlename OR lastname OR isActive OR course LIKE ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, searchSymbol);
+        ResultSet result = preparedStatement.executeQuery();
+        ArrayList<Student> student_list = new ArrayList<>();
+        
+         while(result.next()){
+            int id = result.getInt("student_id");
+            String firstname = result.getString("firstname");
+            String middlename = result.getString("middlename");
+            String lastname = result.getString("lastname");
+            String school_id = result.getString("school_id");
+            String isActive = result.getString("isActive");
+            String course = result.getString("course");
+            Date date = result.getDate("createdAt");
+            Student student = new Student(id,firstname,middlename,lastname,school_id,isActive,course,date);
+            student_list.add(student);
+            
+        }
+         
+         return student_list;
+        
+        
+     }
     
     
 }

@@ -28,7 +28,7 @@
                         <FontAwesomeIcon fill="white" glyphName="USER" size="1.8em" />
                      </children>
                   </VBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Student Attendance">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Student Log">
                      <font>
                         <Font name="System Bold" size="32.0" />
                      </font>
@@ -105,7 +105,7 @@
                                     <FontAwesomeIcon fill="white" glyphName="CHECK_CIRCLE" size="1.4em" />
                                  </children>
                               </VBox>
-                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.9;" text="Today's Attendance">
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.9;" text="Today's Log">
                                  <font>
                                     <Font size="13.0" />
                                  </font>

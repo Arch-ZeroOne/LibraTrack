@@ -4,13 +4,15 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author Windyl
  */
 public class Student {
 
-  
+   
     private int student_id;
     private String firstname;
     private String middlename;
@@ -18,6 +20,7 @@ public class Student {
     private String school_id;
     private String isActive;
     private String course;
+    private Date createdAt;
     
     //For Insertion
     public Student(String firstname, String middlename, String lastname, String school_id,String isActive, String course) {
@@ -30,7 +33,7 @@ public class Student {
     }
     
     //Retrieving the value
-    public Student(int student_id, String firstname, String middlename, String lastname, String school_id,String isActive,String course) {
+    public Student(int student_id, String firstname, String middlename, String lastname, String school_id,String isActive,String course,Date createdAt) {
         this.student_id = student_id;
         this.firstname = firstname;
         this.middlename = middlename;
@@ -38,6 +41,7 @@ public class Student {
         this.school_id = school_id;
         this.isActive = isActive;
         this.course = course;
+        this.createdAt = createdAt;
     }
 
   
@@ -106,5 +110,13 @@ public class Student {
     public void setCourse(String course) {
         this.course = course;
     }
-    
+     public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+  
 }
