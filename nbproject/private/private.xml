@@ -12,27 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/AddStudentModalController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/AddBookModalController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/TrackStudentController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/main/MainPane.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/StudentsViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/DashboardLayoutController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Student.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/StudentDao.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/DateUtil.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/StudentInterface.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/StudentService.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/StudentsViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/main/MainPane.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/LogDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/LogInterface.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/TrackStudentController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowBookController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateBookViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateStudentViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Book.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/RegisterView.fxml</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/RegisterViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/User.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/LoginViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/UserDao.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/WindowUtil.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/LogService.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/DashboardLayoutController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BookDao.java</file>
         </group>
     </open-files>
 </project-private>

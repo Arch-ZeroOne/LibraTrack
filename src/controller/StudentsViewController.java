@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.sql.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +27,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.util.StringConverter;
 import model.Student;
 import service.StudentService;
 
@@ -49,6 +51,7 @@ public class StudentsViewController implements Initializable {
     ObservableList<Student> data = FXCollections.observableArrayList();
     ModalUtil util = new ModalUtil();
     StudentService service = new StudentService();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM/d/yyyy");
     
 
     /**
@@ -63,6 +66,31 @@ public class StudentsViewController implements Initializable {
         middlenameCol.setCellValueFactory(new PropertyValueFactory<>("middlename"));
         lastnameCol.setCellValueFactory(new PropertyValueFactory<>("lastname"));
         courseCol.setCellValueFactory(new PropertyValueFactory<>("course"));
+        
+        datePicker.setConverter(new StringConverter<LocalDate>(){
+          @Override
+          public String toString(LocalDate date){
+              if(date != null){
+                  return formatter.format(date);
+                  
+              }
+              
+              return null;
+          }
+          
+          @Override
+          public LocalDate fromString(String dateString){
+              if(!dateString.isEmpty()){
+                  return LocalDate.parse(dateString,formatter);
+                  
+              }
+              
+              return null;
+          }
+        });
+        
+        
+        datePicker.setValue(LocalDate.now());
         try{ loadTable(); } catch(SQLException error) { error.printStackTrace(); };
         
     }
@@ -70,8 +98,7 @@ public class StudentsViewController implements Initializable {
      public void showAddModal(ActionEvent event) throws IOException,SQLException{
         util.openModal("AddStudentModal", "Add Student");
         loadTable();
-        
-       
+          
     }
     
      
@@ -84,6 +111,13 @@ public class StudentsViewController implements Initializable {
     public void handleDateChange(ActionEvent event){
         LocalDate date = datePicker.getValue();
         try{ handleDateFilter(date); }catch(SQLException error){ error.printStackTrace();};
+        
+    }
+    public void handleSearch(KeyEvent event) throws SQLException{
+        String symbol = searchField.getText();
+        try{ handleSearchFilter(symbol); }catch(SQLException error){ error.printStackTrace();};
+        
+       
         
     }
     
@@ -107,16 +141,12 @@ public class StudentsViewController implements Initializable {
         List<Student> filtered = student_list.stream().
                                      filter(student -> student.getCourse()
                                      .equals(course)).collect(Collectors.toList());
-        
-        for(Student student : filtered){
-            System.out.println("Retrieved data:");
-            System.out.println(student.getCourse());
-        }
         data.setAll(filtered);
         
         
     }
-      public void handleDateFilter(LocalDate localDate) throws SQLException{
+     
+    public void handleDateFilter(LocalDate localDate) throws SQLException{
         
        if(localDate.equals(LocalDate.now())){
             loadTable();
@@ -128,8 +158,6 @@ public class StudentsViewController implements Initializable {
         List<Student> filtered = student_list.stream().
                                      filter(student -> student.getCreatedAt().toLocalDate()
                                      .equals(localDate)).collect(Collectors.toList());
-        
-        
         data.setAll(filtered);
         
         
@@ -153,24 +181,9 @@ public class StudentsViewController implements Initializable {
                                                  )
                                     .collect(Collectors.toList());
         
-        for(Student student : filtered){
-            System.out.println(student.getCreatedAt());
-        }
         data.setAll(filtered);
         
         
     }
-      
-      
-     
-    public void handleSearch(KeyEvent event) throws SQLException{
-        String symbol = searchField.getText();
-        System.out.println(symbol);
-        try{ handleSearchFilter(symbol); }catch(SQLException error){ error.printStackTrace();};
-        
        
-        
-    }
-    
-    
 }

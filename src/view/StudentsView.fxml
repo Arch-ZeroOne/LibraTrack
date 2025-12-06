@@ -81,7 +81,7 @@
                                         <FontAwesomeIcon fill="#2196F3" glyphName="CALENDAR" size="1.2em" />
                                     </children>
                                 </VBox>
-                                <DatePicker fx:id="datePicker" onAction="#handleDateChange" prefHeight="45.0" prefWidth="150.0" promptText="Filter by date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                                <DatePicker fx:id="datePicker" onAction="#handleDateChange" prefHeight="45.0" prefWidth="150.0" promptText="Filter by date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 12px;" />
                             </children>
                         </HBox>
                         

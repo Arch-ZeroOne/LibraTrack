@@ -2,7 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,9 +13,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrackStudentController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TrackStudentController">
    <children>
-      <VBox layoutX="30.0" layoutY="20.0" prefHeight="600.0" prefWidth="755.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.08), 15, 0, 0, 2);">
+      <VBox layoutX="30.0" layoutY="20.0" prefHeight="680.0" prefWidth="755.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.08), 15, 0, 0, 2);">
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
          </padding>
@@ -25,7 +25,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #001b52; -fx-background-radius: 12;">
                      <children>
-                        <FontAwesomeIcon fill="white" glyphName="USER" size="1.8em" />
+                        <FontAwesomeIcon fill="white" glyphName="CLIPBOARD" size="1.8em" />
                      </children>
                   </VBox>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Student Log">
@@ -56,7 +56,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <TextField fx:id="qrCodeField" prefHeight="50.0" promptText="Place QR code here or scan using device..." style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-border-width: 2; -fx-font-size: 16px; -fx-padding: 12; -fx-font-weight: 600;">
+                  <TextField fx:id="qrCodeField" onKeyPressed="#handleScan" prefHeight="50.0" promptText="Place QR code here or scan using device..." style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-border-width: 2; -fx-font-size: 16px; -fx-padding: 12; -fx-font-weight: 600;">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -67,7 +67,7 @@
             <!-- Search and Filter Section -->
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="15.0">
                <children>
-                  <TextField fx:id="searchField" prefHeight="45.0" prefWidth="350.0" promptText="Search student..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px; -fx-padding: 10;">
+                  <TextField fx:id="searchField" onKeyPressed="#handleSearch" prefHeight="45.0" prefWidth="350.0" promptText="Search student..." style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px; -fx-padding: 10;">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -77,13 +77,13 @@
                   
                   <HBox alignment="CENTER_LEFT" spacing="12.0">
                      <children>
-                        <FontAwesomeIcon fill="#001b52" glyphName="FILTER" size="1.3em" />
-                        <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600;" text="Sort From:">
+                        <FontAwesomeIcon fill="#001b52" glyphName="CALENDAR" size="1.3em" />
+                        <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600;" text="Filter Date:">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="sortComboBox" prefHeight="45.0" prefWidth="180.0" promptText="Select date range" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                        <DatePicker fx:id="datePicker" onAction="#handleDateChange" prefHeight="45.0" prefWidth="180.0" promptText="Select date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1;" />
                      </children>
                   </HBox>
                </children>
@@ -161,7 +161,7 @@
                                     <FontAwesomeIcon fill="white" glyphName="PERCENT" size="1.4em" />
                                  </children>
                               </VBox>
-                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.9;" text="Attendance Rate">
+                              <Label style="-fx-text-fill: white; -fx-font-weight: 600; -fx-opacity: 0.9;" text="Log Rate">
                                  <font>
                                     <Font size="13.0" />
                                  </font>
@@ -179,14 +179,13 @@
             </HBox>
             
             <!-- Attendance Table -->
-            <TableView fx:id="attendanceTable" prefHeight="220.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
+            <TableView fx:id="logTable" prefHeight="280.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
               <columns>
-                <TableColumn prefWidth="120.0" style="-fx-alignment: CENTER_LEFT;" text="Student ID" />
-                <TableColumn prefWidth="180.0" style="-fx-alignment: CENTER_LEFT;" text="Full Name" />
-                <TableColumn prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="Program" />
-                <TableColumn prefWidth="100.0" style="-fx-alignment: CENTER;" text="Date" />
-                <TableColumn prefWidth="100.0" style="-fx-alignment: CENTER;" text="Time In" />
-                <TableColumn prefWidth="100.0" style="-fx-alignment: CENTER;" text="Time Out" />
+                <TableColumn fx:id="idCol" prefWidth="120.0" style="-fx-alignment: CENTER_LEFT;" text="Student ID" />
+                <TableColumn fx:id="firstnameCol" prefWidth="180.0" style="-fx-alignment: CENTER_LEFT;" text="Firstname" />
+                <TableColumn fx:id="middlenameCol" prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="Middlename" />
+                <TableColumn fx:id="lastnameCol" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Lastname" />
+                <TableColumn fx:id="loggedCol" prefWidth="158.66668701171875" style="-fx-alignment: CENTER;" text="Date Logged" />
               </columns>
             </TableView>
          </children>
