@@ -6,8 +6,10 @@ package service;
 
 import java.sql.SQLException;
 import model.Book;
+import model.Genre;
 import dao.BookDao;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 /**
  *
  * @author Windyl
@@ -16,17 +18,17 @@ public class BookService {
      BookDao book_dao = new BookDao();  
       
    
-    public boolean insert(Book book) throws SQLException{
-        return book_dao.insert(book);
+    public boolean insert(Book book,ObservableList<Genre> genres) throws SQLException{
+        return book_dao.insert(book,genres);
                
     }
     
-    public boolean update(Book book) throws SQLException{
-        return book_dao.update(book);
+    public boolean update(Book book,ObservableList<Genre> genres) throws SQLException{
+        return book_dao.update(book,genres);
     }
     
-    public boolean remove(Book book) throws SQLException{
-        return book_dao.remove(book);
+    public boolean remove(String command) throws SQLException{
+        return book_dao.remove(command);
     }
     
      public Book search(String barcode) throws SQLException{

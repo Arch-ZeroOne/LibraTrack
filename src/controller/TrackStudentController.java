@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.lang.classfile.Label;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -25,11 +26,16 @@ import javafx.scene.input.KeyEvent;
 import model.Log;
 import service.LogService;
 import util.AlertUtil;
+
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import javafx.util.StringConverter;
 import util.DateUtil;
+import java.sql.Statement;
 
 
 /**
@@ -51,11 +57,18 @@ public class TrackStudentController implements Initializable {
     LogService service = new LogService();
     AlertUtil util = new AlertUtil();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM/d/yyyy");
+    @FXML
+    private javafx.scene.control.Label todayAttendanceLabel;
+    @FXML
+    private javafx.scene.control.Label totalStudentsLabel;
+    @FXML
+    private javafx.scene.control.Label attendanceRateLabel;
     
 
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        loadStatistics();
         idCol.setCellValueFactory(new PropertyValueFactory<>("school_id"));
         firstnameCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         middlenameCol.setCellValueFactory(new PropertyValueFactory<>("middlename"));
@@ -85,10 +98,12 @@ public class TrackStudentController implements Initializable {
           }
         });
         datePicker.setValue(LocalDate.now());
-        try{handleDateFilter(LocalDate.now());}catch(SQLException error){error.printStackTrace();};
-        try{loadTable();}catch(SQLException error){error.printStackTrace();};
+        //Handles the on start of date to filter the log for today
+        handleDateChange();
+        
     }
  
+    @FXML
     public void handleScan(KeyEvent event){
         
       if(event.getCode() == KeyCode.ENTER){
@@ -105,7 +120,8 @@ public class TrackStudentController implements Initializable {
              if(school_id != null ){
                  service.insert(school_id);
                  qrCodeField.setText("");
-                 loadTable();
+                 handleDateChange();
+                 
                  return;
               }
               util.error("Student Not Found");
@@ -116,17 +132,15 @@ public class TrackStudentController implements Initializable {
          }
     }
 
-   public void loadTable() throws SQLException{
-       ArrayList<Log> log_list = service.list();
-       data.setAll(log_list);
-       
-   }
+ 
    
+    @FXML
    public void handleSearch(){
        String symbol = searchField.getText();
        try{ handleSearchFilter(symbol); }catch(SQLException error){error.printStackTrace();};
    }
    
+    @FXML
    public void handleDateChange(){
         LocalDate date = datePicker.getValue();
         try{ handleDateFilter(date); }catch(SQLException error){ error.printStackTrace();};
@@ -134,40 +148,74 @@ public class TrackStudentController implements Initializable {
    }
    
    public void handleSearchFilter(String symbol)throws SQLException{
-          if(symbol.isEmpty()){
-             loadTable();
-             return;
-             
-         }
-       
-        
         ArrayList<Log> log_list = service.list();
-        List<Log> filtered = log_list.stream().
+          if(symbol.isEmpty()){
+               List<Log> filtered = log_list.stream().
+                                     filter(log -> log.getLog_date().toLocalDate()
+                                     .equals(LocalDate.now())).collect(Collectors.toList());
+                         data.setAll(filtered);
+            
+         }else{
+            List<Log> filtered = log_list.stream().
                                      filter(log -> log.getFirstname().contains(symbol)
                                          || log.getMiddlename().contains(symbol)
                                          || log.getLastname().contains(symbol) 
                                          || log.getSchool_id().contains(symbol)
                                                  )
                                     .collect(Collectors.toList());
-        
-        data.setAll(filtered);
-       
+                 data.setAll(filtered);
+          }
    }
    
    public void handleDateFilter(LocalDate localDate) throws SQLException{
-       if(localDate.equals(LocalDate.now())){
-            loadTable();
-             return;
-        }
+       ArrayList<Log> student_list = service.list();
        
-        
-        ArrayList<Log> student_list = service.list();
-        List<Log> filtered = student_list.stream().
+       //If the date is current load the logs for todays date
+       if(localDate.equals(LocalDate.now())){
+            List<Log> filtered = student_list.stream().
+                                     filter(log -> log.getLog_date().toLocalDate()
+                                     .equals(LocalDate.now())).collect(Collectors.toList());
+            data.setAll(filtered);
+            
+        }else{
+           //If not loads the date based on the value of date picker
+            List<Log> filtered = student_list.stream().
                                      filter(log -> log.getLog_date().toLocalDate()
                                      .equals(localDate)).collect(Collectors.toList());
-        data.setAll(filtered);
+            data.setAll(filtered);
+           
+       }
        
    }
-   
+
+
+private void loadStatistics() {
+    String DB_URL = "jdbc:mysql://localhost:3306/libratrack_qr_barcode";
+    String DB_USER = "root";
+    String DB_PASS = "";
+
+    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+         Statement stmt = conn.createStatement()) {
+
+        // Total logs
+        ResultSet rsTotal = stmt.executeQuery("SELECT COUNT(*) AS total FROM log");
+        if (rsTotal.next()) totalStudentsLabel.setText(rsTotal.getString("total"));
+
+        // Today's logs
+        ResultSet rsToday = stmt.executeQuery("SELECT COUNT(*) AS total FROM log WHERE log_date = CURDATE()");
+        if (rsToday.next()) todayAttendanceLabel.setText(rsToday.getString("total"));
+
+        // This month's logs
+        ResultSet rsMonth = stmt.executeQuery(
+                "SELECT COUNT(*) AS total FROM log WHERE MONTH(log_date) = MONTH(CURDATE()) AND YEAR(log_date) = YEAR(CURDATE())"
+        );
+        if (rsMonth.next()) attendanceRateLabel.setText(rsMonth.getString("total")+"%");
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+       
+    }
+}
+
     
 }

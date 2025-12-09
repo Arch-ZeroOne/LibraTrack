@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -30,6 +35,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.util.StringConverter;
 import model.Student;
 import service.StudentService;
+import java.sql.Statement;
 
 
 /**
@@ -52,6 +58,18 @@ public class StudentsViewController implements Initializable {
     ModalUtil util = new ModalUtil();
     StudentService service = new StudentService();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM/d/yyyy");
+    @FXML
+    private Label totalStudentsLabel;
+    @FXML
+    private Button createBtn;
+    @FXML
+    private Label statTotalStudentsLabel;
+    @FXML
+    private Label statActiveLabel;
+    @FXML
+    private Label statInactiveLabel;
+    @FXML
+    private Label statProgramsLabel;
     
 
     /**
@@ -60,6 +78,7 @@ public class StudentsViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         studentTable.setItems(data);
+        loadStatistics();
         courseComboBox.getItems().setAll("ALL","BSIT","BSBA","BSA","BTLED");
         idCol.setCellValueFactory(new PropertyValueFactory<>("school_id"));
         firstnameCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
@@ -95,6 +114,7 @@ public class StudentsViewController implements Initializable {
         
     }
 
+    @FXML
      public void showAddModal(ActionEvent event) throws IOException,SQLException{
         util.openModal("AddStudentModal", "Add Student");
         loadTable();
@@ -102,17 +122,20 @@ public class StudentsViewController implements Initializable {
     }
     
      
+    @FXML
     public void handleCourseChange(ActionEvent event){
         String selectedCourse = courseComboBox.getValue();
         try{ handleCourseFilter(selectedCourse); }catch(SQLException error){ error.printStackTrace();};
         
     }
     
+    @FXML
     public void handleDateChange(ActionEvent event){
         LocalDate date = datePicker.getValue();
         try{ handleDateFilter(date); }catch(SQLException error){ error.printStackTrace();};
         
     }
+    @FXML
     public void handleSearch(KeyEvent event) throws SQLException{
         String symbol = searchField.getText();
         try{ handleSearchFilter(symbol); }catch(SQLException error){ error.printStackTrace();};
@@ -185,5 +208,38 @@ public class StudentsViewController implements Initializable {
         
         
     }
+    private void loadStatistics() {
+    String DB_URL = "jdbc:mysql://localhost:3306/libratrack_qr_barcode";
+    String DB_USER = "root";
+    String DB_PASS = "";
+
+    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+         Statement stmt = conn.createStatement()) {
+
+        // Total students
+        ResultSet rsTotal = stmt.executeQuery("SELECT COUNT(*) AS total FROM student");
+        if (rsTotal.next()) statTotalStudentsLabel.setText(rsTotal.getString("total"));
+
+        // Active students
+        ResultSet rsActive = stmt.executeQuery("SELECT COUNT(*) AS total FROM student WHERE isActive = 'active'");
+        if (rsActive.next()) statActiveLabel.setText(rsActive.getString("total"));
+
+        // Inactive students
+        ResultSet rsInactive = stmt.executeQuery("SELECT COUNT(*) AS total FROM student WHERE isActive = 'inactive'");
+        if (rsInactive.next()) statInactiveLabel.setText(rsInactive.getString("total"));
+
+        // Total programs / distinct courses
+        ResultSet rsPrograms = stmt.executeQuery("SELECT COUNT(DISTINCT course) AS total FROM student");
+        if (rsPrograms.next()) statProgramsLabel.setText(rsPrograms.getString("total"));
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        statTotalStudentsLabel.setText("0");
+        statActiveLabel.setText("0");
+        statInactiveLabel.setText("0");
+        statProgramsLabel.setText("0");
+    }
+}
+
        
 }

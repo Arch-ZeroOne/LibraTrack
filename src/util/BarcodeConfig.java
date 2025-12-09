@@ -8,8 +8,8 @@ package util;
  *
  * @author Windyl
  */
-public class QRConfig {
-    public final String path = "C:/QrCodes";
+public class BarcodeConfig {
+    public final String path = "C:/Barcodes";
     
     
 }

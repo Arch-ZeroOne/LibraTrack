@@ -6,11 +6,14 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import util.WindowUtil;
 /**
  * FXML Controller class
@@ -22,18 +25,35 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     AnchorPane contentpane;
     @FXML
-    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn,borrowBookBtn,attendanceBtn;
+    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn,borrowBookBtn,attendanceBtn,returnBtn,logoutBtn,reportBtn;
+    private List<HBox> navButtons;
+    @FXML private HBox homebtnHBox;
+    @FXML private HBox booksbtnHBox;
+    @FXML private HBox studentsBtnHBox;
+    @FXML private HBox updateStudentBtnHBox;
+    @FXML private HBox updateBookBtnHBox;
+    @FXML private HBox borrowBookBtnHBox;
+    @FXML private HBox returnBtnHBox;
+    @FXML private HBox attendanceBtnHBox;
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
+    navButtons = Arrays.asList(homebtnHBox, booksbtnHBox, studentsBtnHBox, updateStudentBtnHBox,
+                                   updateBookBtnHBox, borrowBookBtnHBox, returnBtnHBox, attendanceBtnHBox);
 
+        // Add click listeners for each Button
+        homebtn.setOnAction(e -> setActiveButton(homebtnHBox));
+        booksbtn.setOnAction(e -> setActiveButton(booksbtnHBox));
+        studentsBtn.setOnAction(e -> setActiveButton(studentsBtnHBox));
+        updateStudentBtn.setOnAction(e -> setActiveButton(updateStudentBtnHBox));
+        updateBookBtn.setOnAction(e -> setActiveButton(updateBookBtnHBox));
+        borrowBookBtn.setOnAction(e -> setActiveButton(borrowBookBtnHBox));
+        returnBtn.setOnAction(e -> setActiveButton(returnBtnHBox));
+        attendanceBtn.setOnAction(e -> setActiveButton(attendanceBtnHBox));
        try{
           //Loads the default home page
           util.setContentArea(contentpane); 
-          util.goTo("TrackStudentView");
+          util.goTo("StatisticsView");
          
           homebtn.setOnAction(event -> {
             try{
@@ -81,6 +101,15 @@ public class DashboardLayoutController implements Initializable {
              }
           });
           
+          returnBtn.setOnAction(event ->{
+          try{
+             util.goTo("ReturnBookView") ;
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+          
        }catch(IOException e){
            e.printStackTrace();
        }
@@ -102,16 +131,42 @@ public class DashboardLayoutController implements Initializable {
                  e.printStackTrace();   
              }
           });
+        logoutBtn.setOnAction(event ->{
+          try{
+             util.transfer("LoginView.fxml",event);
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+        reportBtn.setOnAction(event ->{
+          try{
+             util.goTo("GenerateReportView");
+             
+             }catch(IOException e){
+                 e.printStackTrace();   
+             }
+          });
+       
           
       
           
-       
-       
-       
       
-       
     } 
     
+    private void setActiveButton(HBox activeHBox) {
+      // Remove 'active' from all
+        navButtons.forEach(h -> h.getStyleClass().remove("active"));
+
+        // Add 'active' to the clicked HBox
+        if (!activeHBox.getStyleClass().contains("active")) {
+            activeHBox.getStyleClass().add("active");
+        }
+    }
+    
+    
+    
+   
     
        
 }

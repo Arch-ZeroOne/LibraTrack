@@ -13,26 +13,29 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="720.0" prefWidth="1060.0" style="-fx-background-color: linear-gradient(to bottom, #f5f7fa 0%, #e8edf2 100%);" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardLayoutController">
+<StackPane
+    prefHeight="720.0"
+    prefWidth="1060.0"
+    xmlns="http://javafx.com/javafx/25"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="controller.DashboardLayoutController"
+    stylesheets="@../asset/css/dashboardview.css"
+    style="-fx-background-color: linear-gradient(to bottom, #f5f7fa 0%, #e8edf2 100%);">
    <children>
       <AnchorPane prefHeight="720.0" prefWidth="1060.0">
          <children>
             <VBox prefHeight="720.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(to bottom, #001b52 0%, #00132e 100%); -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 25, 0, 8, 0);">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="90.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.05); -fx-background-radius: 0 0 20 0;">
+                  <HBox alignment="CENTER_LEFT" prefHeight="90.0" spacing="15.0" style="-fx-background-color: rgba(255, 255, 255, 0.08);">
                      <padding>
                         <Insets left="25.0" right="25.0" />
                      </padding>
                      <children>
-                        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: white; -fx-background-radius: 12; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 3);">
-                           <children>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../asset/images/DOrSU%20logo.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </VBox>
+                        <ImageView fitHeight="45.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../asset/images/DOrSU%20logo.png" />
+                           </image>
+                        </ImageView>
                         <VBox spacing="3.0">
                            <children>
                               <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="LIBRATRACK">
@@ -55,6 +58,7 @@
                         <Insets left="20.0" right="20.0" top="35.0" />
                      </padding>
                      <children>
+                        <!-- MAIN MENU -->
                         <Label style="-fx-text-fill: rgba(255, 255, 255, 0.5); -fx-font-size: 11px; -fx-font-weight: 600;" text="MAIN MENU">
                            <font>
                               <Font name="System Bold" size="11.0" />
@@ -64,7 +68,8 @@
                            </VBox.margin>
                         </Label>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Dashboard Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -78,7 +83,8 @@
                            </children>
                         </HBox>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Books Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -92,7 +98,8 @@
                            </children>
                         </HBox>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Students Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -112,6 +119,7 @@
                            </VBox.margin>
                         </Separator>
                         
+                        <!-- MANAGEMENT Section -->
                         <Label style="-fx-text-fill: rgba(255, 255, 255, 0.5); -fx-font-size: 11px; -fx-font-weight: 600;" text="MANAGEMENT">
                            <font>
                               <Font name="System Bold" size="11.0" />
@@ -121,7 +129,8 @@
                            </VBox.margin>
                         </Label>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Update Student Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -135,7 +144,8 @@
                            </children>
                         </HBox>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Update Book Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -155,6 +165,7 @@
                            </VBox.margin>
                         </Separator>
                         
+                        <!-- OPERATIONS Section -->
                         <Label style="-fx-text-fill: rgba(255, 255, 255, 0.5); -fx-font-size: 11px; -fx-font-weight: 600;" text="OPERATIONS">
                            <font>
                               <Font name="System Bold" size="11.0" />
@@ -164,7 +175,8 @@
                            </VBox.margin>
                         </Label>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Borrow Book Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
@@ -178,15 +190,69 @@
                            </children>
                         </HBox>
                         
-                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                        <!-- Return Book Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                            <padding>
                               <Insets left="20.0" />
                            </padding>
                            <children>
-                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="USER" size="1.6em" text="" />
-                              <Button fx:id="attendanceBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Student Log">
+                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="UNDO" size="1.6em" />
+                              <Button fx:id="returnBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Return Book">
                                  <font>
                                     <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        
+                        <!-- Attendance Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <children>
+                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="CALENDAR_CHECK_ALT" size="1.6em" />
+                              <Button fx:id="attendanceBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Attendance">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+
+                        <!-- Generate Report Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                           <children>
+                              <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="FILE_ALT" size="1.6em" />
+                              <Button fx:id="reportBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Generate Report">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        
+                        <VBox VBox.vgrow="ALWAYS" />
+                        
+                        <Separator prefWidth="200.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);">
+                           <VBox.margin>
+                              <Insets bottom="15.0" left="5.0" right="5.0" />
+                           </VBox.margin>
+                        </Separator>
+                        
+                        <!-- Logout Button -->
+                        <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" />
+                           </padding>
+                           <children>
+                              <FontAwesomeIcon fill="#ff4757" glyphName="SIGN_OUT" size="1.6em" />
+                              <Button fx:id="logoutBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: #ff4757; -fx-font-size: 15px; -fx-font-weight: 600; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Logout">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
                                  </font>
                               </Button>
                            </children>

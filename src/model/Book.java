@@ -4,70 +4,78 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Windyl
  */
 public class Book {
 
-
+   
    
     private int id;
     private String title;
     private String author;
-    private String genre;
     private String publisher;
     private String publicationDate;
     private String isbn;
     private int copies;
-    private String barcode;
-    private boolean isAvailable;
-
-    public Book(int id, String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies, String barcode) {
+    private String isAvailable;
+    private String genre;
+    public Book(int id, String title, String author, String publisher, String publicationDate, String isbn, int copies, String isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.genre = genre;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
         this.isbn = isbn;
         this.copies = copies;
-        this.barcode = barcode;
+        this.isAvailable = isAvailable;
+       
     }
-    public Book( String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies, boolean isAvailable,String barcode) {
-        this.title = title;
-        this.author = author;
-        this.genre = genre;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
-        this.isbn = isbn;
-        this.copies = copies;
-        this.barcode = barcode;
-    }
-    
-   public Book(int id ,String title, String author, String genre, String publisher, String publicationDate, String isbn, int copies,boolean isAvailable, String barcode) {
+    public Book( int id ,String title, String author, String publisher, String publicationDate, String isbn, String isAvailable) {
         this.id = id;
         this.title = title;
         this.author = author;
-        this.genre = genre;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
         this.isbn = isbn;
-        this.copies = copies;
-        this.barcode = barcode;
         this.isAvailable = isAvailable;
+       
     }
-    public Book(String title, String author, String genre, String publisher, String publicationDate, int copies, boolean isAvailable) {
+      public Book( String title, String author, String publisher, String publicationDate, String isbn, String isAvailable) {
         this.title = title;
         this.author = author;
-        this.genre = genre;
         this.publisher = publisher;
         this.publicationDate = publicationDate;
-        this.copies = copies;
+        this.isbn = isbn;
         this.isAvailable = isAvailable;
+       
     }
-    
+        public Book( String title, String author, String publisher, String publicationDate, String isbn,int copies, String isAvailable) {
+        this.title = title;
+        this.copies = copies;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.isbn = isbn;
+        this.isAvailable = isAvailable;
+       
+    }
    
+    
+       public Book( String title, String author, String publisher, String publicationDate, String isbn,int copies, String isAvailable,String genre) {
+        this.title = title;
+        this.copies = copies;
+        this.author = author;
+        this.publisher = publisher;
+        this.publicationDate = publicationDate;
+        this.isbn = isbn;
+        this.isAvailable = isAvailable;
+        this.genre = genre;
+       
+    }
     public int getId() {
         return id;
     }
@@ -90,14 +98,6 @@ public class Book {
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getPublisher() {
@@ -132,20 +132,22 @@ public class Book {
         this.copies = copies;
     }
 
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-    public boolean getIsAvailable() {
+    
+    public String getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
+    public void setIsAvailable(String isAvailable) {
         this.isAvailable = isAvailable;
     }
+ public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
 
     
 }

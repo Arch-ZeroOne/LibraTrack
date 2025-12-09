@@ -19,7 +19,6 @@ import util.AlertUtil;
 import util.QRConfig;
 import java.nio.file.Path;
 import javafx.scene.control.ComboBox;
-
 public class AddStudentModalController implements Initializable {
     @FXML
     TextField firstnameField,middlenameField,lastnameField,idField;

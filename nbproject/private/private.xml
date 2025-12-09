@@ -12,19 +12,32 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/StudentDao.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/StudentsViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/main/MainPane.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/LogDao.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/LogInterface.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/TrackStudentController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowBookController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateBookViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateStudentViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/LogService.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/DashboardLayoutController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Genre.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/GenreInterface.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/GenreDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/BookInterface.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/BookService.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/AddStudentModalController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/UpdateBookView.fxml</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BookDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/BorrowBookView.fxml</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/GenreService.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/AddBookModalController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BorrowDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Borrow.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/BorrowViewModal.fxml</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/asset/css/borrowviewmodal.css</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowViewModalController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/AddStudentModal.fxml</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/AddBookModal.fxml</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/BorrowService.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/ModalUtil.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateStudentViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/BorrowInterface.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/DashboardLayoutController.java</file>
         </group>
     </open-files>
 </project-private>

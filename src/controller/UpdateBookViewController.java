@@ -15,8 +15,14 @@ import model.Book;
 import service.BookService;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import model.Genre;
+import service.GenreService;
 import util.AlertUtil;
 import util.DateUtil;
 
@@ -30,99 +36,35 @@ public class UpdateBookViewController implements Initializable {
     @FXML
     TextField barcodeField,titleField,authorField,publisherField,isbnField,copiesField;
     @FXML
-    ComboBox<String> genreComboBox , isAvailableComboBox;
+    ComboBox<String> isAvailableComboBox;
     @FXML
     DatePicker publicationDatePicker;
+    @FXML
+    ListView genreListView ;
     BookService book_service = new BookService();
     DateUtil date_util = new DateUtil();
     AlertUtil alert_util = new AlertUtil();
+    GenreService genre_service = new GenreService();
+    ObservableList<Genre> genreList = FXCollections.observableArrayList();
+     public ObservableList<Genre> genreList(){
+          return genreList;
+     }
    
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
-         genreComboBox.getItems().addAll("Literary Fiction",
-            "Contemporary Fiction",
-            "Historical Fiction",
-            "Science Fiction",
-            "Fantasy",
-            "Mystery",
-            "Thriller",
-            "Suspense",
-            "Horror",
-            "Romance",
-            "Western",
-            "Dystopian",
-            "Adventure",
-            "Crime",
-            "Detective",
-            "Espionage",
-            "Gothic",
-            "Magical Realism",
-            "Paranormal",
-            "Urban Fantasy",
-            
-            // Non-Fiction Categories
-            "Biography",
-            "Autobiography",
-            "Memoir",
-            "History",
-            "Philosophy",
-            "Psychology",
-            "Science",
-            "Technology",
-            "Business",
-            "Economics",
-            "Self-Help",
-            "True Crime",
-            "Travel",
-            "Cooking",
-            "Health & Fitness",
-            "Religion",
-            "Spirituality",
-            "Politics",
-            "Social Sciences",
-            "Nature",
-            "Essays",
-            "Journalism",
-            
-            // Academic & Reference
-            "Textbook",
-            "Reference",
-            "Encyclopedia",
-            "Dictionary",
-            "Manual",
-            "Guide",
-            
-            // Arts & Entertainment
-            "Art",
-            "Music",
-            "Photography",
-            "Film & TV",
-            "Theater",
-            "Comics",
-            "Graphic Novels",
-            
-            // Children & Young Adult
-            "Children's Picture Books",
-            "Children's Fiction",
-            "Middle Grade",
-            "Young Adult (YA)",
-            "Educational Children's",
-            
-            // Poetry & Drama
-            "Poetry",
-            "Drama",
-            "Plays",
-            
-            // Other
-            "Humor",
-            "Satire",
-            "Anthology",
-            "Short Stories",
-            "Other");
+        genreListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        genreListView.setItems(genreList);
+        //Initializes list of genre
+        try{
+          genreList.setAll(genre_service.list());
+        }catch(SQLException error){
+            error.printStackTrace();
+        }       
+       
         
-        isAvailableComboBox.getItems().setAll("true","false");
+        isAvailableComboBox.getItems().setAll("Available","Unavailable");
         
       barcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
@@ -145,6 +87,8 @@ public class UpdateBookViewController implements Initializable {
           }
         });
     }
+
+
     
     public void autoFill(Book book){
         String[] getSeparatedDate = book.getPublicationDate().split("-");
@@ -153,7 +97,6 @@ public class UpdateBookViewController implements Initializable {
         int month = Integer.parseInt(getSeparatedDate[0]);
         titleField.setText(book.getTitle());
         authorField.setText(book.getAuthor());
-        genreComboBox.setValue(book.getGenre());
         publisherField.setText(book.getPublisher());
         publicationDatePicker.setValue(LocalDate.of(year,month,day));
         isbnField.setText(book.getIsbn());
@@ -161,25 +104,34 @@ public class UpdateBookViewController implements Initializable {
         
     }
 
-    public void handleDelete(){
+    public void handleDelete() throws SQLException{
+        if(book_service.remove("Unavailable")){
+            alert_util.success("Book Deleted");
+            return;
+        }
+         alert_util.error("Book Not Deleted");
+        
+        
+        
+        
+        
         
     }
     
     public void handleUpdate(){
-        String barcode = barcodeField.getText();
         String title = titleField.getText();
         String author = authorField.getText();
-        String genre = genreComboBox.getValue();
         String publisher = publisherField.getText();
         String publicationDate  = date_util.getFormattedDate(publicationDatePicker.getValue());
+        ObservableList<Genre> selectedGenre = genreListView.getSelectionModel().getSelectedItems();
         String isbn = isbnField.getText();
-        int copies = Integer.parseInt(copiesField.getText());
-        boolean isAvailable = Boolean.parseBoolean(isAvailableComboBox.getValue());
+        int copies  = Integer.parseInt(copiesField.getText());
+        String isAvailable = isAvailableComboBox.getValue();
         
-        Book book = new Book(title,author,genre,publisher,publicationDate,isbn,copies,isAvailable,barcode);
+        Book book = new Book(title,author,publisher,publicationDate,isbn,copies,isAvailable);
         
        try{
-           boolean updated  = book_service.update(book);
+           boolean updated  = book_service.update(book,selectedGenre);
            if(updated){
                alert_util.success("Book Updated Successfully");
                clearForm();

@@ -15,13 +15,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+import java.sql.Statement;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import service.BookService;
 import model.Book;
-
+import model.Student;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import model.Genre;
 import util.ModalUtil;
+import service.GenreService;
 /**
  * FXML Controller class
  *
@@ -33,10 +49,25 @@ public class BooksViewController implements Initializable {
       TableView<Book> bookTable;
       ObservableList<Book> data = FXCollections.observableArrayList();
       @FXML
-      TableColumn<Book, String> titleCol,authorCol,genreCol, publisherCol, dateCol,copiesCol, availableCol; 
+      TableColumn<Book, String> titleCol,authorCol, publisherCol, dateCol, availableCol,accessionCol; 
+    
       @FXML
-      ComboBox genreBox;
+      DatePicker datePicker;
       BookService service = new BookService();
+      @FXML
+      TextField searchField;
+    @FXML
+    private Label totalBooksLabel;
+    @FXML
+    private Button createBtn;
+    @FXML
+    private Label statTotalBooksLabel;
+    @FXML
+    private Label statAvailableLabel;
+    @FXML
+    private Label statBorrowedLabel;
+    @FXML
+    private Label statGenresLabel;
       
       
    
@@ -45,99 +76,24 @@ public class BooksViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
-        genreBox.getItems().addAll(  "Contemporary Fiction",
-            "Historical Fiction",
-            "Science Fiction",
-            "Fantasy",
-            "Mystery",
-            "Thriller",
-            "Suspense",
-            "Horror",
-            "Romance",
-            "Western",
-            "Dystopian",
-            "Adventure",
-            "Crime",
-            "Detective",
-            "Espionage",
-            "Gothic",
-            "Magical Realism",
-            "Paranormal",
-            "Urban Fantasy",
-            
-            // Non-Fiction Categories
-            "Biography",
-            "Autobiography",
-            "Memoir",
-            "History",
-            "Philosophy",
-            "Psychology",
-            "Science",
-            "Technology",
-            "Business",
-            "Economics",
-            "Self-Help",
-            "True Crime",
-            "Travel",
-            "Cooking",
-            "Health & Fitness",
-            "Religion",
-            "Spirituality",
-            "Politics",
-            "Social Sciences",
-            "Nature",
-            "Essays",
-            "Journalism",
-            
-            // Academic & Reference
-            "Textbook",
-            "Reference",
-            "Encyclopedia",
-            "Dictionary",
-            "Manual",
-            "Guide",
-            
-            // Arts & Entertainment
-            "Art",
-            "Music",
-            "Photography",
-            "Film & TV",
-            "Theater",
-            "Comics",
-            "Graphic Novels",
-            
-            // Children & Young Adult
-            "Children's Picture Books",
-            "Children's Fiction",
-            "Middle Grade",
-            "Young Adult (YA)",
-            "Educational Children's",
-            
-            // Poetry & Drama
-            "Poetry",
-            "Drama",
-            "Plays",
-            
-            // Other
-            "Humor",
-            "Satire",
-            "Anthology",
-            "Short Stories",
-            "Other");
+        
+      
+        loadStatistics();
        
         bookTable.setItems(data); 
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
-        genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
         publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("publicationDate"));
-        copiesCol.setCellValueFactory(new PropertyValueFactory<>("copies"));
         availableCol.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
+        accessionCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        
         
         try{ loadTable(); } catch(SQLException error){ error.printStackTrace(); }
     } 
     
     
+    @FXML
     public void showAddModal(ActionEvent event) throws IOException,SQLException{
         modal_util.openModal("AddBookModal", "Add Book");
         loadTable();
@@ -153,15 +109,99 @@ public class BooksViewController implements Initializable {
         
     }
     
-    public void handleFilter(String course){
-       
-     
+    
+    
+    @FXML
+    public void handleDateChange(ActionEvent event){
+        LocalDate date = datePicker.getValue();
+        try{ handleDateFilter(date); }catch(SQLException error){ error.printStackTrace();};
         
+    }
+    @FXML
+    public void handleSearch(KeyEvent event) throws SQLException{
+        String symbol = searchField.getText();
+        try{ handleSearchFilter(symbol); }catch(SQLException error){ error.printStackTrace();};
+        
+       
         
     }
     
-    public void handleChange(){
+    
+    
+     
+     
+    public void handleDateFilter(LocalDate localDate) throws SQLException{
+        
+       if(localDate.equals(LocalDate.now())){
+            loadTable();
+             return;
+        }
+       String dateString = String.valueOf(localDate);
+       
+        
+        ArrayList<Book> book_list = service.list();
+        List<Book> filtered = book_list.stream().
+                                     filter(book -> book.getPublicationDate()
+                                     .equals(dateString)).collect(Collectors.toList());
+        data.setAll(filtered);
+        
         
     }
+       public void handleSearchFilter(String symbol) throws SQLException{
+        
+         if(symbol.isEmpty()){
+             loadTable();
+             return;
+             
+         }
+       
+        
+        ArrayList<Book> book_list = service.list();
+        List<Book> filtered = book_list.stream().
+                                     filter(book -> book.getTitle().contains(symbol)
+                                         || book.getAuthor().contains(symbol)
+                                         || book.getPublisher().contains(symbol) 
+                                         || book.getPublicationDate().contains(symbol)
+                                         
+                                                 )
+                                    .collect(Collectors.toList());
+        
+        data.setAll(filtered);
+        
+        
+    }
+    private void loadStatistics() {
+    String DB_URL = "jdbc:mysql://localhost:3306/libratrack_qr_barcode";
+    String DB_USER = "root";
+    String DB_PASS = "";
+
+    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+         Statement stmt = conn.createStatement()) {
+
+        // Total books
+        ResultSet rsTotal = stmt.executeQuery("SELECT COUNT(*) AS total FROM book");
+        if (rsTotal.next()) statTotalBooksLabel.setText(rsTotal.getString("total"));
+
+        // Total available books
+        ResultSet rsAvailable = stmt.executeQuery("SELECT COUNT(*) AS total FROM book WHERE isAvailable = 'Available'");
+        if (rsAvailable.next()) statAvailableLabel.setText(rsAvailable.getString("total"));
+
+        // Total borrowed books
+        ResultSet rsBorrowed = stmt.executeQuery("SELECT COUNT(*) AS total FROM book WHERE isAvailable = 'Borrowed'");
+        if (rsBorrowed.next()) statBorrowedLabel.setText(rsBorrowed.getString("total"));
+
+        // Total genres
+        ResultSet rsGenres = stmt.executeQuery("SELECT COUNT(*) AS total FROM genre");
+        if (rsGenres.next()) statGenresLabel.setText(rsGenres.getString("total"));
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        statTotalBooksLabel.setText("0");
+        statAvailableLabel.setText("0");
+        statBorrowedLabel.setText("0");
+        statGenresLabel.setText("0");
+    }
+}
+
     
 }

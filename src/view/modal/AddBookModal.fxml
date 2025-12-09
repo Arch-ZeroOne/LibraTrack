@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -15,14 +17,23 @@
 
 <VBox prefWidth="650.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 30;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddBookModalController">
     
-    <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #001b52;" text="Add Book">
+    <HBox alignment="CENTER_LEFT" spacing="12.0">
         <VBox.margin>
-            <Insets bottom="25.0" />
+            <Insets bottom="20.0" />
         </VBox.margin>
-        <font>
-            <Font name="System Bold" size="28.0" />
-        </font>
-    </Label>
+        <children>
+            <VBox alignment="CENTER" prefHeight="45.0" prefWidth="45.0" style="-fx-background-color: #001b52; -fx-background-radius: 10;">
+                <children>
+                    <FontAwesomeIcon fill="white" glyphName="BOOK" size="1.6em" />
+                </children>
+            </VBox>
+            <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #001b52;" text="Add New Book">
+                <font>
+                    <Font name="System Bold" size="28.0" />
+                </font>
+            </Label>
+        </children>
+    </HBox>
     
     <GridPane hgap="20.0" vgap="20.0">
         <columnConstraints>
@@ -36,7 +47,6 @@
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
         <children>
             
@@ -46,7 +56,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <TextField fx:id="titleField" prefHeight="40.0" promptText="Enter book title" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <TextField fx:id="titleField" prefHeight="40.0" promptText="e.g., The Great Gatsby" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                 <font>
                     <Font size="13.0" />
                 </font>
@@ -58,19 +68,26 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <TextField fx:id="authorField" prefHeight="40.0" promptText="Enter author name" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+            <TextField fx:id="authorField" prefHeight="40.0" promptText="e.g., F. Scott Fitzgerald" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
                 <font>
                     <Font size="13.0" />
                 </font>
             </TextField>
             
             <!-- Genre -->
-            <Label style="-fx-text-fill: #001b52;" text="Genre:" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                <font>
-                    <Font name="System Bold" size="13.0" />
-                </font>
-            </Label>
-            <ComboBox fx:id="genreComboBox" prefHeight="40.0" prefWidth="250.0" promptText="Select genre" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Label style="-fx-text-fill: #001b52;" text="Genre:">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label style="-fx-text-fill: #6c757d; -fx-font-size: 11px;" text="(Hold CTRL for multiple)" wrapText="true">
+                    <font>
+                        <Font size="11.0" />
+                    </font>
+                </Label>
+            </VBox>
+            <ListView fx:id="genreListView" prefHeight="120.0" prefWidth="250.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             
             <!-- Publisher -->
             <Label style="-fx-text-fill: #001b52;" text="Publisher:" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -78,7 +95,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <TextField fx:id="publisherField" prefHeight="40.0" promptText="Enter publisher" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <TextField fx:id="publisherField" prefHeight="40.0" promptText="e.g., Penguin Books" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                 <font>
                     <Font size="13.0" />
                 </font>
@@ -90,7 +107,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <DatePicker fx:id="publicationDatePicker" prefHeight="40.0" prefWidth="250.0" promptText="Select date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="publicationDatePicker" prefHeight="40.0" prefWidth="250.0" promptText="Select publication date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             
             <!-- ISBN -->
             <Label style="-fx-text-fill: #001b52;" text="ISBN:" GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -98,7 +115,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <TextField fx:id="isbnField" prefHeight="40.0" promptText="Enter ISBN" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <TextField fx:id="isbnField" prefHeight="40.0" promptText="e.g., 978-0-12-345678-9" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                 <font>
                     <Font size="13.0" />
                 </font>
@@ -110,19 +127,7 @@
                     <Font name="System Bold" size="13.0" />
                 </font>
             </Label>
-            <TextField fx:id="copiesField" prefHeight="40.0" promptText="Enter number of copies" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                <font>
-                    <Font size="13.0" />
-                </font>
-            </TextField>
-            
-            <!-- Barcode -->
-            <Label style="-fx-text-fill: #001b52;" text="Barcode:" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                <font>
-                    <Font name="System Bold" size="13.0" />
-                </font>
-            </Label>
-            <TextField fx:id="barcodeField" prefHeight="40.0" promptText="Enter barcode" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <TextField fx:id="copiesField" prefHeight="40.0" promptText="e.g., 10" style="-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-border-color: #e1e4e8; -fx-border-radius: 8; -fx-border-width: 1; -fx-padding: 10;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <font>
                     <Font size="13.0" />
                 </font>
@@ -130,17 +135,60 @@
         </children>
     </GridPane>
     
+    <!-- Barcode Preview Section -->
+    <VBox alignment="CENTER" spacing="12.0" style="-fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef); -fx-background-radius: 10; -fx-padding: 20; -fx-border-color: #dee2e6; -fx-border-radius: 10; -fx-border-width: 2;">
+        <VBox.margin>
+            <Insets top="20.0" />
+        </VBox.margin>
+        <children>
+            <HBox alignment="CENTER" spacing="8.0">
+                <children>
+                    <FontAwesomeIcon fill="#001b52" glyphName="BARCODE" size="1.4em" />
+                    <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold;" text="Barcode Preview">
+                        <font>
+                            <Font name="System Bold" size="14.0" />
+                        </font>
+                    </Label>
+                </children>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #ced4da; -fx-border-radius: 8; -fx-border-width: 1; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 6, 0, 0, 2);">
+                <children>
+                    <ImageView fx:id="barcodeImageView" fitHeight="120.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                </children>
+            </VBox>
+            <Button fx:id="generateBarcodeBtn" onAction="#handleGenerateBarcode" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.3), 8, 0, 0, 2);" text="Generate Barcode">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+                <graphic>
+                    <FontAwesomeIcon fill="white" glyphName="QRCODE" size="1.2em" />
+                </graphic>
+            </Button>
+            <Label fx:id="barcodeStatusLabel" style="-fx-text-fill: #6c757d; -fx-font-size: 12px;" text="Click 'Generate Barcode' to create">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Label>
+        </children>
+    </VBox>
+    
     <!-- Buttons -->
-    <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 30 0 0 0;">
-        <Button onAction="#handleCancel" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #f1f3f5; -fx-text-fill: #495057; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="Cancel">
+    <HBox alignment="CENTER_RIGHT" spacing="15.0" style="-fx-padding: 25 0 0 0;">
+        <Button onAction="#handleCancel" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #f1f3f5; -fx-text-fill: #495057; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand;" text="Cancel">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>
+            <graphic>
+                <FontAwesomeIcon fill="#495057" glyphName="TIMES" size="1.1em" />
+            </graphic>
         </Button>
-        <Button onAction="#handleSave" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.2), 8, 0, 0, 2);" text="Save">
+        <Button onAction="#handleSave" prefHeight="45.0" prefWidth="130.0" style="-fx-background-color: #001b52; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.25), 10, 0, 0, 3);" text="Save Book">
             <font>
                 <Font name="System Bold" size="13.0" />
             </font>
+            <graphic>
+                <FontAwesomeIcon fill="white" glyphName="CHECK" size="1.1em" />
+            </graphic>
         </Button>
     </HBox>
     

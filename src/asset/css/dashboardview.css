@@ -1,25 +1,36 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.nav-button {
+  -fx-background-color: transparent;
+  -fx-background-radius: 10;
+  -fx-cursor: hand;
 }
 
-.text {
-    -fx-text-fill: "black";
+.nav-button:hover {
+  -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
-.button-navigation {
-    -fx-margin : 0 300 0 0;
-    -fx-background-color:transparent;
-    -fx-text-fill:"black";
+/* Active HBox style */
+.nav-button.active {
+  -fx-background-color: rgba(255, 255, 255, 0.2);
+  -fx-border-color: white;
+  -fx-border-width: 0 0 0 4;
+  -fx-border-radius: 10;
 }
 
-.container-pane{
-      -fx-spacing : 20px;
+/* Active button text inside HBox */
+.nav-button.active > Button {
+  -fx-text-fill: white;
 }
 
-.button-navigation:hover{
-    -fx-background-color:#C0F8D1;
+/* Optional: hover effect for button text */
+.nav-button:hover > Button {
+  -fx-text-fill: rgba(255, 255, 255, 1);
+}
+
+/* Optional: style FontAwesomeIcon manually if needed */
+.nav-button > FontAwesomeIcon {
+  -fx-fill: rgba(255, 255, 255, 0.7);
+}
+
+.nav-button.active > FontAwesomeIcon {
+  -fx-fill: white;
 }
