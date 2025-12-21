@@ -6,10 +6,11 @@ package service;
 
 import java.sql.SQLException;
 import model.Book;
-import model.Genre;
+import model.Category;
 import dao.BookDao;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
+import model.BookCategories;
 /**
  *
  * @author Windyl
@@ -18,12 +19,12 @@ public class BookService {
      BookDao book_dao = new BookDao();  
       
    
-    public boolean insert(Book book,ObservableList<Genre> genres) throws SQLException{
+    public boolean insert(Book book,ObservableList<BookCategories> genres) throws SQLException{
         return book_dao.insert(book,genres);
                
     }
     
-    public boolean update(Book book,ObservableList<Genre> genres) throws SQLException{
+    public boolean update(Book book,ObservableList<BookCategories> genres) throws SQLException{
         return book_dao.update(book,genres);
     }
     

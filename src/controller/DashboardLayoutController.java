@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import util.WindowUtil;
 /**
@@ -25,7 +27,7 @@ public class DashboardLayoutController implements Initializable {
     @FXML
     AnchorPane contentpane;
     @FXML
-    Button homebtn,booksbtn,studentsBtn,updateBookBtn,updateStudentBtn,borrowBookBtn,attendanceBtn,returnBtn,logoutBtn,reportBtn;
+    Button homebtn,booksbtn,studentsBtn,borrowBookBtn,attendanceBtn,returnBtn,logoutBtn,reportBtn;
     private List<HBox> navButtons;
     @FXML private HBox homebtnHBox;
     @FXML private HBox booksbtnHBox;
@@ -45,15 +47,14 @@ public class DashboardLayoutController implements Initializable {
         homebtn.setOnAction(e -> setActiveButton(homebtnHBox));
         booksbtn.setOnAction(e -> setActiveButton(booksbtnHBox));
         studentsBtn.setOnAction(e -> setActiveButton(studentsBtnHBox));
-        updateStudentBtn.setOnAction(e -> setActiveButton(updateStudentBtnHBox));
-        updateBookBtn.setOnAction(e -> setActiveButton(updateBookBtnHBox));
+       
         borrowBookBtn.setOnAction(e -> setActiveButton(borrowBookBtnHBox));
         returnBtn.setOnAction(e -> setActiveButton(returnBtnHBox));
         attendanceBtn.setOnAction(e -> setActiveButton(attendanceBtnHBox));
        try{
           //Loads the default home page
           util.setContentArea(contentpane); 
-          util.goTo("StatisticsView");
+          util.goTo("BooksView");
          
           homebtn.setOnAction(event -> {
             try{
@@ -81,25 +82,7 @@ public class DashboardLayoutController implements Initializable {
                  e.printStackTrace();   
              }
           });
-             
-          updateBookBtn.setOnAction(event ->{
-          try{
-             util.goTo("UpdateBookView") ;
-             
-             }catch(IOException e){
-                 e.printStackTrace();   
-             }
-          });
-          
-             
-          updateStudentBtn.setOnAction(event ->{
-          try{
-             util.goTo("UpdateStudentView") ;
-             
-             }catch(IOException e){
-                 e.printStackTrace();   
-             }
-          });
+        
           
           returnBtn.setOnAction(event ->{
           try{

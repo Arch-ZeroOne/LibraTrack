@@ -2,7 +2,9 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import util.DatabaseUtil;
@@ -32,12 +34,40 @@ public class GenerateReportViewController implements Initializable {
             exportBooks(conn);
             exportStudents(conn);
             exportLogs(conn);
-            exportBorrow(conn);    // ⬅ NEW EXPORT
+            exportBorrow(conn);
+
+            // Success Alert with file path
+            File reportsFolder = new File("reports");
+            String absolutePath = reportsFolder.getAbsolutePath();
+            
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Reports Generated Successfully");
+            successAlert.setHeaderText("All Excel Reports Created!");
+            successAlert.setContentText(
+                "The following reports have been generated:\n\n" +
+                "• Books.xlsx\n" +
+                "• Students.xlsx\n" +
+                "• Logs.xlsx\n" +
+                "• Borrow.xlsx\n\n" +
+                "Location: " + absolutePath
+            );
+            successAlert.showAndWait();
 
             System.out.println("ALL EXCEL REPORTS CREATED IN /reports FOLDER!");
 
         } catch (Exception e) {
             e.printStackTrace();
+            
+            // Error Alert
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Report Generation Failed");
+            errorAlert.setHeaderText("An Error Occurred");
+            errorAlert.setContentText(
+                "Failed to generate reports.\n\n" +
+                "Error: " + e.getMessage() + "\n\n" +
+                "Please check the console for more details."
+            );
+            errorAlert.showAndWait();
         }
     }
 
@@ -113,7 +143,7 @@ public class GenerateReportViewController implements Initializable {
     }
 
     // =====================================================================
-    //                     EXPORT BORROW TO Borrow.xlsx   (NEW)
+    //                     EXPORT BORROW TO Borrow.xlsx
     // =====================================================================
     private void exportBorrow(Connection conn) throws Exception {
         XSSFWorkbook workbook = new XSSFWorkbook();

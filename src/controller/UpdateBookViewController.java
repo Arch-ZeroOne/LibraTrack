@@ -21,7 +21,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
-import model.Genre;
+import model.Category;
 import service.GenreService;
 import util.AlertUtil;
 import util.DateUtil;
@@ -45,8 +45,8 @@ public class UpdateBookViewController implements Initializable {
     DateUtil date_util = new DateUtil();
     AlertUtil alert_util = new AlertUtil();
     GenreService genre_service = new GenreService();
-    ObservableList<Genre> genreList = FXCollections.observableArrayList();
-     public ObservableList<Genre> genreList(){
+    ObservableList<Category> genreList = FXCollections.observableArrayList();
+     public ObservableList<Category> genreList(){
           return genreList;
      }
    
@@ -54,8 +54,10 @@ public class UpdateBookViewController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
+        barcodeField.requestFocus();
         genreListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         genreListView.setItems(genreList);
+        isAvailableComboBox.setValue("Available");
         //Initializes list of genre
         try{
           genreList.setAll(genre_service.list());
@@ -91,16 +93,13 @@ public class UpdateBookViewController implements Initializable {
 
     
     public void autoFill(Book book){
-        String[] getSeparatedDate = book.getPublicationDate().split("-");
-        int year = Integer.parseInt(getSeparatedDate[2]);
-        int day = Integer.parseInt(getSeparatedDate[1]);
-        int month = Integer.parseInt(getSeparatedDate[0]);
-        titleField.setText(book.getTitle());
-        authorField.setText(book.getAuthor());
-        publisherField.setText(book.getPublisher());
-        publicationDatePicker.setValue(LocalDate.of(year,month,day));
-        isbnField.setText(book.getIsbn());
-        copiesField.setText(String.valueOf(book.getCopies()));
+       
+//        titleField.setText(book.getTitle());
+//        authorField.setText(book.getAuthor());
+//        publisherField.setText(book.getPublisher());
+//        isbnField.setText(book.getIsbn());
+//        copiesField.setText(String.valueOf(book.getCopies()));
+//       publicationDatePicker.setValue(LocalDate.now());
         
     }
 
@@ -122,23 +121,25 @@ public class UpdateBookViewController implements Initializable {
         String title = titleField.getText();
         String author = authorField.getText();
         String publisher = publisherField.getText();
-        String publicationDate  = date_util.getFormattedDate(publicationDatePicker.getValue());
-        ObservableList<Genre> selectedGenre = genreListView.getSelectionModel().getSelectedItems();
+        String publicationDate  = String.valueOf(publicationDatePicker.getValue());
+        ObservableList<Category> selectedGenre = genreListView.getSelectionModel().getSelectedItems();
         String isbn = isbnField.getText();
         int copies  = Integer.parseInt(copiesField.getText());
         String isAvailable = isAvailableComboBox.getValue();
         
-        Book book = new Book(title,author,publisher,publicationDate,isbn,copies,isAvailable);
         
-       try{
-           boolean updated  = book_service.update(book,selectedGenre);
-           if(updated){
-               alert_util.success("Book Updated Successfully");
-               clearForm();
-           }
-       }catch(SQLException error){
-           error.printStackTrace();
-       }
+        
+//        Book book = new Book(title,author,publisher,publicationDate,isbn,copies,isAvailable);
+//        
+//       try{
+//           boolean updated  = book_service.update(book,selectedGenre);
+//           if(updated){
+//               alert_util.success("Book Updated Successfully");
+//               clearForm();
+//           }
+//       }catch(SQLException error){
+//           error.printStackTrace();
+//       }
         
     }
     

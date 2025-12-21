@@ -18,14 +18,19 @@ import model.Book;
 import util.DateUtil;
 import service.BookService;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Genre;
+import model.Category;
 import service.BarcodeService;
 import util.ModalUtil;
 import util.BarcodeConfig;
@@ -35,54 +40,73 @@ import service.GenreService;
 public class AddBookModalController implements Initializable {
      
      @FXML
-     TextField titleField,authorField,publisherField,isbnField,copiesField,barcodeField;
+     TextField titleField,authorField,publisherField,isbnField;
      @FXML
-     ListView<Genre> genreListView;
+     ListView<Category> categoryListView;
      @FXML
      DatePicker publicationDatePicker;
      @FXML
      ImageView barcodeImageView;
-     DateUtil date_util = new DateUtil();
      ModalUtil modal_util = new ModalUtil();
      BookService service = new BookService();
      BarcodeService barcode_service = new BarcodeService();
      BarcodeConfig barcode_config = new BarcodeConfig();
      GenreService genre_service = new GenreService();
      
-     ObservableList<Genre> genreList = FXCollections.observableArrayList();
-     public ObservableList<Genre> genreList(){
-          return genreList;
+     
+     ObservableList<Category> categoryList = FXCollections.observableArrayList();
+     public ObservableList<Category> genreList(){
+          return categoryList;
      }
         
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        genreListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        genreListView.setItems(genreList);
         //Initializes list of genre
+        categoryListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         try{
-          genreList.setAll(genre_service.list());
+          
+          categoryList.setAll(genre_service.list());
+          categoryListView.setItems(categoryList);
+          
+         
+        
         }catch(SQLException error){
             error.printStackTrace();
-        }       
+        }
+        
+         
+        //Default value for publisher field
+        publisherField.setText("DORSU-BEC");
+        //Default value for date 
+        publicationDatePicker.setValue(LocalDate.now());
+        
+        
        }
+        
+       
+      
 
     //Handles the query for the new book
    public void handleSave(ActionEvent event) throws SQLException{
        String title = titleField.getText();
        String author = authorField.getText();
-       ObservableList<Genre> selectedGenre = genreListView.getSelectionModel().getSelectedItems();
+       //getting selected items from the tree view
+       List<Category> selectedCategory = categoryListView.getSelectionModel().getSelectedItems();
+      
+  
+       
+       
        String publisher = publisherField.getText();
-       String publicationDate = date_util.getFormattedDate(publicationDatePicker.getValue());
+       String publicationDate = String.valueOf(publicationDatePicker.getValue());
        String isbn = isbnField.getText();
-       int copies = Integer.parseInt(copiesField.getText());
+       
        
       
      
      
-       Book book = new Book(title,author,publisher,publicationDate,isbn,copies,"Available");
-       service.insert(book,selectedGenre);
+       Book book = new Book(title,author,publisher,publicationDate,isbn,"Available");
+       service.insert(book,selectedCategory);
        clearForm();  
        handleCancel(event);
    }
@@ -98,7 +122,7 @@ public class AddBookModalController implements Initializable {
        authorField.setText("");
        publisherField.setText("");
        isbnField.setText("");
-       copiesField.setText("");
+      
        
        
    }
@@ -114,7 +138,9 @@ public class AddBookModalController implements Initializable {
        barcodeImageView.setImage(image);
    }
    
+   public void handleAuthor(){
+   
    
   
-  
+   }
 }

@@ -5,22 +5,24 @@
 package service;
 
 import java.util.ArrayList;
-import model.Genre;
+import model.Category;
 import java.sql.SQLException;
-import dao.GenreDao;
+import dao.CategoryDao;
 import javafx.collections.ObservableList;
-
+import model.BookCategories;
 /**
  *
  * @author Windyl
  */
 public class GenreService {
-    GenreDao dao = new GenreDao();
-     public ArrayList<Genre> list() throws SQLException{
+    CategoryDao dao = new CategoryDao();
+     public ObservableList<Category>  list() throws SQLException{
           return dao.list();
      }
-     public ObservableList<Genre> getByIsbn(String isbn) throws SQLException {
+     public ObservableList<String> getByIsbn(String isbn) throws SQLException{
           return dao.getByIsbn(isbn);
      }
+     
+     
     
 }

@@ -5,83 +5,52 @@
 package model;
 
 import java.util.ArrayList;
-
+import java.sql.Date;
 /**
  *
  * @author Windyl
  */
 public class Book {
-
-   
-   
-    private int id;
+    private int book_id;
     private String title;
-    private String author;
-    private String publisher;
-    private String publicationDate;
+    private int author_id;
+    private int publisher_id;
     private String isbn;
-    private int copies;
-    private String isAvailable;
-    private String genre;
-    public Book(int id, String title, String author, String publisher, String publicationDate, String isbn, int copies, String isAvailable) {
-        this.id = id;
+    private Date publication_date;
+    private int category_id;
+    private int status_id;
+
+    
+    public Book(String title, int author_id, int publisher_id, Date publication_date, int category_id, int status_id, String isbn) {
         this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
+        this.author_id = author_id;
+        this.publisher_id = publisher_id;
         this.isbn = isbn;
-        this.copies = copies;
-        this.isAvailable = isAvailable;
-       
-    }
-    public Book( int id ,String title, String author, String publisher, String publicationDate, String isbn, String isAvailable) {
-        this.id = id;
+        this.publication_date = publication_date;
+        this.category_id = category_id;
+        this.status_id = status_id;
+            }
+
+   
+
+    public Book(int book_id, String title, int author_id, int publisher_id, Date publication_date, int category_id, int status_id,String isbn) {
+        this.book_id = book_id;
         this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
+        this.author_id = author_id;
+        this.publisher_id = publisher_id;
         this.isbn = isbn;
-        this.isAvailable = isAvailable;
-       
-    }
-      public Book( String title, String author, String publisher, String publicationDate, String isbn, String isAvailable) {
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
-        this.isbn = isbn;
-        this.isAvailable = isAvailable;
-       
-    }
-        public Book( String title, String author, String publisher, String publicationDate, String isbn,int copies, String isAvailable) {
-        this.title = title;
-        this.copies = copies;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
-        this.isbn = isbn;
-        this.isAvailable = isAvailable;
-       
+        this.publication_date = publication_date;
+        this.category_id = category_id;
+        this.status_id = status_id;
     }
    
-    
-       public Book( String title, String author, String publisher, String publicationDate, String isbn,int copies, String isAvailable,String genre) {
-        this.title = title;
-        this.copies = copies;
-        this.author = author;
-        this.publisher = publisher;
-        this.publicationDate = publicationDate;
-        this.isbn = isbn;
-        this.isAvailable = isAvailable;
-        this.genre = genre;
-       
-    }
-    public int getId() {
-        return id;
+
+    public int getBook_id() {
+        return book_id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
     public String getTitle() {
@@ -92,61 +61,57 @@ public class Book {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public int getAuthor_id() {
+        return author_id;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setAuthor_id(int author_id) {
+        this.author_id = author_id;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public int getPublisher_id() {
+        return publisher_id;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setPublisher_id(int publisher_id) {
+        this.publisher_id = publisher_id;
     }
 
-    public String getPublicationDate() {
-        return publicationDate;
+    public Date getPublication_date() {
+        return publication_date;
     }
 
-    public void setPublicationDate(String publicationDate) {
-        this.publicationDate = publicationDate;
+    public void setPublication_date(Date publication_date) {
+        this.publication_date = publication_date;
     }
 
-    public String getIsbn() {
+    public int getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(int category_id) {
+        this.category_id = category_id;
+    }
+
+    public int getStatus_id() {
+        return status_id;
+    }
+
+    public void setStatus_id(int status_id) {
+        this.status_id = status_id;
+    }
+     public String getIsbn() {
         return isbn;
     }
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
-    public int getCopies() {
-        return copies;
-    }
-
-    public void setCopies(int copies) {
-        this.copies = copies;
-    }
+   
+   
 
     
-    public String getIsAvailable() {
-        return isAvailable;
-    }
-
-    public void setIsAvailable(String isAvailable) {
-        this.isAvailable = isAvailable;
-    }
- public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+  
 
 
     

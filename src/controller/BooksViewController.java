@@ -34,8 +34,9 @@ import model.Book;
 import model.Student;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.SelectionMode;
-import model.Genre;
+import model.Category;
 import util.ModalUtil;
 import service.GenreService;
 /**
@@ -57,17 +58,14 @@ public class BooksViewController implements Initializable {
       @FXML
       TextField searchField;
     @FXML
-    private Label totalBooksLabel;
-    @FXML
     private Button createBtn;
     @FXML
-    private Label statTotalBooksLabel;
+    private ComboBox<?> categoryComboBox;
     @FXML
-    private Label statAvailableLabel;
+    private TableColumn<?, ?> actionCol;
     @FXML
-    private Label statBorrowedLabel;
-    @FXML
-    private Label statGenresLabel;
+    private Pagination pagination;
+   
       
       
    
@@ -78,7 +76,7 @@ public class BooksViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb){
         
       
-        loadStatistics();
+    
        
         bookTable.setItems(data); 
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -97,7 +95,7 @@ public class BooksViewController implements Initializable {
     public void showAddModal(ActionEvent event) throws IOException,SQLException{
         modal_util.openModal("AddBookModal", "Add Book");
         loadTable();
-        
+ 
        
     }
     
@@ -132,18 +130,18 @@ public class BooksViewController implements Initializable {
      
     public void handleDateFilter(LocalDate localDate) throws SQLException{
         
-       if(localDate.equals(LocalDate.now())){
-            loadTable();
-             return;
-        }
-       String dateString = String.valueOf(localDate);
-       
-        
-        ArrayList<Book> book_list = service.list();
-        List<Book> filtered = book_list.stream().
-                                     filter(book -> book.getPublicationDate()
-                                     .equals(dateString)).collect(Collectors.toList());
-        data.setAll(filtered);
+//       if(localDate.equals(LocalDate.now())){
+//            loadTable();
+//             return;
+//        }
+//       String dateString = String.valueOf(localDate);
+//       
+//        
+//        ArrayList<Book> book_list = service.list();
+//        List<Book> filtered = book_list.stream().
+//                                     filter(book -> book.getPublicationDate()
+//                                     .equals(dateString)).collect(Collectors.toList());
+//        data.setAll(filtered);
         
         
     }
@@ -156,52 +154,24 @@ public class BooksViewController implements Initializable {
          }
        
         
-        ArrayList<Book> book_list = service.list();
-        List<Book> filtered = book_list.stream().
-                                     filter(book -> book.getTitle().contains(symbol)
-                                         || book.getAuthor().contains(symbol)
-                                         || book.getPublisher().contains(symbol) 
-                                         || book.getPublicationDate().contains(symbol)
-                                         
-                                                 )
-                                    .collect(Collectors.toList());
-        
-        data.setAll(filtered);
+//        ArrayList<Book> book_list = service.list();
+//        List<Book> filtered = book_list.stream().
+//                                     filter(book -> book.getTitle().contains(symbol)
+//                                         || book.getAuthor().contains(symbol)
+//                                         || book.getPublisher().contains(symbol) 
+//                                         || book.getPublicationDate().contains(symbol)
+//                                         
+//                                                 )
+//                                    .collect(Collectors.toList());
+//        
+//        data.setAll(filtered);
         
         
     }
-    private void loadStatistics() {
-    String DB_URL = "jdbc:mysql://localhost:3306/libratrack_qr_barcode";
-    String DB_USER = "root";
-    String DB_PASS = "";
 
-    try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-         Statement stmt = conn.createStatement()) {
-
-        // Total books
-        ResultSet rsTotal = stmt.executeQuery("SELECT COUNT(*) AS total FROM book");
-        if (rsTotal.next()) statTotalBooksLabel.setText(rsTotal.getString("total"));
-
-        // Total available books
-        ResultSet rsAvailable = stmt.executeQuery("SELECT COUNT(*) AS total FROM book WHERE isAvailable = 'Available'");
-        if (rsAvailable.next()) statAvailableLabel.setText(rsAvailable.getString("total"));
-
-        // Total borrowed books
-        ResultSet rsBorrowed = stmt.executeQuery("SELECT COUNT(*) AS total FROM book WHERE isAvailable = 'Borrowed'");
-        if (rsBorrowed.next()) statBorrowedLabel.setText(rsBorrowed.getString("total"));
-
-        // Total genres
-        ResultSet rsGenres = stmt.executeQuery("SELECT COUNT(*) AS total FROM genre");
-        if (rsGenres.next()) statGenresLabel.setText(rsGenres.getString("total"));
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-        statTotalBooksLabel.setText("0");
-        statAvailableLabel.setText("0");
-        statBorrowedLabel.setText("0");
-        statGenresLabel.setText("0");
+    @FXML
+    private void handleCategoryFilter(ActionEvent event) {
     }
-}
-
+   
     
 }

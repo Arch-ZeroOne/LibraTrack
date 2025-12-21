@@ -131,10 +131,10 @@
                                        <children>
                                           <FontAwesomeIcon fill="#001b52" glyphName="HASHTAG" size="0.9em" />
                                           <Label style="-fx-text-fill: #001b52; -fx-font-weight: 600; -fx-font-size: 13px;" text="ISBN" />
-                                          <Label style="-fx-text-fill: #6c757d; -fx-font-size: 11px; -fx-font-style: italic;" text="(Optional)" />
+                                          <Label style="-fx-text-fill: #6c757d; -fx-font-size: 11px; -fx-font-style: italic;" text="(Read-only)" />
                                        </children>
                                     </HBox>
-                                    <TextField fx:id="isbnField" prefHeight="45.0" promptText="Enter ISBN number" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px;" />
+                                    <TextField fx:id="isbnField" editable="false" prefHeight="45.0" promptText="ISBN number" style="-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-border-color: #dce1e8; -fx-border-radius: 10; -fx-border-width: 1.5; -fx-padding: 12; -fx-font-size: 14px; -fx-opacity: 0.8;" />
                                  </children>
                               </VBox>
                               

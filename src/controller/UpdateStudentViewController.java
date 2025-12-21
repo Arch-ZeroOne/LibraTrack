@@ -36,6 +36,7 @@ public class UpdateStudentViewController implements Initializable {
        courseComboBox.getItems().setAll("BSIT","BSBA","BSA","BTLED");
        isActiveComboBox.getItems().setAll("Active","Inactive");
        schoolIdField.setEditable(false);
+       qrCodeField.requestFocus();
      
   }
   

@@ -173,6 +173,7 @@ public class StudentsViewController implements Initializable {
         
        if(localDate.equals(LocalDate.now())){
             loadTable();
+            loadStatistics();
              return;
         }
        

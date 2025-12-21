@@ -29,7 +29,7 @@ import java.sql.*;
  * @author Windyl
  */
 import model.BorrowedBook;
-import model.Genre;
+import model.Category;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import model.Student;
@@ -57,6 +57,7 @@ public class ReturnBookViewController implements Initializable {
       AlertUtil util = new AlertUtil();
       DatabaseUtil db_util = new DatabaseUtil();
       BorrowService borrow_service = new BorrowService();
+      int id = 0;
       
      ObservableList<BorrowedBook> data = FXCollections.observableArrayList();
     @FXML
@@ -68,7 +69,8 @@ public class ReturnBookViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         borrowedBooksTable.setItems(data); 
-   
+        studentQrField.requestFocus();
+    
     titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
     authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
     borrowDateColumn.setCellValueFactory(new PropertyValueFactory<>("borrowDate"));
@@ -84,7 +86,7 @@ public class ReturnBookViewController implements Initializable {
               if(student != null){
                  
                  loadBorrowedBooks(student.getStudent_id());
-                  
+                  id = student.getStudent_id();
                   return;
               }
               
@@ -145,6 +147,7 @@ private void loadBorrowedBooks(int studentId) {
         boolean returned = borrow_service.returnBook(selected.getAccessionNumber());
         if(returned){
             util.success("Book Returned");
+            loadBorrowedBooks(id);
             return;
         }
         util.error("No Borrow Records found");

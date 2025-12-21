@@ -69,6 +69,7 @@ public class TrackStudentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         loadStatistics();
+        qrCodeField.requestFocus();
         idCol.setCellValueFactory(new PropertyValueFactory<>("school_id"));
         firstnameCol.setCellValueFactory(new PropertyValueFactory<>("firstname"));
         middlenameCol.setCellValueFactory(new PropertyValueFactory<>("middlename"));
@@ -119,6 +120,7 @@ public class TrackStudentController implements Initializable {
 
              if(school_id != null ){
                  service.insert(school_id);
+                 loadStatistics();
                  qrCodeField.setText("");
                  handleDateChange();
                  

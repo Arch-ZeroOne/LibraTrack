@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import model.Borrow;
 import model.Student;
-import model.Genre;
+import model.Category;
 import managers.BookManager;
 import service.BorrowService;
 import service.StudentService;
@@ -80,6 +80,8 @@ public class BorrowViewModalController implements Initializable {
     // Initialize method
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        studentBarcodeField.requestFocus();
         studentBarcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
             try{      

@@ -5,3 +5,9 @@
 .mainFxmlClass {
 
 }
+
+
+.table-view .table-col{
+    -fx-font-family:"Montserrat Regular";
+    -fx-font-size:12px;
+}

@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import managers.BookManager;
 import model.Book;
-import model.Genre;
+import model.Category;
 import service.BookService;
 import service.GenreService;
 import util.AlertUtil;
@@ -68,17 +68,18 @@ public class BorrowBookController implements Initializable {
     @FXML
     private Button confirmBtn;
     @FXML
-    ListView<Genre> genreListView;
+    ListView<Category> genreListView;
     BookService book_service = new BookService();
     GenreService genre_service = new GenreService();
     AlertUtil alert_util = new AlertUtil();
     ModalUtil modal = new ModalUtil();
     
     BookManager manager = BookManager.getInstance();
-    ObservableList<Genre> genres = FXCollections.observableArrayList();
+    ObservableList<Category> genres = FXCollections.observableArrayList();
     // Initialize method
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        barcodeField.requestFocus();
        
        
         genreListView.setItems(genres);
@@ -90,9 +91,9 @@ public class BorrowBookController implements Initializable {
               String value = barcodeField.getText();
               Book book = book_service.search(value);
               if(book != null){
-                  manager.setAccessionNumber(book.getId());
-                  ObservableList<Genre> genreList = genre_service.getByIsbn(value);
-                  genres.setAll(genreList);
+//                  manager.setAccessionNumber(book.getId());
+                  ObservableList<String> genreList = genre_service.getByIsbn(value);
+//                  genres.setAll(genreList);
                   autoFill(book);
                   return;
               }
@@ -111,12 +112,12 @@ public class BorrowBookController implements Initializable {
 
 
     public void autoFill(Book book){
-       
-        titleField.setText(book.getTitle());
-        authorField.setText(book.getAuthor());
-        publisherField.setText(book.getPublisher());
-        isbnField.setText(book.getIsbn());
-        availableField.setText(book.getIsAvailable());
+//       
+//        titleField.setText(book.getTitle());
+//        authorField.setText(book.getAuthor());
+//        publisherField.setText(book.getPublisher());
+//        isbnField.setText(book.getIsbn());
+//        availableField.setText(book.getIsAvailable());
        
         
     }
