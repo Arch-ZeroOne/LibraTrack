@@ -2,23 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package managers;
 
 /**
  *
  * @author Windyl
  */
-public class Author {
+
+public class AuthorManager {
     private int author_id;
-
-   
     private String author_name;
+    
+    private static AuthorManager instance;
+     // Private constructor
+    private AuthorManager() {}
 
-    public Author(int author_id, String author_name) {
+    // Thread-safe method to get the instance
+    public static synchronized AuthorManager getInstance() {
+        if (instance == null) {
+            instance = new AuthorManager();
+        }
+        return instance;
+    }
+    
+    public AuthorManager(int author_id, String author_name) {
         this.author_id = author_id;
         this.author_name = author_name;
     }
-     public Author(String author_name) {
+     public AuthorManager(String author_name) {
         this.author_name = author_name;
     }
 

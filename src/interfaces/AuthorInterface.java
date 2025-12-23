@@ -6,11 +6,16 @@ package interfaces;
 
 import javafx.collections.ObservableList;
 import model.Author;
+import java.sql.SQLException;
 
 /**
  *
  * @author Windyl
  */
 public interface AuthorInterface {
-    public ObservableList<Author> list();
+    public ObservableList<Author> list() throws SQLException;
+    public boolean addAuthor(Author author) throws SQLException;
+    public boolean isExisting(Author author) throws SQLException;
+    public ObservableList<Author> findAuthor(String symbol) throws SQLException;
+    public int getId(Author author) throws SQLException;
 }

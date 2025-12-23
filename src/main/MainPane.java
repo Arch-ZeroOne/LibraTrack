@@ -19,10 +19,9 @@ public class MainPane extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/DashboardLayout.fxml"));
         Font monserrat = Font.loadFont(getClass().getResourceAsStream("../asset/fonts/Montserrat-Regular.ttf"),12);
-        System.out.println(monserrat.getName());
         Scene scene = new Scene(parent);
         primaryStage.setTitle("LibraTrack");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(scene);   
         primaryStage.setResizable(false);
         primaryStage.setMaximized(true);
         primaryStage.show();

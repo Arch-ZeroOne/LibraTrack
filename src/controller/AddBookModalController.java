@@ -20,6 +20,7 @@ import service.BookService;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
@@ -30,12 +31,16 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import managers.AuthorManager;
+import model.Author;
 import model.Category;
+import service.AuthorService;
 import service.BarcodeService;
 import util.ModalUtil;
 import util.BarcodeConfig;
 import service.GenreService;
 
+import org.controlsfx.control.textfield.TextFields;
 
 public class AddBookModalController implements Initializable {
      
@@ -52,9 +57,11 @@ public class AddBookModalController implements Initializable {
      BarcodeService barcode_service = new BarcodeService();
      BarcodeConfig barcode_config = new BarcodeConfig();
      GenreService genre_service = new GenreService();
-     
-     
+     AuthorService author_service = new AuthorService();
+     ObservableList<String> authorSuggestions = FXCollections.observableArrayList();
      ObservableList<Category> categoryList = FXCollections.observableArrayList();
+     AuthorManager authorManager = AuthorManager.getInstance();
+     
      public ObservableList<Category> genreList(){
           return categoryList;
      }
@@ -64,6 +71,20 @@ public class AddBookModalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //Initializes list of genre
         categoryListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        
+         
+       try{ 
+        ObservableList<Author> authors =  author_service.list();
+        
+        for(Author author : authors){
+            authorSuggestions.add(author.getAuthor_name());
+        }
+        
+        
+       }catch(SQLException error){
+           error.printStackTrace();
+       }
+      
         try{
           
           categoryList.setAll(genre_service.list());
@@ -80,6 +101,8 @@ public class AddBookModalController implements Initializable {
         publisherField.setText("DORSU-BEC");
         //Default value for date 
         publicationDatePicker.setValue(LocalDate.now());
+        //Binds auto completion for author field
+        TextFields.bindAutoCompletion(authorField,authorSuggestions);
         
         
        }
@@ -90,23 +113,13 @@ public class AddBookModalController implements Initializable {
     //Handles the query for the new book
    public void handleSave(ActionEvent event) throws SQLException{
        String title = titleField.getText();
-       String author = authorField.getText();
-       //getting selected items from the tree view
-       List<Category> selectedCategory = categoryListView.getSelectionModel().getSelectedItems();
-      
-  
-       
-       
+       ObservableList<Category> selectedCategory = categoryListView.getSelectionModel().getSelectedItems();
        String publisher = publisherField.getText();
-       String publicationDate = String.valueOf(publicationDatePicker.getValue());
+       LocalDate publicationDate = publicationDatePicker.getValue();
        String isbn = isbnField.getText();
-       
-       
-      
-     
-     
-       Book book = new Book(title,author,publisher,publicationDate,isbn,"Available");
-       service.insert(book,selectedCategory);
+       handleAuthor();
+       Book book = new Book(title,authorManager.getAuthor_id(),publisher,publicationDate,1,isbn);
+       service.insert(book, selectedCategory);
        clearForm();  
        handleCancel(event);
    }
@@ -138,9 +151,26 @@ public class AddBookModalController implements Initializable {
        barcodeImageView.setImage(image);
    }
    
-   public void handleAuthor(){
+   public void handleAuthor() throws SQLException{
+       if(!authorField.getText().isEmpty()){
+           String author = authorField.getText();
+           
+           boolean isExisting = author_service.isExisting(new Author(author));
+           
+           if(!isExisting){
+               author_service.addAuthor(new Author(author));
+               int id = author_service.getId(new Author(author));
+               authorManager.setAuthor_id(id);
+               return;
+           }
+           
+             int id = author_service.getId(new Author(author));
+             authorManager.setAuthor_id(id);
+       } 
+      
+   }
    
-   
-  
+   public void handleStatus(){
+       
    }
 }

@@ -13,14 +13,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import model.Book;
-import model.BookCategories;
+import model.Category;
+import model.BookRowView;
 
 public interface BookInterface {
-    public boolean insert(Book book,ObservableList<BookCategories> genres) throws SQLException;
-    public boolean insertCategories(ObservableList<BookCategories> genres) throws SQLException;
-    public boolean update(Book book,ObservableList<BookCategories> genres) throws SQLException;
+    public boolean insert(Book book,ObservableList<Category> genres) throws SQLException;
+    public boolean insertCategories(ObservableList<Category> genres,int primaryKey) throws SQLException;
+    public boolean update(Book book,ObservableList<Category> genres) throws SQLException;
+    public boolean insertCopies(Book book,int bookId) throws SQLException;
     public boolean remove(String command) throws SQLException;
     public Book search(String barcode) throws SQLException;
-    public ArrayList<Book> list() throws SQLException;
+    public ArrayList<BookRowView> list() throws SQLException;
     
 }

@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -36,6 +37,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
+import javafx.scene.layout.HBox;
+import model.BookRowView;
 import model.Category;
 import util.ModalUtil;
 import service.GenreService;
@@ -47,24 +51,36 @@ import service.GenreService;
 public class BooksViewController implements Initializable {
       ModalUtil modal_util = new ModalUtil();
       @FXML
-      TableView<Book> bookTable;
-      ObservableList<Book> data = FXCollections.observableArrayList();
-      @FXML
-      TableColumn<Book, String> titleCol,authorCol, publisherCol, dateCol, availableCol,accessionCol; 
+      TableView<BookRowView> bookTable;
+      ObservableList<BookRowView> data = FXCollections.observableArrayList();
+    
     
       @FXML
       DatePicker datePicker;
       BookService service = new BookService();
       @FXML
       TextField searchField;
+      
     @FXML
     private Button createBtn;
     @FXML
     private ComboBox<?> categoryComboBox;
     @FXML
-    private TableColumn<?, ?> actionCol;
-    @FXML
     private Pagination pagination;
+    @FXML
+    private TableColumn<?, ?> idCol;
+    @FXML
+    private TableColumn<?, ?> titleCol;
+    @FXML
+    private TableColumn<?, ?> authorCol;
+    @FXML
+    private TableColumn<?, ?> publisherCol;
+    @FXML
+    private TableColumn<?, ?> publicationCol;
+    @FXML
+    private TableColumn<?, ?> statusCol;
+    @FXML
+    private TableColumn<BookRowView, Void> actionsCol;
    
       
       
@@ -79,12 +95,45 @@ public class BooksViewController implements Initializable {
     
        
         bookTable.setItems(data); 
+        idCol.setCellValueFactory(new PropertyValueFactory<>("book_id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorCol.setCellValueFactory(new PropertyValueFactory<>("author"));
         publisherCol.setCellValueFactory(new PropertyValueFactory<>("publisher"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("publicationDate"));
-        availableCol.setCellValueFactory(new PropertyValueFactory<>("isAvailable"));
-        accessionCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        publicationCol.setCellValueFactory(new PropertyValueFactory<>("publication_date"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+       
+        actionsCol.setCellFactory(column -> new TableCell<>(){
+                private final Button deleteBtn = new Button("Delete");
+                private final Button updateBtn = new Button("Update");
+                private  HBox box = new HBox(8,deleteBtn,updateBtn);
+                
+                
+  
+                //Events for the button
+                {
+                    box.setAlignment(Pos.CENTER);
+                    deleteBtn.setOnAction(event -> {
+                       System.out.println("Delete");
+                    });
+                    
+                     updateBtn.setOnAction(event -> {
+                       System.out.println("Update");
+                    });
+                  
+                }
+                //Needed to fully render the button
+                @Override
+                protected void updateItem(Void item,boolean empty){
+                    super.updateItem(item, empty);
+                    
+                    if(empty){
+                        setGraphic(null);
+                    }else{
+                        setGraphic(box);
+                    }
+                }
+        });
+       
         
         
         try{ loadTable(); } catch(SQLException error){ error.printStackTrace(); }
@@ -100,8 +149,12 @@ public class BooksViewController implements Initializable {
     }
     
     public void loadTable() throws SQLException{
-        ArrayList<Book> book_list = service.list();
+        ArrayList<BookRowView> book_list = service.list();
         //Automatically clears old data and loads to the table
+        System.out.println("Book List:");
+        for(BookRowView book : book_list){
+         System.out.println(book.getTitle());
+        }
         data.setAll(book_list);
         
         

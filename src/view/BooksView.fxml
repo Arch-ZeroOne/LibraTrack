@@ -113,13 +113,13 @@
             <!-- Enhanced Table -->
             <TableView fx:id="bookTable" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="tableview" stylesheets="@../asset/css/booksview.css" VBox.vgrow="ALWAYS">
                <columns>
-                  <TableColumn fx:id="titleCol" prefWidth="146.6666717529297" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Book Title" />
-                  <TableColumn fx:id="authorCol" prefWidth="111.77780151367188" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Author/s" />
-                  <TableColumn fx:id="publisherCol" prefWidth="125.55557250976562" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Publisher" />
-                  <TableColumn fx:id="dateCol" minWidth="3.111083984375" prefWidth="115.77774047851562" style="-fx-alignment: CENTER;" styleClass="table-col" text="Published" />
-                  <TableColumn fx:id="accessionCol" prefWidth="120.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Accession Number" />
-                  <TableColumn fx:id="availableCol" prefWidth="100.00006103515625" style="-fx-alignment: CENTER;" styleClass="table-col" text="Status" />
-                  <TableColumn fx:id="actionCol" prefWidth="143.99993896484375" style="-fx-alignment: CENTER;" styleClass="table-col" text="Actions" />
+                  <TableColumn fx:id="idCol" prefWidth="81.0" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Book ID" />
+                  <TableColumn fx:id="titleCol" prefWidth="131.0" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Title" />
+                  <TableColumn fx:id="authorCol" prefWidth="128.0" style="-fx-alignment: CENTER_LEFT;" styleClass="table-col" text="Author" />
+                  <TableColumn fx:id="publisherCol" minWidth="3.111083984375" prefWidth="112.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Publisher" />
+                  <TableColumn fx:id="publicationCol" prefWidth="126.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Publication Date" />
+                  <TableColumn fx:id="statusCol" prefWidth="87.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Status" />
+                  <TableColumn fx:id="actionsCol" prefWidth="196.0" text="Actions" />
                </columns>
             </TableView>
             
