@@ -19,6 +19,9 @@ public class Book {
     private String isbn;
     private LocalDate publication_date;
     private int status_id;
+    
+    
+    public Book(){}
 
     
     public Book(String title, int author_id, String publisher, LocalDate publication_date, int status_id, String isbn) {

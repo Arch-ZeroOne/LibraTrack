@@ -41,5 +41,8 @@ public class BookService {
          return book_dao.list();
          
      }
+     public Book getById(int id) throws SQLException{
+            return book_dao.getById(id);
+    }
     
 }

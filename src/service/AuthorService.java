@@ -27,5 +27,8 @@ public class AuthorService {
      public int getId(Author author) throws SQLException{
        return dao.getId(author);
     }
+      public String getById(int id) throws SQLException{
+       return dao.getById(id);
+    }
     
 }

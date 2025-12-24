@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import model.BookCategories;
 import model.Category;
@@ -24,6 +23,8 @@ import model.BookRowView;
  * @author Windyl
  */
 public class BookDao implements BookInterface{ 
+
+    
     public final DatabaseUtil util = new DatabaseUtil();
     public final Connection connection = util.connect();
    
@@ -209,6 +210,39 @@ public class BookDao implements BookInterface{
         return book_list;
         
        
+        
+    }
+    
+    @Override
+    public Book getById(int id) throws SQLException {
+        
+        String query = "SELECT * FROM books WHERE book_id  = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, id);
+        ResultSet result = preparedStatement.executeQuery();
+        Book book = new Book();
+        
+        while(result.next()){
+            int book_id = result.getInt("book_id");
+            String title = result.getString("title");
+            int author_id = result.getInt("author_id");
+            String publisher = result.getString("publisher");
+            String isbn = result.getString("isbn");
+            Date publicationDate = result.getDate("publication_date");
+            int status_id  = result.getInt("status_id");
+            
+            book.setBook_id(book_id);
+            book.setTitle(title);
+            book.setAuthor_id(author_id);
+            book.setPublisher(publisher);
+            book.setIsbn(isbn);
+            book.setPublication_date(publicationDate.toLocalDate());
+            book.setStatus_id(status_id);
+            
+            
+        }
+        
+        return book;
         
     }
     

@@ -11,3 +11,57 @@
     -fx-font-family:"Montserrat Regular";
     -fx-font-size:12px;
 }
+
+/* Base modern button */
+.btn {
+    -fx-background-radius: 8;
+    -fx-padding: 6 14;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);
+}
+
+/* Update button */
+.btn-update {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #22c55e,
+        #16a34a
+    );
+    -fx-text-fill: white;
+}
+
+.btn-update:hover {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #16a34a,
+        #15803d
+    );
+}
+
+.btn-update:pressed {
+    -fx-translate-y: 1;
+}
+
+/* Delete button */
+.btn-delete {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #ef4444,
+        #dc2626
+    );
+    -fx-text-fill: white;
+}
+
+.btn-delete:hover {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #dc2626,
+        #b91c1c
+    );
+}
+
+.btn-delete:pressed {
+    -fx-translate-y: 1;
+}

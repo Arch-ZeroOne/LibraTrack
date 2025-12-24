@@ -23,6 +23,8 @@ public interface BookInterface {
     public boolean insertCopies(Book book,int bookId) throws SQLException;
     public boolean remove(String command) throws SQLException;
     public Book search(String barcode) throws SQLException;
+    public Book getById(int id)  throws SQLException;
     public ArrayList<BookRowView> list() throws SQLException;
+    
     
 }

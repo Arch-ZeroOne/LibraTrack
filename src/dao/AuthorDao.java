@@ -21,6 +21,7 @@ import javafx.collections.FXCollections;
  */
 public class AuthorDao implements AuthorInterface {
 
+
    
     public final DatabaseUtil util = new DatabaseUtil();
     public final Connection connection = util.connect();
@@ -102,5 +103,19 @@ public class AuthorDao implements AuthorInterface {
         }
         
        return 0;
+    }
+    
+    @Override
+    public String getById(int id) throws SQLException {
+      String query = "SELECT author_name FROM authors WHERE author_id = ?";
+       PreparedStatement preparedStatement = connection.prepareStatement(query); 
+       preparedStatement.setInt(1, id);
+     
+        ResultSet result = preparedStatement.executeQuery();
+        while(result.next()){
+            return result.getString("author_name");
+        }
+        
+       return null;
     }
 }

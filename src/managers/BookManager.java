@@ -3,6 +3,7 @@ package managers;
 public class BookManager {
 
     // Fields
+    private int id;
     private int accessionNumber;
     private String title;
     private String author;
@@ -89,5 +90,13 @@ public class BookManager {
 
     public void setIsAvailable(String isAvailable) {
         this.isAvailable = isAvailable;
+    }
+    
+      public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

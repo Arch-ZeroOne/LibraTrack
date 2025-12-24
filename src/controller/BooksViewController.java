@@ -16,14 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 import java.sql.Statement;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -43,6 +37,7 @@ import model.BookRowView;
 import model.Category;
 import util.ModalUtil;
 import service.GenreService;
+import managers.BookManager;
 /**
  * FXML Controller class
  *
@@ -53,7 +48,7 @@ public class BooksViewController implements Initializable {
       @FXML
       TableView<BookRowView> bookTable;
       ObservableList<BookRowView> data = FXCollections.observableArrayList();
-    
+      BookManager bManager = BookManager.getInstance();
     
       @FXML
       DatePicker datePicker;
@@ -108,16 +103,32 @@ public class BooksViewController implements Initializable {
                 private  HBox box = new HBox(8,deleteBtn,updateBtn);
                 
                 
+                
   
-                //Events for the button
+               
                 {
+            
+                    updateBtn.getStyleClass().addAll("btn", "btn-update");
+                    deleteBtn.getStyleClass().addAll("btn", "btn-delete");
+                    
+                     //Events for the button
                     box.setAlignment(Pos.CENTER);
                     deleteBtn.setOnAction(event -> {
-                       System.out.println("Delete");
+                       handleDelete();
                     });
                     
                      updateBtn.setOnAction(event -> {
-                       System.out.println("Update");
+                       try{
+                           //Gets where the current row is clicked
+                           BookRowView col = getTableView().getItems().get(getIndex());
+                           //Retrieve the book id
+                           int id = col.getBook_id();
+                           bManager.setId(id);
+                           handleUpdate();
+                       }catch(IOException error){
+                          System.out.println("Error On Update");
+                       }
+                       
                     });
                   
                 }
@@ -222,8 +233,17 @@ public class BooksViewController implements Initializable {
         
     }
 
-    @FXML
+    @FXML   
     private void handleCategoryFilter(ActionEvent event) {
+    }
+    
+    private void handleUpdate()throws IOException{
+        modal_util.openModal("UpdateBookModal","Update Book");
+        
+    }
+    
+    private void handleDelete(){
+        
     }
    
     
