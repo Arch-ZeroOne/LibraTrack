@@ -34,6 +34,15 @@ public class Book {
         this.status_id = status_id;
             }
 
+    public Book(int book_id,String title, int author_id, String publisher, LocalDate publication_date, int status_id) {
+        this.book_id = book_id;
+        this.title = title;
+        this.author_id = author_id;
+        this.publisher = publisher;
+        this.publication_date = publication_date;
+        this.status_id = status_id;
+    }
+
    
 
     public Book(int book_id, String title, int author_id, String publisher, LocalDate publication_date, int status_id,String isbn) {

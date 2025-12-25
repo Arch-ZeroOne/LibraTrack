@@ -14,7 +14,6 @@
         <group>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/main/MainPane.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BookDao.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/BookManager.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/BookService.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/BookRowView.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/CategoryInterface.java</file>
@@ -30,14 +29,18 @@
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/AuthorInterface.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/service/AuthorService.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/AuthorManager.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/ModalUtil.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/AddBookModal.fxml</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/asset/css/updatebookmodal.css</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/BorrowInterface.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowBookController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/UpdateBookModal.fxml</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Book.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/StudentsViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateBookModalController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/asset/css/booksview.css</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Book.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/ModalUtil.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/CategoryManager.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Category.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/StatusManager.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/BookManager.java</file>
         </group>
     </open-files>
 </project-private>

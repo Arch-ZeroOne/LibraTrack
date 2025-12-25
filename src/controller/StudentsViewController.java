@@ -116,7 +116,7 @@ public class StudentsViewController implements Initializable {
 
     @FXML
      public void showAddModal(ActionEvent event) throws IOException,SQLException{
-        util.openModal("AddStudentModal", "Add Student");
+//        util.openModal("AddStudentModal", "Add Student");
         loadTable();
           
     }

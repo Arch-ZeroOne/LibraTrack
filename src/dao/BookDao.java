@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 import javafx.collections.ObservableList;
 import model.BookCategories;
+
 import model.Category;
 import model.BookRowView;
 /**
@@ -47,7 +48,6 @@ public class BookDao implements BookInterface{
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if(rs.next()){
                 int primaryKey = rs.getInt(1);
-                insertCopies(book,primaryKey);
                 insertCategories(categories,primaryKey);
                 return true;
                 
@@ -83,72 +83,68 @@ public class BookDao implements BookInterface{
       
     }
     
-     @Override
-    public boolean insertCopies(Book book,int bookId) throws SQLException {
-        int rowCount = 0;
-        
-        String copyQuery = "SELECT COUNT(*) FROM books";
-        String query = "INSERT INTO book_copies (book_id,accession_number,status_id)"
-                     + " VALUES (?,?,?)";
-        
-        PreparedStatement traceCopies = connection.prepareStatement(copyQuery);
-        PreparedStatement insertCopies = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-        ResultSet rs = traceCopies.executeQuery();
-        
-        if(rs.next()){
-           rowCount = rs.getInt(1);
-           insertCopies.setInt(1,bookId);
-           insertCopies.setString(2,getAccessionNumber(book.getTitle(),rowCount));
-           insertCopies.setInt(3,1);
-            
-        }
-        
-        
-      
-        int rows  = insertCopies.executeUpdate();
-        
-        return rows != 0;
-        
-    }
-    
+   
     
     public boolean update(Book book,ObservableList<Category> bookGenre) throws SQLException{
-        String query = "UPDATE book SET title = ?,author = ? ,publisher = ? ,publication_date = ? ,"
-                + "isbn = ? ,isAvailable = ? WHERE isbn = ?";
-     String select = "SELECT * FROM book WHERE isbn = ?";
-     
-     
-     
+        String query = "UPDATE books SET title = ?,author_id = ? ,publisher = ? ,publication_date = ? ,"
+                + "status_id = ?  WHERE book_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
-        PreparedStatement selectStatement = connection.prepareStatement(select,Statement.RETURN_GENERATED_KEYS);
-//
-//            preparedStatement.setString(1,book.getTitle());
-//            preparedStatement.setString(2,book.getAuthor());
-//            preparedStatement.setString(3,book.getPublisher());
-//            preparedStatement.setString(4,book.getPublicationDate());
-//            preparedStatement.setString(5,book.getIsbn());
-//            preparedStatement.setString(6,book.getIsAvailable());
-//            preparedStatement.setString(7,book.getIsbn());
-//            //For updating
-//            selectStatement.setString(1, book.getIsbn());
-               System.out.println(preparedStatement);
-        
+        preparedStatement.setString(1,book.getTitle());
+        preparedStatement.setInt(2,book.getAuthor_id());
+        preparedStatement.setString(3,book.getPublisher());
+        preparedStatement.setDate(4,Date.valueOf(book.getPublication_date()));
+        preparedStatement.setInt(5,book.getStatus_id());
+        preparedStatement.setInt(6,book.getBook_id());
+      
+           
         
         int rows = preparedStatement.executeUpdate();
-        ResultSet result = selectStatement.executeQuery();
+        if(!bookGenre.isEmpty()){
+            System.out.println("Book Genre not empty");
+            updateCategories(book.getBook_id(),bookGenre);
+        }
         
-      
-        
-        System.out.println(rows);
         return rows !=0;
     }
     
-    public boolean remove(String command) throws SQLException{
-        String query = "UPDATE book SET isAvailable = ?";
+     
+    public boolean updateCategories(int bookId, ObservableList<Category> categories) throws SQLException{
+          String deleteOld = "DELETE FROM book_categories WHERE book_id = ?";
+          String query = "INSERT INTO book_categories (book_id,category_id)"
+                     + " VALUES (?,?)";
+           PreparedStatement preparedStatement = connection.prepareStatement(query);
+           PreparedStatement deletion = connection.prepareStatement(deleteOld);
+           deletion.setInt(1, bookId);
+           int affected = deletion.executeUpdate();
+           
+           if(affected != 0){
+               System.out.println("Deleted rows:"+affected);
+           }
+           
+           
+         //Insert new entries  
+         for(Category category : categories){
+           
+          preparedStatement.setInt(1, bookId);
+          preparedStatement.setInt(2, category.getCategory_id());
+          preparedStatement.addBatch();
+        }
+        
+        
+       int[] updates = preparedStatement.executeBatch();
+       
+          
+       return updates.length != 0;
+    }
+    
+    
+    public boolean remove(int bookId) throws SQLException{
+        System.out.println("Updated book id:"+bookId);
+        String query = "UPDATE books SET status_id = 3 WHERE book_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
         
    
-            preparedStatement.setString(1,command);
+       preparedStatement.setInt(1,bookId);
             
         
         

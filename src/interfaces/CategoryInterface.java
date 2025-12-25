@@ -17,6 +17,7 @@ public interface CategoryInterface {
       public ObservableList<Category>  list() throws SQLException;
       //Gets associated category on a specific book
       public ObservableList<String> getByIsbn(String isbn) throws SQLException;
+      public int getByName(String name ) throws SQLException;
       
    
 }

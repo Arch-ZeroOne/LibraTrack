@@ -23,6 +23,10 @@ public class GenreService {
           return dao.getByIsbn(isbn);
      }
      
+     public int getByName(String name ) throws SQLException{
+         return dao.getByName(name);
+     }
+     
      
     
 }

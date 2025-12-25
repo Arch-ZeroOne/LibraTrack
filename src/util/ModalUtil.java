@@ -7,12 +7,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.util.function.Consumer;
 public class ModalUtil {
     
-    public <T> T openModal(String fxml, String title) throws IOException{
+    public <T> T openModal(String fxml, String title,Consumer<T> controllerConsumer) throws IOException{
         
         FXMLLoader loader = new FXMLLoader(this.getClass().getResource("../view/modal/"+fxml+".fxml"));
         Parent root = loader.load();
+        T controller = loader.getController();
+        
+        if(controllerConsumer != null){
+            controllerConsumer.accept(controller);
+        }
         
         Stage modal = new Stage();
         modal.setTitle(title);
@@ -20,7 +26,7 @@ public class ModalUtil {
         modal.setResizable(false);
         modal.showAndWait();
         
-        return loader.getController();
+        return controller;
         
         
         

@@ -138,7 +138,7 @@ public class BorrowBookController implements Initializable {
             return;
         }
         
-        modal.openModal("BorrowViewModal", "Confirm Student");
+//        modal.openModal("BorrowViewModal", "Confirm Student");
         clearForm();
     }
     

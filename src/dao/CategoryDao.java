@@ -63,6 +63,23 @@ public class CategoryDao  implements CategoryInterface{
 
         
     }
+
+    @Override
+    public int getByName(String name) throws SQLException {
+        
+         String query = "SELECT * FROM statuses where status_name = ?";
+         PreparedStatement preparedStatement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+         preparedStatement.setString(1, name);
+            
+         ResultSet result = preparedStatement.executeQuery();
+         
+        
+         while(result.next()){
+             return result.getInt("status_id");
+         }
+         
+         return 0;
+    }
     
     
     

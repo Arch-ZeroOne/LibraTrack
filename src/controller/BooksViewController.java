@@ -34,10 +34,16 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.layout.HBox;
 import model.BookRowView;
-import model.Category;
+
 import util.ModalUtil;
-import service.GenreService;
+
 import managers.BookManager;
+import controller.UpdateBookModalController;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
 /**
  * FXML Controller class
  *
@@ -55,6 +61,7 @@ public class BooksViewController implements Initializable {
       BookService service = new BookService();
       @FXML
       TextField searchField;
+     
       
     @FXML
     private Button createBtn;
@@ -114,7 +121,19 @@ public class BooksViewController implements Initializable {
                      //Events for the button
                     box.setAlignment(Pos.CENTER);
                     deleteBtn.setOnAction(event -> {
-                       handleDelete();
+                      
+                       try{
+                           
+                           //Gets where the current row is clicked
+                           BookRowView col = getTableView().getItems().get(getIndex());
+                           //Retrieve the book id
+                           int id = col.getBook_id();
+                           bManager.setId(id);
+                           handleDelete();
+                           
+                       }catch(SQLException error){
+                          System.out.println("Error On Update");
+                       }
                     });
                     
                      updateBtn.setOnAction(event -> {
@@ -144,6 +163,9 @@ public class BooksViewController implements Initializable {
                     }
                 }
         });
+        
+      
+             
        
         
         
@@ -153,7 +175,7 @@ public class BooksViewController implements Initializable {
     
     @FXML
     public void showAddModal(ActionEvent event) throws IOException,SQLException{
-        modal_util.openModal("AddBookModal", "Add Book");
+        modal_util.openModal("AddBookModal", "Add Book",null);
         loadTable();
  
        
@@ -161,8 +183,7 @@ public class BooksViewController implements Initializable {
     
     public void loadTable() throws SQLException{
         ArrayList<BookRowView> book_list = service.list();
-        //Automatically clears old data and loads to the table
-        System.out.println("Book List:");
+       
         for(BookRowView book : book_list){
          System.out.println(book.getTitle());
         }
@@ -238,13 +259,48 @@ public class BooksViewController implements Initializable {
     }
     
     private void handleUpdate()throws IOException{
-        modal_util.openModal("UpdateBookModal","Update Book");
+        modal_util.openModal("UpdateBookModal","Update Book",(UpdateBookModalController controller) -> {
+            controller.setOnUpdateSuccess(() -> {
+                try{
+                   loadTable();
+                }catch(SQLException error){
+                    error.printStackTrace();
+                }
+             
+                    
+                    
+                    });
+                    
+                    });
+      
         
     }
     
-    private void handleDelete(){
+    private void handleDelete() throws SQLException {
+        
+        
+        showConfirmationAlert();
+       
         
     }
+    
+    public void showConfirmationAlert() throws SQLException{
+    Alert alert = new Alert(AlertType.CONFIRMATION);
+    alert.setTitle("Confirmation Dialog");
+    alert.setHeaderText("A change is about to be made.");
+    alert.setContentText("Do you really want to proceed?");
+
+    // Show the alert and wait for a response
+    Optional<ButtonType> result = alert.showAndWait();
+
+    // Process the user's choice
+    if (result.isPresent() && result.get() == ButtonType.OK) {
+         service.remove(bManager.getId());
+        loadTable();
+    } else {
+        System.out.println("User cancelled or closed the dialog. Action aborted.");
+    }
+}
    
     
 }
