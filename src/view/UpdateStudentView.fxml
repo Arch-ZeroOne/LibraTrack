@@ -42,35 +42,7 @@
                         </VBox>
                      </children>
                   </HBox>
-      
-                  <!-- QR Code Scan Section - Emphasized -->
-                  <VBox spacing="10.0" style="-fx-background-color: #f0f4ff; -fx-background-radius: 12; -fx-border-color: #4CAF50; -fx-border-radius: 12; -fx-border-width: 2;">
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                     <children>
-                        <HBox alignment="CENTER_LEFT" spacing="10.0">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #4CAF50; -fx-background-radius: 10;">
-                                 <children>
-                                    <FontAwesomeIcon fill="white" glyphName="QRCODE" size="1.6em" />
-                                 </children>
-                              </VBox>
-                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold;" text="Scan QR Code">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <TextField fx:id="qrCodeField" onKeyPressed="#handleScan" promptText="Place QR code here or scan using device..." prefHeight="50.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-color: #4CAF50; -fx-border-radius: 10; -fx-border-width: 2; -fx-font-size: 16px; -fx-padding: 12; -fx-font-weight: 600;">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                  </VBox>
-      
+
                   <!-- Student Identification Section -->
                   <VBox spacing="15.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 12; -fx-border-color: #e1e4e8; -fx-border-radius: 12; -fx-border-width: 1;">
                      <padding>

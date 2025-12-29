@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import util.ModalUtil;
 import util.WindowUtil;
 /**
  * FXML Controller class
@@ -24,33 +25,29 @@ import util.WindowUtil;
  */
 public class DashboardLayoutController implements Initializable {
     WindowUtil util = new WindowUtil();
+    ModalUtil modal_util = new ModalUtil();
     @FXML
     AnchorPane contentpane;
     @FXML
-    Button homebtn,booksbtn,studentsBtn,borrowBookBtn,attendanceBtn,returnBtn,logoutBtn,reportBtn;
+    Button homebtn,booksbtn,studentsBtn,borrowedBooksBtn,logsBtn,logoutBtn;
     private List<HBox> navButtons;
     @FXML private HBox homebtnHBox;
     @FXML private HBox booksbtnHBox;
     @FXML private HBox studentsBtnHBox;
-    @FXML private HBox updateStudentBtnHBox;
-    @FXML private HBox updateBookBtnHBox;
-    @FXML private HBox borrowBookBtnHBox;
-    @FXML private HBox returnBtnHBox;
-    @FXML private HBox attendanceBtnHBox;
+    @FXML private HBox borrowedBooksBtnHBox;
+    @FXML private HBox logsBtnHBox;
 
     @Override
     public void initialize(URL url, ResourceBundle rb)  {
-    navButtons = Arrays.asList(homebtnHBox, booksbtnHBox, studentsBtnHBox, updateStudentBtnHBox,
-                                   updateBookBtnHBox, borrowBookBtnHBox, returnBtnHBox, attendanceBtnHBox);
+    navButtons = Arrays.asList(homebtnHBox, booksbtnHBox, studentsBtnHBox, borrowedBooksBtnHBox, logsBtnHBox);
 
         // Add click listeners for each Button
         homebtn.setOnAction(e -> setActiveButton(homebtnHBox));
         booksbtn.setOnAction(e -> setActiveButton(booksbtnHBox));
         studentsBtn.setOnAction(e -> setActiveButton(studentsBtnHBox));
+        borrowedBooksBtn.setOnAction(e -> setActiveButton(borrowedBooksBtnHBox));
+        logsBtn.setOnAction(e -> setActiveButton(logsBtnHBox));
        
-        borrowBookBtn.setOnAction(e -> setActiveButton(borrowBookBtnHBox));
-        returnBtn.setOnAction(e -> setActiveButton(returnBtnHBox));
-        attendanceBtn.setOnAction(e -> setActiveButton(attendanceBtnHBox));
        try{
           //Loads the default home page
           util.setContentArea(contentpane); 
@@ -77,43 +74,35 @@ public class DashboardLayoutController implements Initializable {
           studentsBtn.setOnAction(event ->{
           try{
              util.goTo("StudentsView") ;
-             
+
              }catch(IOException e){
-                 e.printStackTrace();   
+                 e.printStackTrace();
              }
           });
-        
-          
-          returnBtn.setOnAction(event ->{
+
+          borrowedBooksBtn.setOnAction(event ->{
           try{
-             util.goTo("ReturnBookView") ;
-             
+             util.goTo("BorrowedBooksView") ;
+
              }catch(IOException e){
-                 e.printStackTrace();   
+                 e.printStackTrace();
              }
           });
-          
+
+          logsBtn.setOnAction(event ->{
+          try{
+             util.goTo("LogsView") ;
+
+             }catch(IOException e){
+                 e.printStackTrace();
+             }
+          });
+
+
        }catch(IOException e){
            e.printStackTrace();
        }
        
-       borrowBookBtn.setOnAction(event ->{
-          try{
-             util.goTo("BorrowBookView");
-             
-             }catch(IOException e){
-                 e.printStackTrace();   
-             }
-          });
-       
-       attendanceBtn.setOnAction(event ->{
-          try{
-             util.goTo("TrackStudentView") ;
-             
-             }catch(IOException e){
-                 e.printStackTrace();   
-             }
-          });
         logoutBtn.setOnAction(event ->{
           try{
              util.transfer("LoginView.fxml",event);
@@ -122,14 +111,7 @@ public class DashboardLayoutController implements Initializable {
                  e.printStackTrace();   
              }
           });
-        reportBtn.setOnAction(event ->{
-          try{
-             util.goTo("GenerateReportView");
-             
-             }catch(IOException e){
-                 e.printStackTrace();   
-             }
-          });
+      
        
           
       

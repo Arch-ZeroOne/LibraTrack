@@ -36,6 +36,7 @@ import model.Student;
 import service.BorrowService;
 import util.AlertUtil;
 import util.DatabaseUtil;
+import util.ModalUtil;
 public class ReturnBookViewController implements Initializable {
 
      @FXML 
@@ -108,6 +109,17 @@ public class ReturnBookViewController implements Initializable {
 private void loadBorrowedBooks(int studentId) {
     ObservableList<BorrowedBook> list = FXCollections.observableArrayList();
 
+    // Get student name for the constructor
+    String studentName = "Unknown";
+    try {
+        model.Student student = service.search(String.valueOf(studentId));
+        if (student != null) {
+            studentName = student.getFirstname() + " " + student.getLastname();
+        }
+    } catch (SQLException e) {
+        System.err.println("Error getting student name: " + e.getMessage());
+    }
+
     String sql = "{ CALL get_unavailable_borrowed_books(?) }";
 
     try (Connection conn = db_util.connect();
@@ -120,12 +132,13 @@ private void loadBorrowedBooks(int studentId) {
             list.add(new BorrowedBook(
                     rs.getInt("accession_number"),
                     rs.getInt("student_id"),
+                    studentName,  // Added student name
                     rs.getString("title"),
                     rs.getString("author"),
                     rs.getDate("borrow_date").toLocalDate(),
                     rs.getDate("due_date").toLocalDate(),
                     rs.getInt("penalty_amount")
-                    
+
             ));
         }
 
@@ -148,6 +161,7 @@ private void loadBorrowedBooks(int studentId) {
         if(returned){
             util.success("Book Returned");
             loadBorrowedBooks(id);
+            ModalUtil.closeModal(event); // Close the modal after successful return
             return;
         }
         util.error("No Borrow Records found");

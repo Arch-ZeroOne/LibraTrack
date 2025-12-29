@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.BorrowedBooksViewController">
+   <children>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+         <content>
+            <VBox spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08), 15,0,0,2);">
+               <padding>
+                  <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+               </padding>
+               <children>
+                  <!-- Enhanced Header -->
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: linear-gradient(to bottom right, #FF6B35, #F7931E); -fx-background-radius: 12;">
+                           <children>
+                              <FontAwesomeIcon fill="white" glyphName="BOOK_OPEN" size="1.8em" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="2.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #001b52;" text="Borrowed Books">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Text>
+                              <Label style="-fx-text-fill: #6c757d; -fx-font-size: 13px;" text="Manage all borrowed books and returns" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <!-- Statistics Cards -->
+                  <HBox prefHeight="80.0" spacing="15.0">
+                     <children>
+                        <!-- Total Borrowed Books Card -->
+                        <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #FF6B35, #F7931E); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(255, 107, 53, 0.25), 8, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                       <children>
+                                          <FontAwesomeIcon fill="white" glyphName="BOOK_OPEN" size="1.1em" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label fx:id="totalBorrowedLabel" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label style="-fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 11px;" text="Total Borrowed" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <!-- Overdue Books Card -->
+                        <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #E53935, #D32F2F); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(229, 57, 53, 0.25), 8, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                       <children>
+                                          <FontAwesomeIcon fill="white" glyphName="EXCLAMATION_TRIANGLE" size="1.1em" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label fx:id="overdueBooksLabel" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label style="-fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 11px;" text="Overdue Books" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <!-- Books Due Today Card -->
+                        <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #FF9800, #F57C00); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(255, 152, 0, 0.25), 8, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                       <children>
+                                          <FontAwesomeIcon fill="white" glyphName="CALENDAR_DAY" size="1.1em" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label fx:id="dueTodayLabel" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label style="-fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 11px;" text="Due Today" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+
+                        <!-- Returned Today Card -->
+                        <VBox prefHeight="80.0" prefWidth="175.0" spacing="8.0" style="-fx-background-color: linear-gradient(to bottom right, #4CAF50, #388E3C); -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.25), 8, 0, 0, 2);">
+                           <padding>
+                              <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                           </padding>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="8.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: rgba(255, 255, 255, 0.25); -fx-background-radius: 6;">
+                                       <children>
+                                          <FontAwesomeIcon fill="white" glyphName="CHECK_CIRCLE" size="1.1em" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="2.0">
+                                       <children>
+                                          <Label fx:id="returnedTodayLabel" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="0">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label style="-fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 11px;" text="Returned Today" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <!-- Enhanced Search and Filter Section -->
+                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="15.0">
+                     <children>
+                        <!-- Search Field with Icon -->
+                        <HBox alignment="CENTER_LEFT" spacing="0.0" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1;">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="45.0" prefWidth="45.0">
+                                 <children>
+                                    <FontAwesomeIcon fill="#6c757d" glyphName="SEARCH" size="1.2em" />
+                                 </children>
+                              </VBox>
+                              <TextField fx:id="searchField" onKeyPressed="#handleSearch" prefHeight="45.0" prefWidth="200.0" promptText="Search books/students..." style="-fx-background-color: transparent; -fx-border-width: 0; -fx-font-size: 14px;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+
+                        <!-- Date Filter with Icon -->
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #e3f2fd; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#2196F3" glyphName="CALENDAR" size="1.2em" />
+                                 </children>
+                              </VBox>
+                              <DatePicker fx:id="datePicker" onAction="#handleDateChange" prefHeight="45.0" prefWidth="150.0" promptText="Filter by date" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 12px;" />
+                           </children>
+                        </HBox>
+
+                        <!-- Status Filter with Icon -->
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #e8f5e8; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#4CAF50" glyphName="CHECK_CIRCLE" size="1.2em" />
+                                 </children>
+                              </VBox>
+                              <ComboBox fx:id="statusComboBox" onAction="#handleStatusChange" prefHeight="45.0" prefWidth="120.0" promptText="Status" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                           </children>
+                        </HBox>
+
+                        <!-- Category Filter with Icon -->
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #f3e5f5; -fx-background-radius: 8;">
+                                 <children>
+                                    <FontAwesomeIcon fill="#9C27B0" glyphName="FILTER" size="1.2em" />
+                                 </children>
+                              </VBox>
+                              <ComboBox fx:id="categoryComboBox" onAction="#handleCategoryFilter" prefHeight="45.0" prefWidth="130.0" promptText="Category" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                           </children>
+                        </HBox>
+
+                        <HBox HBox.hgrow="ALWAYS" />
+
+                        <!-- Enhanced Return Book Button -->
+                        <Button fx:id="returnBookBtn" mnemonicParsing="false" onAction="#showReturnBookModal" prefHeight="45.0" prefWidth="160.0" style="-fx-background-radius: 10; -fx-background-color: linear-gradient(to right, #4CAF50, #388E3C); -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.3), 10, 0, 0, 3);">
+                           <graphic>
+                              <HBox alignment="CENTER" spacing="8.0">
+                                 <children>
+                                    <FontAwesomeIcon fill="white" glyphName="UNDO" size="1.2em" />
+                                    <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="Return Book">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+
+                  <!-- Borrowed Books Table -->
+                  <TableView fx:id="borrowedBooksTable" prefHeight="400.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="tableview" stylesheets="@../asset/css/borrowedbooksview.css" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="borrowIdCol" prefWidth="80.0" style="-fx-alignment: CENTER;" text="ID" />
+                        <TableColumn fx:id="bookTitleCol" prefWidth="200.0" style="-fx-alignment: CENTER_LEFT;" text="Book Title" />
+                        <TableColumn fx:id="studentIdCol" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Student ID" />
+                        <TableColumn fx:id="studentNameCol" prefWidth="150.0" style="-fx-alignment: CENTER_LEFT;" text="Student Name" />
+                        <TableColumn fx:id="borrowDateCol" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Borrow Date" />
+                        <TableColumn fx:id="dueDateCol" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Due Date" />
+                        <TableColumn fx:id="statusCol" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Status" />
+                        <TableColumn fx:id="actionsCol" prefWidth="150.0" text="Actions" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

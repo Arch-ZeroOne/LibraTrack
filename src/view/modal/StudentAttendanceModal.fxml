@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" spacing="25.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 27, 82, 0.15), 20, 0, 0, 5);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentAttendanceModalController">
+   <children>
+      <!-- Enhanced Header Section -->
+      <VBox alignment="CENTER" spacing="15.0">
+         <children>
+            <!-- Icon and Title -->
+            <HBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: linear-gradient(to bottom right, #2196F3, #1976D2); -fx-background-radius: 15;">
+                     <children>
+                        <FontAwesomeIcon fill="white" glyphName="USER_CHECK" size="2.0em" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="5.0">
+                     <children>
+                        <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold;" text="Log Student Attendance" textAlignment="CENTER">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label style="-fx-text-fill: #666666;" text="Scan barcode or enter student information" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <!-- Main Content Area -->
+      <VBox spacing="30.0">
+         <children>
+            <!-- Large Barcode Input Section -->
+            <VBox spacing="20.0" style="-fx-background-color: linear-gradient(to bottom, #f8f9fa, #e9ecef); -fx-background-radius: 15; -fx-padding: 35; -fx-border-color: #2196F3; -fx-border-radius: 15; -fx-border-width: 2;">
+               <children>
+                  <!-- Large Section Header -->
+                  <HBox alignment="CENTER" spacing="15.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: #2196F3; -fx-background-radius: 12;">
+                           <children>
+                              <FontAwesomeIcon fill="white" glyphName="QRCODE" size="1.8em" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="5.0">
+                           <children>
+                              <Label style="-fx-text-fill: #001b52; -fx-font-weight: bold; -fx-font-size: 20px;" text="Scan Student Barcode" /><!-- Updated -->
+                              <Label style="-fx-text-fill: #666666; -fx-font-size: 14px;" text="Attendance will be logged automatically" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+
+                  <!-- Large Input Field -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label style="-fx-text-fill: #495057; -fx-font-weight: 600; -fx-font-size: 16px;" text="Student Barcode / School ID:" />
+                        <TextField fx:id="studentBarcodeField" prefHeight="70.0" promptText="Scan barcode or enter student ID..." style="-fx-background-radius: 12; -fx-border-radius: 12; -fx-font-size: 18px; -fx-padding: 0 20 0 20; -fx-background-color: white; -fx-border-color: #ced4da; -fx-border-width: 2;">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                        <Label style="-fx-text-fill: #6c757d; -fx-font-size: 14px; -fx-font-weight: 500;" text="Press Enter or scan barcode - attendance logs automatically!" />
+                     </children>
+                  </VBox>
+
+                  <!-- Status Display -->
+                  <VBox spacing="15.0" alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #e8f5e8; -fx-background-radius: 30;">
+                           <children>
+                              <FontAwesomeIcon fill="#4CAF50" glyphName="CHECK_CIRCLE" size="2.0em" />
+                           </children>
+                        </VBox>
+                        <Label fx:id="statusLabel" style="-fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-font-size: 16px; -fx-alignment: CENTER;" text="Ready to scan student barcode" textAlignment="CENTER" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+
+      <!-- Simple Cancel Button -->
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Button fx:id="cancelBtn" mnemonicParsing="false" onAction="#handleCancel" prefHeight="45.0" prefWidth="120.0" style="-fx-background-color: #6c757d; -fx-background-radius: 8; -fx-text-fill: white; -fx-font-weight: 500; -fx-font-size: 13px;">
+               <graphic>
+                  <HBox alignment="CENTER" spacing="6.0">
+                     <children>
+                        <FontAwesomeIcon fill="white" glyphName="TIMES" size="1.0em" />
+                        <Label style="-fx-text-fill: white; -fx-font-weight: 500;" text="Close" />
+                     </children>
+                  </HBox>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+   </padding>
+</VBox>

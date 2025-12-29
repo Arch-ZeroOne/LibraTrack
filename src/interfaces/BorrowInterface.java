@@ -14,4 +14,6 @@ public interface BorrowInterface {
     boolean delete(int borrowId) throws SQLException;
     Borrow search(int borrowId) throws SQLException;
     ArrayList<Borrow> list() throws SQLException;
+    Borrow searchByAccession(int accessionNumber) throws SQLException;
+    Borrow getActiveBorrowByAccession(int accessionNumber) throws SQLException;
 }

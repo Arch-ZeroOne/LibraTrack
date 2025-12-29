@@ -119,7 +119,7 @@
                   <TableColumn fx:id="publisherCol" minWidth="3.111083984375" prefWidth="112.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Publisher" />
                   <TableColumn fx:id="publicationCol" prefWidth="126.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Publication Date" />
                   <TableColumn fx:id="statusCol" prefWidth="87.0" style="-fx-alignment: CENTER;" styleClass="table-col" text="Status" />
-                  <TableColumn fx:id="actionsCol" prefWidth="196.0" text="Actions" />
+                  <TableColumn fx:id="actionsCol" prefWidth="280.0" text="Actions" />
                </columns>
             </TableView>
             

@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 public class DatabaseUtil {
     
-    public final String URL = "jdbc:mysql://localhost:3306/libratrack_db";
+    public final String URL = "jdbc:mysql://localhost:3306/revise_db";
     public final String USERNAME = "root";
     public final String PASSWORD = "";
     

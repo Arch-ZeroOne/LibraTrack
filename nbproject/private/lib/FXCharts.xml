@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library version="3.0" xmlns="http://www.netbeans.org/ns/library-declaration/3">
+    <name>FXCharts</name>
+    <type>j2se</type>
+    <localizing-bundle>nbproject/private/lib/FXCharts.properties</localizing-bundle>
+    <volume>
+        <type>classpath</type>
+        <resource>jar</resource>
+    </volume>
+    <volume>
+        <type>src</type>
+        <resource>jar</resource>
+    </volume>
+    <volume>
+        <type>javadoc</type>
+        <resource>jar</resource>
+    </volume>
+</library>

@@ -48,7 +48,7 @@
             </HBox>
             
             <!-- NAVIGATION MENU -->
-            <VBox spacing="6.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+            <VBox spacing="2.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets left="20.0" right="20.0" top="35.0" />
                </padding>
@@ -107,81 +107,15 @@
                         </Button>
                      </children>
                   </HBox>
-                  
-                  <Separator prefWidth="200.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);">
-                     <VBox.margin>
-                        <Insets bottom="8.0" left="5.0" right="5.0" top="15.0" />
-                     </VBox.margin>
-                  </Separator>
-                  
-                  <!-- Update Student Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
-                  
-                  <!-- Update Book Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </HBox>
-                  
-                  <Separator prefWidth="200.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);">
-                     <VBox.margin>
-                        <Insets bottom="8.0" left="5.0" right="5.0" top="15.0" />
-                     </VBox.margin>
-                  </Separator>
-                  
-                  <!-- OPERATIONS Section -->
-                  <Label style="-fx-text-fill: rgba(255, 255, 255, 0.5); -fx-font-size: 11px; -fx-font-weight: 600;" text="OPERATIONS">
-                     <font>
-                        <Font name="System Bold" size="11.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="8.0" left="5.0" top="8.0" />
-                     </VBox.margin>
-                  </Label>
-                  
-                  <!-- Borrow Book Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
+
+                  <!-- Borrowed Books Button -->
+                  <HBox fx:id="borrowedBooksBtnHBox" alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
                      <children>
-                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="BARCODE" size="1.6em" />
-                        <Button fx:id="borrowBookBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Borrow Book">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  
-                  <!-- Return Book Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                     <children>
-                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="UNDO" size="1.6em" />
-                        <Button fx:id="returnBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Return Book">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  
-                  <!-- Attendance Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                     <children>
-                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="CALENDAR_CHECK_ALT" size="1.6em" />
-                        <Button fx:id="attendanceBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Attendance">
+                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="BOOK_OPEN" size="1.6em" />
+                        <Button fx:id="borrowedBooksBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Borrowed Books">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -189,34 +123,26 @@
                      </children>
                   </HBox>
 
-                  <!-- Generate Report Button -->
-                  <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
+                  <!-- Logs Button -->
+                  <HBox fx:id="logsBtnHBox" alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                      <padding>
                         <Insets left="20.0" />
                      </padding>
                      <children>
-                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="FILE_ALT" size="1.6em" />
-                        <Button fx:id="reportBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Generate Report">
+                        <FontAwesomeIcon fill="rgba(255, 255, 255, 0.7)" glyphName="LIST_ALT" size="1.6em" />
+                        <Button fx:id="logsBtn" mnemonicParsing="false" prefHeight="48.0" prefWidth="165.0" style="-fx-background-color: transparent; -fx-text-fill: rgba(255, 255, 255, 0.8); -fx-font-size: 15px; -fx-font-weight: 500; -fx-cursor: hand; -fx-alignment: CENTER_LEFT;" text="Logs">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
                      </children>
                   </HBox>
-                  
-                  <!-- Spacer to push logout to bottom -->
-                  <VBox VBox.vgrow="ALWAYS" />
-                  
-                  <Separator prefWidth="200.0" style="-fx-background-color: rgba(255, 255, 255, 0.1);">
-                     <VBox.margin>
-                        <Insets bottom="15.0" left="5.0" right="5.0" />
-                     </VBox.margin>
-                  </Separator>
+
                   
                   <!-- Logout Button -->
                   <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="nav-button">
                      <padding>
-                        <Insets bottom="20.0" left="20.0" />
+                        <Insets top="10.0" left="20.0" />
                      </padding>
                      <children>
                         <FontAwesomeIcon fill="#ff4757" glyphName="SIGN_OUT" size="1.6em" />

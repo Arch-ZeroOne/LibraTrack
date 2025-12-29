@@ -107,7 +107,7 @@ public class BorrowDao implements BorrowInterface {
     // 1. Check if at least one copy is available for a book (by book_id)
     // ==============================
     public boolean isBookAvailable(int bookId) throws SQLException {
-        String sql = "SELECT COUNT(*) AS available_count FROM book_copies WHERE book_id = ? AND isAvailable = 'Available'";
+        String sql = "SELECT COUNT(*) AS available_count FROM book WHERE book_id = ? AND isAvailable = 'Available'";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, bookId);
         ResultSet rs = ps.executeQuery();
@@ -118,13 +118,13 @@ public class BorrowDao implements BorrowInterface {
     }
 
     // ==============================
-    // 2. Get the next available accession number for borrowing
+    // 2. Get the next available accession number for a specific book
     // ==============================
-    public int getAvailableAccession(int accessionId) throws SQLException {
-        String sql = "SELECT accession_number FROM book WHERE isAvailable = 'Available' AND accession_number = ?  LIMIT 1";
+    public int getAvailableAccessionForBook(int bookId) throws SQLException {
+        String sql = "SELECT accession_number FROM book WHERE book_id = ? AND isAvailable = 'Available' LIMIT 1";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setInt(1, accessionId);
-        
+        ps.setInt(1, bookId);
+
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             return rs.getInt("accession_number");
@@ -133,10 +133,10 @@ public class BorrowDao implements BorrowInterface {
     }
 
     // ==============================
-    // 3. Borrow a book
+    // 3. Borrow a book by book_id (finds any available copy)
     // ==============================
-    public boolean borrowBook(int accessionId, int studentId, int librarianId, String borrowDate, String dueDate) throws SQLException {
-        int accessionNumber = getAvailableAccession(accessionId);
+    public boolean borrowBook(int bookId, int studentId, int librarianId, String borrowDate, String dueDate) throws SQLException {
+        int accessionNumber = getAvailableAccessionForBook(bookId);
         if (accessionNumber == -1) {
             return false; // No available copies
         }
@@ -197,7 +197,7 @@ public class BorrowDao implements BorrowInterface {
     // 7. Check if a specific copy is currently borrowed
     // ==============================
     public boolean isBorrowed(int accessionNumber) throws SQLException {
-        String sql = "SELECT isAvailable book WHERE accession_number = ?";
+        String sql = "SELECT isAvailable FROM book WHERE accession_number = ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setInt(1, accessionNumber);
         ResultSet rs = ps.executeQuery();
@@ -212,6 +212,7 @@ public class BorrowDao implements BorrowInterface {
     // ==============================
     // 9. Search borrow record by accession number
     // ==============================
+    @Override
     public Borrow searchByAccession(int accessionNumber) throws SQLException {
         String sql = "SELECT * FROM borrow WHERE accession_number = ? AND return_date IS NULL";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -230,5 +231,13 @@ public class BorrowDao implements BorrowInterface {
         }
         return null;
     }
-   
+
+    // ==============================
+    // 10. Get active borrow record by accession number
+    // ==============================
+    @Override
+    public Borrow getActiveBorrowByAccession(int accessionNumber) throws SQLException {
+        return searchByAccession(accessionNumber);
+    }
+
 }

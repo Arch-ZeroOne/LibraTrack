@@ -1,0 +1,259 @@
+/*
+ * BorrowedBooksView Stylesheet - Modern Table Design with Montserrat Font
+ */
+
+.mainFxmlClass {
+
+}
+
+/* Table View Styling - Responsive and Modern */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #e1e4e8;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-background-radius: 10;
+    -fx-max-width: Infinity; /* Allow table to expand fully */
+}
+
+/* Ensure table fills its container */
+.table-view .virtual-flow .clipped-container,
+.table-view .virtual-flow .sheet {
+    -fx-max-width: Infinity;
+}
+
+/* Table Header Styling */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to right, #f8f9fa, #e9ecef);
+    -fx-background-radius: 10 10 0 0;
+    -fx-border-color: #e1e4e8;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+    -fx-border-color: transparent transparent #e1e4e8 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #495057;
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-alignment: CENTER_LEFT;
+}
+
+/* Remove focus border */
+.table-view:focused .column-header-background .nested-column-header {
+    -fx-background-color: transparent;
+}
+
+/* Table Cell Styling */
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 8 10 8 10;
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 11px;
+    -fx-text-fill: #495057;
+}
+
+/* Row Hover Effect */
+.table-view .table-row-cell:hover {
+    -fx-background-color: rgba(0, 123, 255, 0.05);
+}
+
+/* Selected Row Styling */
+.table-view .table-row-cell:selected {
+    -fx-background-color: rgba(0, 123, 255, 0.1);
+    -fx-border-color: #007bff;
+    -fx-border-width: 0 0 0 3;
+}
+
+/* Alternate Row Colors for Better Readability */
+.table-view .table-row-cell:odd {
+    -fx-background-color: rgba(248, 249, 250, 0.3);
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: white;
+}
+
+/* Scroll Bar Styling */
+.table-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(108, 117, 125, 0.3);
+    -fx-background-radius: 3;
+}
+
+.table-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(108, 117, 125, 0.5);
+}
+
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+/* Column Resize Handle */
+.table-view .column-resize-line {
+    -fx-background-color: #007bff;
+}
+
+/* Responsive breakpoints for different screen sizes */
+@media (max-width: 1200px) {
+    .table-view .table-cell {
+        -fx-padding: 6 8 6 8;
+        -fx-font-size: 10px;
+    }
+
+    .table-view .column-header .label {
+        -fx-font-size: 11px;
+    }
+}
+
+@media (max-width: 900px) {
+    .table-view .table-cell {
+        -fx-padding: 4 6 4 6;
+        -fx-font-size: 9px;
+    }
+
+    .table-view .column-header .label {
+        -fx-font-size: 10px;
+    }
+}
+
+/* Improved column handling */
+.table-view .table-column {
+    -fx-max-width: Infinity;
+}
+
+/* Better handling of very narrow columns */
+.table-view .table-column[narrow="true"] {
+    -fx-min-width: 50px;
+}
+
+/* Ensure table content is always visible */
+.table-view .table-row-cell {
+    -fx-min-height: 35px;
+}
+
+.table-view .column-header {
+    -fx-min-height: 40px;
+}
+
+/* Placeholder Text */
+.table-view .placeholder .label {
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 13px;
+    -fx-text-fill: #6c757d;
+}
+
+/* Base modern button */
+.btn {
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);
+    -fx-font-family: "Montserrat Regular";
+}
+
+/* Success button (Return) */
+.btn-success {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #28a745,
+        #1e7e34
+    );
+    -fx-text-fill: white;
+}
+
+.btn-success:hover {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #1e7e34,
+        #155724
+    );
+}
+
+.btn-success:pressed {
+    -fx-translate-y: 1;
+}
+
+/* Warning button (Extend) */
+.btn-warning {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #ffc107,
+        #e0a800
+    );
+    -fx-text-fill: black;
+}
+
+.btn-warning:hover {
+    -fx-background-color: linear-gradient(
+        to bottom right,
+        #e0a800,
+        #d39e00
+    );
+}
+
+.btn-warning:pressed {
+    -fx-translate-y: 1;
+}
+
+/* Statistics Cards Styling */
+.stats-card {
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08), 8, 0, 0, 2);
+}
+
+/* Filter Section Styling */
+.filter-section {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 10;
+    -fx-border-color: #e1e4e8;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+}
+
+/* Search Field Styling */
+.search-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 13px;
+}
+
+.search-field:focused {
+    -fx-border-color: #007bff;
+    -fx-effect: dropshadow(gaussian, #007bff33, 4, 0, 0, 2);
+}
+
+/* Combo Box Styling */
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 8;
+    -fx-border-color: #ced4da;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 13px;
+}
+
+.combo-box:focused {
+    -fx-border-color: #007bff;
+}
+
+.combo-box .list-cell {
+    -fx-font-family: "Montserrat Regular";
+    -fx-font-size: 12px;
+}

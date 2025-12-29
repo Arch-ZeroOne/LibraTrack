@@ -1,0 +1,150 @@
+/*
+ * SuperAdminDashboard Responsive Stylesheet
+ */
+
+/* Responsive Sidebar */
+.sidebar {
+    -fx-min-width: 260px;
+    -fx-max-width: 320px;
+    -fx-pref-width: 280px;
+}
+
+/* Responsive content area */
+.content-area {
+    -fx-background-color: #f5f7fa;
+}
+
+/* Responsive navigation buttons */
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-border-radius: 0;
+    -fx-min-height: 48px;
+    -fx-pref-height: 52px;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-background-radius: 8;
+}
+
+.nav-button.active {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-border-color: rgba(255, 255, 255, 0.9);
+    -fx-border-width: 0 0 0 4;
+    -fx-border-radius: 0;
+    -fx-background-radius: 8;
+}
+
+/* Responsive header */
+.sidebar-header {
+    -fx-min-height: 120px;
+    -fx-pref-height: 140px;
+    -fx-max-height: 160px;
+}
+
+/* Icon responsiveness */
+.sidebar-icon {
+    -fx-min-width: 20px;
+    -fx-pref-width: 24px;
+    -fx-max-width: 28px;
+    -fx-min-height: 20px;
+    -fx-pref-height: 24px;
+    -fx-max-height: 28px;
+}
+
+/* Button responsiveness */
+.sidebar-button {
+    -fx-min-width: 160px;
+    -fx-pref-width: 200px;
+    -fx-max-width: 240px;
+    -fx-min-height: 40px;
+    -fx-pref-height: 48px;
+    -fx-max-height: 56px;
+}
+
+/* Responsive text */
+.sidebar-title {
+    -fx-font-size: 16px;
+    -fx-wrap-text: true;
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        -fx-pref-width: 260px;
+    }
+
+    .sidebar-button {
+        -fx-pref-width: 180px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 14px;
+    }
+}
+
+@media (max-width: 900px) {
+    .sidebar {
+        -fx-pref-width: 240px;
+    }
+
+    .sidebar-button {
+        -fx-pref-width: 160px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        -fx-pref-width: 220px;
+    }
+
+    .sidebar-button {
+        -fx-pref-width: 140px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 12px;
+    }
+}
+
+/* High DPI support */
+@media (-fx-scale: 1.25) {
+    .sidebar-icon {
+        -fx-pref-width: 28px;
+        -fx-pref-height: 28px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 17px;
+    }
+}
+
+@media (-fx-scale: 1.5) {
+    .sidebar-icon {
+        -fx-pref-width: 32px;
+        -fx-pref-height: 32px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 18px;
+    }
+}
+
+@media (-fx-scale: 2.0) {
+    .sidebar-icon {
+        -fx-pref-width: 40px;
+        -fx-pref-height: 40px;
+    }
+
+    .sidebar-title {
+        -fx-font-size: 20px;
+    }
+}

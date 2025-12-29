@@ -13,5 +13,7 @@ public interface LogInterface {
       public boolean insert(String school_id) throws SQLException;
       public String search(String qrcode) throws SQLException;
       public boolean isDuplicate(Date logDate,String school_id) throws SQLException;
-    
+      public boolean insertAttendance(Log log, int studentId) throws SQLException;
+      public boolean delete(int logId) throws SQLException;
+
 }

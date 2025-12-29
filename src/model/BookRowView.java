@@ -20,6 +20,18 @@ public class BookRowView {
         this.isbn = isbn;
         this.publication_date = publication_date;
         this.status = status;
+        this.isBorrowed = false; // Default to not borrowed
+    }
+
+    public BookRowView(int book_id, String title, String author, String publisher, String isbn, LocalDate publication_date, String status, boolean isBorrowed) {
+        this.book_id = book_id;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.isbn = isbn;
+        this.publication_date = publication_date;
+        this.status = status;
+        this.isBorrowed = isBorrowed;
     }
 
     public int getBook_id() {
@@ -77,6 +89,19 @@ public class BookRowView {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public boolean isBorrowed() {
+        return isBorrowed;
+    }
+
+    public void setBorrowed(boolean isBorrowed) {
+        this.isBorrowed = isBorrowed;
+    }
+
+    public String getDisplayStatus() {
+        return isBorrowed ? "Borrowed" : "Available";
+    }
+
     private int book_id;
     private String title;
     private String author;
@@ -84,5 +109,6 @@ public class BookRowView {
     private String isbn;
     private LocalDate publication_date;
     private String status;
+    private boolean isBorrowed;
     
 }

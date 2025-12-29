@@ -8,6 +8,7 @@ import model.Log;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.time.LocalDate;
 public class LogService {
     LogDao dao = new LogDao();
     public boolean insert(String school_id) throws SQLException{
@@ -25,5 +26,15 @@ public class LogService {
     public boolean isDuplicate(Date date,String school_id) throws SQLException{
        return dao.isDuplicate(date,school_id);
     }
-    
+
+    public boolean logAttendance(String firstname, String middlename, String lastname,
+                                LocalDate logDate, String schoolId, int studentId) throws SQLException {
+        Log log = new Log(firstname, middlename, lastname, Date.valueOf(logDate), schoolId);
+        return dao.insertAttendance(log, studentId);
+    }
+
+    public boolean delete(int logId) throws SQLException {
+        return dao.delete(logId);
+    }
+
 }

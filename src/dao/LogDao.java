@@ -56,6 +56,21 @@ public class LogDao implements LogInterface {
     }
 
     @Override
+    public boolean insertAttendance(Log log, int studentId) throws SQLException {
+        String query = "INSERT INTO log (firstname, middlename, lastname, log_date, school_id, student_id) VALUES (?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setString(1, log.getFirstname());
+        preparedStatement.setString(2, log.getMiddlename());
+        preparedStatement.setString(3, log.getLastname());
+        preparedStatement.setDate(4, log.getLog_date());
+        preparedStatement.setString(5, log.getSchool_id());
+        preparedStatement.setInt(6, studentId);
+
+        int rows_affected = preparedStatement.executeUpdate();
+        return rows_affected != 0;
+    }
+
+    @Override
     public String search(String qrcode) throws SQLException {
         String query = "SELECT * FROM student WHERE school_id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -75,14 +90,22 @@ public class LogDao implements LogInterface {
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setDate(1, date);
         preparedStatement.setString(2, school_id);
-        
+
         System.out.println(preparedStatement);
         ResultSet result = preparedStatement.executeQuery();
-         
+
          return result.next();
-        
+
     }
-    
+
+    @Override
+    public boolean delete(int logId) throws SQLException {
+        String query = "DELETE FROM log WHERE log_id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        preparedStatement.setInt(1, logId);
+        return preparedStatement.executeUpdate() > 0;
+    }
+
   }
  
     

@@ -27,6 +27,7 @@ import service.BookService;
 import service.GenreService;
 import util.AlertUtil;
 import util.ModalUtil;
+import dao.AuthorDao;
 
 /**
  * FXML Controller class
@@ -73,7 +74,8 @@ public class BorrowBookController implements Initializable {
     GenreService genre_service = new GenreService();
     AlertUtil alert_util = new AlertUtil();
     ModalUtil modal = new ModalUtil();
-    
+    AuthorDao author_dao = new AuthorDao();
+
     BookManager manager = BookManager.getInstance();
     ObservableList<Category> genres = FXCollections.observableArrayList();
     // Initialize method
@@ -85,41 +87,51 @@ public class BorrowBookController implements Initializable {
         genreListView.setItems(genres);
         
            
-      barcodeField.setOnKeyPressed(event -> {
+        barcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
-            try{      
+            try{
               String value = barcodeField.getText();
               Book book = book_service.search(value);
               if(book != null){
-//                  manager.setAccessionNumber(book.getId());
-                  ObservableList<String> genreList = genre_service.getByIsbn(value);
-//                  genres.setAll(genreList);
-                  autoFill(book);
+                  // Populate BookManager with book data
+                  manager.setId(book.getBook_id());
+                  manager.setTitle(book.getTitle());
+                  manager.setPublisher(book.getPublisher());
+                  manager.setIsbn(book.getIsbn());
+                  // Get author name
+                  String authorName = author_dao.getById(book.getAuthor_id());
+                  manager.setAuthor(authorName != null ? authorName : "Unknown");
+
+                  // Check availability - for now assume available if status_id != 3 (removed)
+                  String availability = (book.getStatus_id() == 3) ? "Unavailable" : "Available";
+                  manager.setIsAvailable(availability);
+
+                  autoFill(book, authorName);
                   return;
               }
-              
-              alert_util.error("No Book Data Avaible");
+
+              alert_util.error("No Book Data Available");
               clearForm();
-              
+
             }catch(SQLException error){
                   error.printStackTrace();
             }
-              
-              
+
+
           }
         });
     }
 
 
-    public void autoFill(Book book){
-//       
-//        titleField.setText(book.getTitle());
-//        authorField.setText(book.getAuthor());
-//        publisherField.setText(book.getPublisher());
-//        isbnField.setText(book.getIsbn());
-//        availableField.setText(book.getIsAvailable());
-       
-        
+    public void autoFill(Book book, String authorName){
+        titleField.setText(book.getTitle());
+        authorField.setText(authorName != null ? authorName : "Unknown");
+        publisherField.setText(book.getPublisher());
+        isbnField.setText(book.getIsbn());
+        // For availability, we need to check if the book has available copies
+        // For now, show status based on status_id
+        String availability = (book.getStatus_id() == 3) ? "Unavailable" : "Available";
+        availableField.setText(availability);
     }
 
     public void clearForm(){
@@ -137,8 +149,8 @@ public class BorrowBookController implements Initializable {
             alert_util.error("Book Unavailable or Borrowed");
             return;
         }
-        
-//        modal.openModal("BorrowViewModal", "Confirm Student");
+
+        modal.openModal("BorrowViewModal", "Confirm Student",null);
         clearForm();
     }
     

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,9 +16,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="578.0" prefWidth="815.0" style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentsViewController">
+<AnchorPane style="-fx-background-color: #f5f7fa;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentsViewController">
     <children>
-        <VBox layoutX="30.0" layoutY="20.0" prefHeight="538.0" prefWidth="755.0" spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08),15,0,0,2);">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <VBox spacing="20.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0,27,82,0.08),15,0,0,2);">
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                    </padding>
             <padding>
                 <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
             </padding>
@@ -86,7 +92,19 @@
                                 <ComboBox fx:id="courseComboBox" onAction="#handleCourseChange" prefHeight="45.0" prefWidth="130.0" promptText="Program" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
                             </children>
                         </HBox>
-                        
+
+                        <!-- Status Filter with Icon -->
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #e8f5e8; -fx-background-radius: 8;">
+                                    <children>
+                                        <FontAwesomeIcon fill="#4CAF50" glyphName="CHECK_CIRCLE" size="1.2em" />
+                                    </children>
+                                </VBox>
+                                <ComboBox fx:id="statusComboBox" onAction="#handleStatusChange" prefHeight="45.0" prefWidth="120.0" promptText="Status" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-font-size: 14px;" />
+                            </children>
+                        </HBox>
+
                         <HBox HBox.hgrow="ALWAYS" />
                         
                         <!-- Enhanced Create Button -->
@@ -225,16 +243,20 @@
                 </HBox>
                 
                 <!-- Enhanced Table -->
-                <TableView fx:id="studentTable" onKeyPressed="#handleSearch" onKeyReleased="#handleSearch" prefHeight="260.0" prefWidth="695.0" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;">
+                <TableView fx:id="studentTable" onKeyPressed="#handleSearch" onKeyReleased="#handleSearch" style="-fx-background-color: transparent; -fx-border-color: #e1e4e8; -fx-border-radius: 10; -fx-border-width: 1; -fx-background-radius: 10;" styleClass="tableview" stylesheets="@../asset/css/studentsview.css" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="idCol" prefWidth="140.0" style="-fx-alignment: CENTER;" text="Student ID" />
-                        <TableColumn fx:id="firstnameCol" prefWidth="160.0" style="-fx-alignment: CENTER_LEFT;" text="First Name" />
-                        <TableColumn fx:id="middlenameCol" prefWidth="160.0" style="-fx-alignment: CENTER_LEFT;" text="Middle Name" />
-                        <TableColumn fx:id="lastnameCol" prefWidth="160.0" style="-fx-alignment: CENTER_LEFT;" text="Last Name" />
-                        <TableColumn fx:id="courseCol" prefWidth="135.0" style="-fx-alignment: CENTER;" text="Program" />
+                        <TableColumn fx:id="idCol" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Student ID" />
+                        <TableColumn fx:id="firstnameCol" prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="First Name" />
+                        <TableColumn fx:id="middlenameCol" prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="Middle Name" />
+                        <TableColumn fx:id="lastnameCol" prefWidth="130.0" style="-fx-alignment: CENTER_LEFT;" text="Last Name" />
+                        <TableColumn fx:id="courseCol" prefWidth="110.0" style="-fx-alignment: CENTER;" text="Program" />
+                        <TableColumn fx:id="statusCol" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Status" />
+                        <TableColumn fx:id="actionsCol" prefWidth="250.0" text="Actions" />
                     </columns>
                 </TableView>
-            </children>
-        </VBox>
+                </children>
+            </VBox>
+            </content>
+        </ScrollPane>
     </children>
 </AnchorPane>

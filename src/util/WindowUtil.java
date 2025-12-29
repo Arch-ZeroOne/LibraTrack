@@ -30,7 +30,9 @@ public class WindowUtil {
         current.setScene(scene);
         //centers the stage
         current.centerOnScreen();
+        current.setMaximized(true);
         current.show();
+        
         
        
 

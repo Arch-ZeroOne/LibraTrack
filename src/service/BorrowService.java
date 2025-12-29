@@ -73,4 +73,11 @@ public class BorrowService {
     public ArrayList<Borrow> listAllBorrows() throws SQLException {
         return dao.list();
     }
+
+    // ==============================
+    // Check if a book is currently borrowed
+    // ==============================
+    public boolean isBookCurrentlyBorrowed(int bookId) throws SQLException {
+        return dao.getActiveBorrowByAccession(bookId) != null;
+    }
 }

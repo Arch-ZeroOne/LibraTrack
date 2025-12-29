@@ -49,10 +49,12 @@ public class BookDao implements BookInterface{
             if(rs.next()){
                 int primaryKey = rs.getInt(1);
                 insertCategories(categories,primaryKey);
+                // Create at least one book copy for borrowing
+                insertBookCopy(primaryKey);
                 return true;
-                
+
             }
-            
+
         }
         
         return false;
@@ -76,11 +78,45 @@ public class BookDao implements BookInterface{
        int[] updates = preparedStatement.executeBatch();
        
           
-       return updates.length != 0;
-        
-     
+        return updates.length != 0;
 
-      
+
+
+    }
+
+    /**
+     * Creates a book copy entry in the book table for borrowing
+     */
+    /**
+     * Creates a book copy entry in the book table for borrowing
+     */
+    private boolean insertBookCopy(int bookId) throws SQLException {
+        String query = "INSERT INTO book (book_id, isAvailable) VALUES (?, 'Available')";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, bookId);
+
+        int rows = ps.executeUpdate();
+        return rows > 0;
+    }
+
+    /**
+     * Adds book copies for existing books that don't have any copies
+     */
+    public void addCopiesForExistingBooks() throws SQLException {
+        // Find books that don't have any copies
+        String findBooksQuery = "SELECT b.book_id FROM books b LEFT JOIN book bc ON b.book_id = bc.book_id WHERE bc.book_id IS NULL";
+        PreparedStatement ps1 = connection.prepareStatement(findBooksQuery);
+        ResultSet rs = ps1.executeQuery();
+
+        while (rs.next()) {
+            int bookId = rs.getInt("book_id");
+            // Add one copy for each book that doesn't have any
+            insertBookCopy(bookId);
+            System.out.println("Added copy for existing book ID: " + bookId);
+        }
+
+        rs.close();
+        ps1.close();
     }
     
    
@@ -154,28 +190,34 @@ public class BookDao implements BookInterface{
     }
     
      public Book search(String barcode) throws SQLException{
-        String query = "SELECT * FROM book WHERE isbn = ?";
+        String query = "SELECT b.*, a.author_name FROM books b LEFT JOIN authors a ON b.author_id = a.author_id WHERE b.isbn = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, barcode);
         ResultSet result = preparedStatement.executeQuery();
-//         
-//        while(result.next()){
-//            if(result.getString("isAvailable").equals("Borrowed")){
-//                continue;
-//                
-//            }
-//            int id = result.getInt("accession_number");
-//            String title = result.getString("title");
-//            String author = result.getString("author");
-//            String publisher = result.getString("publisher");
-//            String pub_date = result.getString("publication_date");
-//            String isbn = result.getString("isbn");
-//            int copies = result.getInt("copies");
-//            String isAvailable = result.getString("isAvailable");
-//            
-//            return new Book(id,title,author,publisher,pub_date,isbn,copies,isAvailable); 
-//        }
-//        
+
+        if(result.next()){
+            int book_id = result.getInt("book_id");
+            String title = result.getString("title");
+            int author_id = result.getInt("author_id");
+            String publisher = result.getString("publisher");
+            String isbn = result.getString("isbn");
+            Date publicationDate = result.getDate("publication_date");
+            int status_id = result.getInt("status_id");
+
+            Book book = new Book();
+            book.setBook_id(book_id);
+            book.setTitle(title);
+            book.setAuthor_id(author_id);
+            book.setPublisher(publisher);
+            book.setIsbn(isbn);
+            if(publicationDate != null) {
+                book.setPublication_date(publicationDate.toLocalDate());
+            }
+            book.setStatus_id(status_id);
+
+            return book;
+        }
+
         return null;
     }
      
@@ -195,7 +237,10 @@ public class BookDao implements BookInterface{
             Date publicationDate = result.getDate("publication_date");
             String status  = result.getString("status_name");
             
-            BookRowView view = new BookRowView(id,title,author_name,publisher,isbn,publicationDate.toLocalDate(),status);
+            // Check if book is currently borrowed
+            boolean isBorrowed = isBookCurrentlyBorrowed(id);
+
+            BookRowView view = new BookRowView(id,title,author_name,publisher,isbn,publicationDate.toLocalDate(),status, isBorrowed);
             
             book_list.add(view);
             
@@ -243,13 +288,22 @@ public class BookDao implements BookInterface{
     }
     
     public String getAccessionNumber(String title,int rowCount){
-        
+
         return title+"-"+rowCount;
     }
-    
-    
-    
-}
+
+    private boolean isBookCurrentlyBorrowed(int bookId) throws SQLException {
+        // Check if any copy of this book is currently borrowed
+        String query = "SELECT 1 FROM borrow b JOIN book bk ON b.accession_number = bk.accession_number WHERE bk.book_id = ? AND b.return_date IS NULL LIMIT 1";
+        PreparedStatement ps = connection.prepareStatement(query);
+        ps.setInt(1, bookId);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+    }
+
+
+
+    }
 
     
     

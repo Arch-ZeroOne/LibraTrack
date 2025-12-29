@@ -80,7 +80,11 @@ public class BorrowViewModalController implements Initializable {
     // Initialize method
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        // Populate book information from BookManager
+        bookIdField.setText(String.valueOf(manager.getId()));
+        borrowDatePicker.setValue(java.time.LocalDate.now());
+        dueDatePicker.setValue(java.time.LocalDate.now().plusDays(7)); // Default 7 days due
+
         studentBarcodeField.requestFocus();
         studentBarcodeField.setOnKeyPressed(event -> {
           if(event.getCode() == KeyCode.ENTER){
@@ -115,44 +119,44 @@ public class BorrowViewModalController implements Initializable {
     }
  
  public void handleConfirm(ActionEvent event) throws SQLException{
-     Borrow borrow = new Borrow();
-     // Create a new Borrow object
+     try {
+         // Validate required fields
+         if (studentIdField.getText().trim().isEmpty() ||
+             borrowDatePicker.getValue() == null ||
+             dueDatePicker.getValue() == null) {
+             alert_util.error("Please fill in all required fields");
+             return;
+         }
 
+         // Get studentId from TextField
+         int studentId = Integer.parseInt(studentIdField.getText().trim());
 
-try {
-    
+         // Get librarianId from TextField (default to 1 if empty)
+         int librarianId = librarianIdField.getText().trim().isEmpty() ? 1 :
+                          Integer.parseInt(librarianIdField.getText().trim());
 
-    // Get studentId from TextField
-    int studentId = Integer.parseInt(studentIdField.getText().trim());
+         // Get borrow date from DatePicker
+         String borrowDate = borrowDatePicker.getValue().toString(); // YYYY-MM-DD
 
-    // Get librarianId from TextField
-    int librarianId = Integer.parseInt(librarianIdField.getText().trim());
+         // Get due date from DatePicker
+         String dueDate = dueDatePicker.getValue().toString(); // YYYY-MM-DD
 
-    // Get borrow date from DatePicker
-    String borrowDate = borrowDatePicker.getValue().toString(); // YYYY-MM-DD
+         System.out.println("Borrowing book with ID: " + manager.getId());
 
-    // Get due date from DatePicker
-    String dueDate = dueDatePicker.getValue().toString(); // YYYY-MM-DD
+         boolean borrowed = borrow_service.borrowBook(manager.getId(), studentId, librarianId, borrowDate, dueDate);
 
-    // Set values in Borrow object
-    System.out.println(manager.getAccessionNumber());
-    
-   
-    boolean borrowed = borrow_service.borrowBook(manager.getAccessionNumber(), studentId, librarianId, borrowDate, dueDate);
-
-    if(borrowed){
-        alert_util.success("Book Borrowed");
-        handleCancel(event);
-        
-    }
-} catch (NumberFormatException e) {
-    e.printStackTrace();
-    System.out.println("Error: Invalid number input.");
-} catch (NullPointerException e) {
-    System.out.println("Error: Date not selected.");
-}
-
-     
+         if(borrowed){
+             alert_util.success("Book Borrowed Successfully");
+             handleCancel(event);
+         } else {
+             alert_util.error("Failed to borrow book. Book may not be available.");
+         }
+     } catch (NumberFormatException e) {
+         alert_util.error("Invalid number format in student ID or librarian ID");
+     } catch (Exception e) {
+         alert_util.error("An error occurred while borrowing the book");
+         e.printStackTrace();
+     }
  }
   //Handles the modal closing
    public void handleCancel(ActionEvent event){

@@ -32,7 +32,6 @@
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BooksViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/interfaces/BorrowInterface.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowBookController.java</file>
-            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/modal/UpdateBookModal.fxml</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/StudentsViewController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/UpdateBookModalController.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Book.java</file>
@@ -41,6 +40,15 @@
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/model/Category.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/StatusManager.java</file>
             <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/managers/BookManager.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/DatabaseUtil.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/DashboardLayoutController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/BorrowBookModalController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/BorrowDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/UserDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/dao/StudentDao.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/util/DatabaseSchemaRunner.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/controller/ReturnBookViewController.java</file>
+            <file>file:/C:/Users/Windyl/OneDrive/KOWENS/NetBeansProjects/LibraTrack/src/view/DashboardLayout.fxml</file>
         </group>
     </open-files>
 </project-private>
